@@ -1,4 +1,4 @@
-import { VIDEO_CODES, SLEUTEL, FEEDBACK, BESPREKING } from '../content/s2.js';
+import { VIDEO_CODES, SLEUTEL, FEEDBACK, BESPREKING, OEFENCLIP } from '../content/s2.js';
 import { compareTally } from '../tally.js';
 import { renderVideo } from './media.js';
 import { el } from './dom.js';
@@ -43,7 +43,13 @@ export function renderTurf(block, ctx) {
   }, 'Laatste klik ongedaan maken');
   const opnieuw = el('button', {
     type: 'button', class: 'knop knop--stil',
-    onclick: () => { staat.history = []; staat.vergeleken = false; bijwerken(); },
+    onclick: () => {
+      // Opnieuw turven staat naast ongedaan maken; een misklik midden in de clip mag de telling niet wissen.
+      if (staat.history.length > 0 && !window.confirm('Je telling wissen en opnieuw turven?')) return;
+      staat.history = [];
+      staat.vergeleken = false;
+      bijwerken();
+    },
   }, 'Opnieuw turven');
   const vergelijk = el('button', {
     type: 'button', class: 'knop',
@@ -52,6 +58,11 @@ export function renderTurf(block, ctx) {
       staat.besproken = true;
       bijwerken();
       ctx.event('doe-af');
+      // De uitslag staat onder de vouw: breng hem in beeld en zet de focus erop, ook voor een schermlezer.
+      const kern = vergelijking.querySelector('.uitslag__kern');
+      kern?.setAttribute('tabindex', '-1');
+      kern?.focus({ preventScroll: true });
+      kern?.scrollIntoView({ block: 'start' });
     },
   }, 'Vergelijk met de sleutel');
 
@@ -96,6 +107,7 @@ export function renderTurf(block, ctx) {
   return el('div', { class: 'turf' },
     el('h3', {}, 'De vier codes'),
     el('dl', { class: 'turf__codes' }, VIDEO_CODES.flatMap((c) => [el('dt', {}, c.naam), el('dd', {}, c.definitie)])),
+    renderVideo(OEFENCLIP),
     el('div', { class: 'turf__knoppen' }, knoppen),
     status,
     el('p', { class: 'turf__acties' }, ongedaan, ' ', opnieuw, ' ', vergelijk));

@@ -32,3 +32,24 @@ test('the summary reports an association, not a cause', () => {
   assert.ok(!/bijdr(oeg|aagt|oegen)/.test(tekst), 'geen oorzaak-taal: Chen vond een samenhang');
   assert.match(tekst, /samenhing/);
 });
+
+test('the summary does not rank the two associated domains (still 02 shows two stars on the other one)', () => {
+  const tekst = s0.kijk.filter((b) => b.type === 'video').flatMap((b) => b.samenvatting).join(' ');
+  assert.ok(!/sterkst|het meest/.test(tekst));
+  assert.match(tekst, /een van de twee onderdelen/);
+});
+
+test('the study scored teaching on a rating scale; the summary does not say it counted', () => {
+  const tekst = s0.kijk.filter((b) => b.type === 'tekst').map((b) => b.html).join(' ');
+  assert.ok(!/keken en telden/.test(tekst));
+  assert.match(tekst, /keken en scoorden/);
+});
+
+test('the nulmeting message depends on whether a nulmeting was written', () => {
+  const keuze = s0.doe.find((b) => b.type === 'keuze');
+  const store = (answers, persistent = true) => ({ persistent, get: (p) => (p === 'answers.nulmeting' ? answers : undefined) });
+  assert.match(keuze.slot(store('Ik vraag het ze.')), /bewaard/);
+  assert.match(keuze.slot(store('   ')), /nog niet geschreven/);
+  assert.match(keuze.slot(store(undefined)), /nog niet geschreven/);
+  assert.ok(!/bewaard/.test(keuze.slot(store('Ik vraag het ze.', false))));
+});

@@ -1,5 +1,8 @@
 """Station 2: Zelf coderen, met de klikteller."""
+import pytest
 from playwright.sync_api import expect
+
+from helpers import stub_youtube
 
 S2 = "#/station/2"
 NAMEN = {"eigen-bouwwerk": "Eigen bouwwerk bekijken", "strategie-wisselen": "Strategie wisselen",
@@ -66,6 +69,44 @@ def test_turf_restart_clears_counts(page, site_url):
     page.goto(site_url + S2)
     turf(page, "eigen-bouwwerk", 2)
     page.get_by_role("button", name="Vergelijk met de sleutel").click()
+    page.once("dialog", lambda d: d.accept())
     page.get_by_role("button", name="Opnieuw turven").click()
     assert telling(page, "eigen-bouwwerk") == "0"
     expect(page.locator(".turf-vergelijk")).to_have_count(0)
+
+
+def test_restart_asks_first(page, site_url):
+    page.goto(site_url + S2)
+    turf(page, "afgeleid", 2)
+    page.once("dialog", lambda d: d.dismiss())
+    page.get_by_role("button", name="Opnieuw turven").click()
+    assert telling(page, "afgeleid") == "2"
+
+
+@pytest.mark.parametrize("breedte,hoogte", [(360, 740), (1366, 768)])
+def test_clip_and_counter_visible_together(browser, site_url, breedte, hoogte):
+    ctx = browser.new_context(viewport={"width": breedte, "height": hoogte})
+    stub_youtube(ctx)
+    page = ctx.new_page()
+    page.goto(site_url + S2)
+    clip = page.locator(".turf iframe")
+    expect(clip).to_have_count(1)
+    clip.evaluate("(el) => el.scrollIntoView({ block: 'start' })")
+    onder = page.evaluate("""() => Math.max(...[...document.querySelectorAll('.turf__knop')]
+        .concat([...document.querySelectorAll('.turf__acties button')].slice(0, 1))
+        .map((e) => e.getBoundingClientRect().bottom))""")
+    assert onder <= hoogte, f"onderkant knoppen {onder} > {hoogte}"
+    ctx.close()
+
+
+def test_compare_moves_focus_to_result(browser, site_url):
+    ctx = browser.new_context(viewport={"width": 360, "height": 740})
+    stub_youtube(ctx)
+    page = ctx.new_page()
+    page.goto(site_url + S2)
+    turf(page, "afgeleid")
+    page.get_by_role("button", name="Vergelijk met de sleutel").click()
+    assert page.evaluate("document.activeElement.closest('.turf-vergelijk') !== null")
+    top = page.evaluate("document.activeElement.getBoundingClientRect().top")
+    assert 0 <= top < 740
+    ctx.close()

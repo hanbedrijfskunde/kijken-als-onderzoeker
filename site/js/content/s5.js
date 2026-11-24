@@ -16,9 +16,9 @@ export const BESLISSINGEN = [
     uitleg: 'In filiaal C wordt per uur veel minder doorgevraagd dan in de andere drie: 2,5 keer, tegen 6,6 tot 7,5. Het verschil is groot, en de codering is betrouwbaar genoeg (κ = 0,78).',
   },
   {
-    tekst: 'Kijk in filiaal B hoe verkopers doorvragen, en gebruik dat in de training voor filiaal C.',
+    tekst: 'Kijk in een filiaal waar per uur veel wordt doorgevraagd (A, B of D) hoe verkopers dat doen, en gebruik dat in de training voor filiaal C.',
     onderbouwd: true,
-    uitleg: 'Per uur wordt in B het vaakst doorgevraagd (7,5). Dat maakt B een logische plek om voorbeelden te zoeken. Of de training werkt, meet je daarna opnieuw.',
+    uitleg: 'In A, B en D wordt per uur ruim twee keer zo vaak doorgevraagd als in C (6,6 tot 7,5 tegen 2,5). Daar vind je dus voorbeelden. Welk van de drie maakt weinig uit: de verschillen tussen A, B en D zijn klein. Of de training werkt, meet je daarna opnieuw.',
   },
   {
     tekst: 'Filiaal B heeft ook training nodig: daar is na filiaal C het minst doorgevraagd.',
@@ -85,7 +85,8 @@ export default {
       type: 'video', start: 3086, end: 3315, titel: 'Kan AI het coderen overnemen?',
       samenvatting: [
         'Iemand vraagt of AI kan helpen bij het coderen. Chen heeft dat voor deze data zelf nog niet geprobeerd.',
-        'Iemand van Class Lab beschrijft de werkwijze daar. Eerst een codeboek, dan twee mensen die betrouwbaar coderen. Dan laat je de AI dezelfde set coderen en vergelijk je de uitkomsten. Pas als de AI even betrouwbaar is, mag die verder coderen.',
+        'De gespreksleider, directeur van Class Lab, gebruikt AI om rekenopgaven te beoordelen, niet voor observatiedata zoals die van Chen. De werkwijze: eerst een codeboek, dan twee mensen die betrouwbaar beoordelen. Dan laat je de AI dezelfde set beoordelen en vergelijk je de uitkomsten. Pas als de AI even betrouwbaar is, mag die verder beoordelen.',
+        'Voor dit soort onderzoek zegt de gespreksleider: er is iets voor te zeggen om het coderen helemaal door mensen te laten doen.',
         'Video’s met kinderen gaan niet naar een AI. De laptop voor het coderen is zelfs nooit online.',
         'Taal zit vol nuances. Chen twijfelt of je een codeboek zo precies kunt schrijven dat een AI ze allemaal vangt.',
       ],

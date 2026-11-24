@@ -43,11 +43,11 @@ export default {
         'Chen wilde weten welke manier van lesgeven in natuurwetenschappen samenhangt met wat jonge kinderen leren.',
         'Getrainde onderzoekers observeerden leerkrachten in de klas. Ze scoorden het lesgeven op acht onderdelen, met een bestaande beoordelingsschaal.',
         'Twee onderdelen hingen samen met wat kinderen leerden: het doorlopende gesprek met kinderen (extended conversation) en nagaan wat kinderen geleerd hebben. Dat patroon kwam drie jaar op rij terug.',
-        'Juist het doorlopende gesprek kwam het minst voor. Wat het sterkst samenhing met wat kinderen leerden, gebeurde het minst.',
+        'Juist het doorlopende gesprek, een van de twee onderdelen die samenhingen met wat kinderen leerden, kwam het minst voor.',
       ],
     },
     { type: 'still', bestand: '02-11m40-rq2-average-scores-eight-domains.webp', sec: 700, alt: 'Staafdiagram met de gemiddelde scores van leerkrachten op acht onderdelen van lesgeven. Extended Conversation scoort het laagst, rond 2,6, en heeft een sterretje: het hangt samen met wat kinderen leren.', bijschrift: 'Het doorlopende gesprek (Extended Conversation) scoort het laagst, terwijl het samenhangt met wat kinderen leren (sterretje).' },
-    { type: 'tekst', html: '<p><strong>Wat heb je hieraan?</strong> Dat het doorlopende gesprek zo weinig voorkwam, zag Chen doordat onderzoekers keken en telden. In een bedrijf werkt dat net zo. Wie telt wat er gebeurt, ziet welk gedrag weinig voorkomt, terwijl het er wel toe doet.</p>' },
+    { type: 'tekst', html: '<p><strong>Wat heb je hieraan?</strong> Dat het doorlopende gesprek zo weinig voorkwam, zag Chen doordat onderzoekers keken en scoorden. In een bedrijf werkt dat net zo. Wie telt wat er gebeurt, ziet welk gedrag weinig voorkomt, terwijl het er wel toe doet.</p>' },
     { type: 'tekst', html: VORMEN },
   ],
   doe: [
@@ -56,7 +56,14 @@ export default {
     { type: 'tekst', html: '<p><strong>Welke methode past?</strong> Lees de drie situaties uit de fietsenwinkel. Kies bij elke situatie de methode die het best past.</p><p><strong>Klaar als:</strong> je bij alle drie de situaties een methode hebt gekozen.</p>' },
     {
       type: 'keuze',
-      slot: 'Je nulmeting is bewaard. Je vindt die terug in je observatieplan.',
+      // Alleen 'bewaard' zeggen als er een nulmeting is, en de browser hem echt bewaart.
+      slot: (store) => {
+        if (!String(store.get('answers.nulmeting') ?? '').trim()) {
+          return 'Heb je je nulmeting nog niet geschreven? Doe dat nu, bovenaan bij Doe. Aan het eind vergelijk je die met je nieuwe antwoord.';
+        }
+        return store.persistent ? 'Je nulmeting is bewaard. Je vindt die terug in je observatieplan.'
+          : 'Je nulmeting staat in je observatieplan zolang je deze pagina openhoudt.';
+      },
       items: [
         {
           tekst: 'Een filiaalmanager wil weten hoe vaak verkopers doorvragen als een klant iets vraagt.',

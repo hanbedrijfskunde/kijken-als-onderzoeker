@@ -9,7 +9,7 @@
 
 Studenten Bedrijfskunde onderzoeken in hun projecten vooral wat mensen *zeggen*: via interviews en enquêtes. Wat mensen *doen*, wijkt daar vaak van af. Een manager zegt dat het team klantgericht is; een middag kijken op de winkelvloer laat iets anders zien. Gestructureerde observatie maakt gedrag telbaar, en dus vergelijkbaar en controleerbaar. Daarmee onderbouw je een beslissing beter dan met een indruk.
 
-De video van Shiyi Chen laat dat in één onderzoekslijn zien. Observaties in 29 klassen toonden dat het gedrag dat leerkrachten het minst vertoonden (doorpraten met kinderen) het sterkst samenhing met wat kinderen leerden. Het vervolgonderzoek richt zich daarom op precies dat gedrag. De video legt daarnaast uit hoe je een codeerschema opzet, codeurs traint en betrouwbaarheid vaststelt. Dat is het hart van de methode.
+De video van Shiyi Chen laat dat in één onderzoekslijn zien. Observaties in 29 klassen toonden dat het gedrag dat leerkrachten het minst vertoonden (doorpraten met kinderen) een van de twee onderdelen was die samenhingen met wat kinderen leerden. Het vervolgonderzoek richt zich daarom op precies dat gedrag. De video legt daarnaast uit hoe je een codeerschema opzet, codeurs traint en betrouwbaarheid vaststelt. Dat is het hart van de methode.
 
 ## 2. Doelgroep en inzet
 
@@ -106,7 +106,7 @@ Tijden verwijzen naar de video. De nummers van de stills staan in `raw/videos/�
 
 **Station 0 · Zeggen is geen doen** (20 min)
 - *Waarom:* wat mensen zeggen en wat ze doen, verschilt. Een beslissing op basis van wat gezegd wordt, kan dan misgaan.
-- *Kijk:* 9:39–12:29. Observaties in klassen laten zien dat het minst vertoonde gedrag het meest bijdraagt aan het leren (still 02). Daarna een overzicht van vier vormen van observatie (gestructureerd of open, deelnemend of niet), met de plek van deze tutorial erin.
+- *Kijk:* 9:39–12:29. Observaties in klassen laten zien dat het minst vertoonde gedrag een van de twee onderdelen is die samenhangen met wat kinderen leren (still 02). Daarna een overzicht van vier vormen van observatie (gestructureerd of open, deelnemend of niet), met de plek van deze tutorial erin.
 - *Doe:* nulmeting. *Hoe zou jij meten of de verkopers in een winkel klantgericht zijn?* In 3 zinnen. Dan drie situaties: past hier observatie, een interview of een enquête?
 - *Check:* feedback op de drie situaties. De nulmeting wordt bewaard en komt terug in het eindproduct.
 - *Mijn project:* welk begrip wil je meten, en waarom past observatie (beter) dan een interview of enquête?
@@ -212,3 +212,5 @@ Te controleren door de opdrachtgever:
 - **2026-11-24, opdrachtgever.** Bij beurt 14 (“Je wilt dus een e-bike … Zal ik er een klaarzetten voor een proefrit?”) gekozen: *Samenvatten*; de sleutel zegt *Advies*. Oorzaak: het codeboek niet goed gelezen voor het coderen begon. Het codeboek zelf klopte (*Samenvatten*, wanneer niet: “een samenvatting die eindigt in een voorstel”). Aanpassing: de Doe-instructie van station 3 is nu een stappenlijst. Stap 1 is het codeboek doornemen, met de beslisregel. Stap 2 is pas coderen. Een korte uitleg zegt waarom: het codeboek is het meetinstrument.
 - **2026-11-24, opdrachtgever.** De feedback per beurt citeert níet de regel uit het codeboek die de keuze beslist. De verschillen mogen ontstaan en blijven bestaan, omdat ze terugkomen in station 4, Deel 2 (*Jouw codes uit station 3*).
 - **2026-11-24, opdrachtgever.** Daaruit volgt: na *Controleer* staan de codes vast. Voorheen kon een student de codes na de feedback naar de sleutel “verbeteren”, waarna station 4 κ = 1 gaf en de verschillen weg waren. De instructie en de regel naast de knop zeggen vooraf dat de codes vastgaan. Bij een volgend bezoek staan de vaste codes, de feedback per beurt en de uitslag er weer. Alleen *Opnieuw beginnen* maakt de codes weer vrij.
+- **2026-11-24, review fase 2.** Het ontwerp (§1 en §7.3) zei dat het minst vertoonde gedrag het sterkst samenhing met, of het meest bijdroeg aan, wat kinderen leerden. Chen noemt twee onderdelen die samenhangen en rangschikt ze niet; still 02 geeft het andere onderdeel (nagaan wat kinderen leerden) zelfs twee sterretjes. Ontwerp en station 0 zeggen nu: een van de twee onderdelen.
+- **2026-11-24, opdrachtgever.** De proef met studenten is uitgesteld; fase 2 is gebouwd op de stand van het proefstuk.

@@ -36,9 +36,9 @@ export function renderVideo(block) {
         el('strong', {}, block.titel),
         ` · fragment ${mmss(block.start)}–${mmss(block.end)} (${duur} min) · Engels, met ondertiteling · `,
         el('a', { href: watchUrl(block.start), target: '_blank', rel: 'noopener' }, 'Open op YouTube'))),
-    el('div', { class: 'samenvatting' },
+    block.samenvatting?.length ? el('div', { class: 'samenvatting' },
       el('p', { class: 'samenvatting__kop' }, 'In het kort'),
-      el('ul', {}, block.samenvatting.map((s) => el('li', {}, s)))));
+      el('ul', {}, block.samenvatting.map((s) => el('li', {}, s)))) : null);
 }
 
 export function renderStill(block) {

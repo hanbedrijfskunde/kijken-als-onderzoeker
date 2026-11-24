@@ -10,6 +10,8 @@ const vul = (zin, w) => zin.replace(/\{(\w+)\}/g, (_, k) => String(w[k]));
 
 export function renderKeuze(block, ctx) {
   const zinnen = { ...ZINNEN, ...block.zinnen };
+  // De slotzin mag afhangen van wat de student elders deed (zie station 0).
+  const slotTekst = () => (typeof block.slot === 'function' ? block.slot(ctx.store) : block.slot);
   const { store, station } = ctx;
   const pad = `keuze.${station.id}`;
   const opgeslagen = store.get(pad);
@@ -36,7 +38,7 @@ export function renderKeuze(block, ctx) {
     const goed = keuzes.filter((k, i) => k === block.items[i].juist).length;
     uitslag.replaceChildren(el('p', { class: 'uitslag__kern' },
       vul(zinnen.uitslag, { goed, n: block.items.length })),
-    block.slot ? el('p', {}, block.slot) : null);
+    slotTekst() ? el('p', {}, slotTekst()) : null);
     if (melden && !klaarGemeld) {
       klaarGemeld = true;
       ctx.event('doe-af');

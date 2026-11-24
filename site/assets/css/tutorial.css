@@ -239,3 +239,6 @@ tbody th { color: var(--ink); white-space: nowrap; }
   body { font-size: 11pt; color: #000; }
   .plan__sectie { break-inside: avoid; border-top-color: #999; }
 }
+.vormen th, .vormen td { hyphens: auto; overflow-wrap: anywhere; }
+@media (max-width: 30rem) { .vormen { font-size: .8rem; } .vormen th, .vormen td { padding-left: var(--s1); padding-right: var(--s1); } }
+@media (max-width: 40rem) { .turf__codes { grid-template-columns: 1fr; gap: 0; } .turf__codes dd { margin-bottom: var(--s2); } }

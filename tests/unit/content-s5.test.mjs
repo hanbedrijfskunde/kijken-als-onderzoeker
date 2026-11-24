@@ -47,3 +47,15 @@ test('station 5 uses the planned videos, still and project field', () => {
   assert.ok(s5.doe.some((b) => b.type === 'besluit'));
   assert.deepEqual(s5.mijnProject.map((o) => o.veld), ['beslissing']);
 });
+
+test('decision 2 points at any branch that asks follow-up questions often, not at B alone', () => {
+  assert.match(BESLISSINGEN[1].tekst, /A, B of D/);
+  assert.equal(BESLISSINGEN[1].onderbouwd, true);
+});
+
+test('the AI summary keeps the context: maths problems, not this data, and a case for humans', () => {
+  const ai = s5.kijk.find((b) => b.type === 'video' && b.start === 3086).samenvatting.join(' ');
+  assert.match(ai, /rekenopgaven/);
+  assert.match(ai, /niet voor/);
+  assert.match(ai, /door mensen/);
+});

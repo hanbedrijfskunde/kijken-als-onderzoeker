@@ -35,6 +35,9 @@ export const FEEDBACK = {
   },
 };
 
+// De oefenclip staat in de klikteller, direct boven de knoppen: clip en knoppen moeten samen in beeld passen.
+export const OEFENCLIP = { type: 'video', start: 1409, end: 1510, titel: 'Oefenclip' };
+
 // Verschijnt pas na het vergelijken: de bespreking noemt de sleutel.
 export const BESPREKING = {
   type: 'video', start: 1514, end: 1745, titel: 'De bespreking',
@@ -46,6 +49,8 @@ export const BESPREKING = {
     'In Chens onderzoek duurt elke video 10 tot 20 minuten. Dit was anderhalve minuut.',
   ],
 };
+
+const EENHEID = '<p><strong>Per gebeurtenis of per tijdvak?</strong> In de oefening tel je per gebeurtenis: elke keer dat het gedrag gebeurt, zet je een streepje. Zo weet je hoe vaak iets voorkomt. Je kunt ook per tijdvak tellen: per vaste periode, bijvoorbeeld elke minuut, noteer je of het gedrag voorkwam. Dat is makkelijker bij gedrag dat snel en vaak gebeurt.</p>';
 
 const ROUTES = '<p><strong>Voor je eigen project: hoe leg je vast wat je ziet?</strong></p><ul>'
   + '<li><strong>Live coderen op een codeerformulier.</strong> Je turft ter plekke en neemt niets op. Je bewaart dus geen beelden of geluid van klanten of medewerkers. Dit is de gewone route.</li>'
@@ -90,14 +95,11 @@ export default {
         'Afgeleid: het kind is afgeleid door anderen of door eigen gedachten, maar werkt tussendoor door.',
       ],
     },
+    { type: 'tekst', html: EENHEID },
     { type: 'tekst', html: ROUTES },
   ],
   doe: [
-    { type: 'tekst', html: '<ol><li><strong>Lees eerst de vier codes onder de clip.</strong> Houd ze erbij terwijl je kijkt.</li><li>Start de oefenclip. Klik op een code elke keer dat je die ziet. Verkeerd geklikt? Gebruik <em>Laatste klik ongedaan maken</em>.</li><li>Klik na de clip op <em>Vergelijk met de sleutel</em>.</li></ol><p><strong>Klaar als:</strong> je de clip hebt geturfd en je telling met de sleutel hebt vergeleken. Opnieuw proberen mag.</p>' },
-    {
-      type: 'video', start: 1409, end: 1510, titel: 'Oefenclip',
-      samenvatting: ['Anderhalve minuut uit een opname van de treinbaantaak. Chen laat de clip zonder uitleg zien: jij turft.'],
-    },
+    { type: 'tekst', html: '<ol><li><strong>Lees eerst de vier codes hieronder.</strong></li><li>Start de oefenclip: anderhalve minuut uit een opname van de treinbaantaak, zonder uitleg. Klik op een code elke keer dat je die ziet. Verkeerd geklikt? Gebruik <em>Laatste klik ongedaan maken</em>.</li><li>Klik na de clip op <em>Vergelijk met de sleutel</em>.</li></ol><p><strong>Klaar als:</strong> je de clip hebt geturfd en je telling met de sleutel hebt vergeleken. Opnieuw proberen mag.</p>' },
     { type: 'turf' },
   ],
   jeKuntNu: 'Je kunt nu gedrag turven terwijl het gebeurt. En je ziet waarom een codeboek beslisregels nodig heeft, bijvoorbeeld voor gedrag dat iemand altijd vertoont.',
