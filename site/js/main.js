@@ -11,6 +11,13 @@ import './ui/blokken.js';
 const store = createStore(safeLocalStorage());
 const app = document.getElementById('app');
 
+if (!store.persistent) {
+  app.before(el('p', { class: 'melding melding-opslag', role: 'status' },
+    'Je browser laat deze pagina niets bewaren, bijvoorbeeld in een privévenster of binnen de leeromgeving. ',
+    el('strong', {}, 'Je antwoorden worden niet bewaard als je deze pagina sluit.'),
+    ' Open de pagina in een gewoon venster, of kopieer je antwoorden voordat je stopt.'));
+}
+
 function go(hash, force = false) {
   if (location.hash === hash && force) render();
   else location.hash = hash;
