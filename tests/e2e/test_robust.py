@@ -3,7 +3,7 @@ import pytest
 from helpers import NAAM, SLEUTEL, code_turn
 
 NOTICE = "Je antwoorden worden niet bewaard als je deze pagina sluit."
-PAGES = ["#/", "#/station/0", "#/station/3", "#/station/4"]
+PAGES = ["#/", "#/station/0", "#/station/1", "#/station/3", "#/station/4"]
 
 
 def test_storage_blocked_notice_once(page, site_url):

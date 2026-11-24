@@ -1,7 +1,15 @@
 import { el } from './dom.js';
 
 // Meerkeuze per item, met directe feedback. De keuzes worden bewaard, zodat de feedback bij terugkomst blijft staan.
+// De zinnen zijn per oefening in te stellen; {gekozen}, {juist}, {goed} en {n} worden ingevuld.
+const ZINNEN = {
+  fout: 'Je koos {gekozen}; hier past {juist} beter.',
+  uitslag: 'Je koos {goed} van de {n} keer de methode die het best past.',
+};
+const vul = (zin, w) => zin.replace(/\{(\w+)\}/g, (_, k) => String(w[k]));
+
 export function renderKeuze(block, ctx) {
+  const zinnen = { ...ZINNEN, ...block.zinnen };
   const { store, station } = ctx;
   const pad = `keuze.${station.id}`;
   const opgeslagen = store.get(pad);
@@ -20,14 +28,14 @@ export function renderKeuze(block, ctx) {
     const ok = k === item.juist;
     fb.className = `keuze-item__fb ${ok ? 'is-goed' : 'is-anders'}`;
     fb.textContent = ok ? `Goed: ${item.opties[k]}. ${item.uitleg}`
-      : `Je koos ${item.opties[k]}; hier past ${item.opties[item.juist]} beter. ${item.uitleg}`;
+      : `${vul(zinnen.fout, { gekozen: item.opties[k], juist: item.opties[item.juist] })} ${item.uitleg}`;
   }
 
   function samenvatten(melden) {
     if (keuzes.some((k) => k == null)) return;
     const goed = keuzes.filter((k, i) => k === block.items[i].juist).length;
     uitslag.replaceChildren(el('p', { class: 'uitslag__kern' },
-      `Je koos ${goed} van de ${block.items.length} keer de methode die het best past.`),
+      vul(zinnen.uitslag, { goed, n: block.items.length })),
     block.slot ? el('p', {}, block.slot) : null);
     if (melden && !klaarGemeld) {
       klaarGemeld = true;
