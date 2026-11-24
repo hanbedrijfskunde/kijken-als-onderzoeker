@@ -48,7 +48,7 @@ De video van Shiyi Chen laat dat in één onderzoekslijn zien. Observaties in 29
 - **Stills.** Alleen dia's, als webp van maximaal 1280 px breed, met bronvermelding en een link naar het moment in de video.
 - **Plek.** Een eigen projectmap, `~/Projects/observatie-tutorial/`, los van de ai-wiki.
 - **Openen.** De pagina wordt via https geopend, in een eigen tabblad. Als lokaal bestand werken de YouTube-fragmenten niet (YouTube weigert insluiten zonder herkomstadres). In een frame van de leeromgeving kunnen de videospeler of de opslag geblokkeerd worden. Een link in de leeromgeving opent de pagina daarom in een nieuw tabblad.
-- **Publicatie** (besluit opdrachtgever). De pagina staat openbaar op GitHub Pages, in een eigen openbare repository. Zoekmachines nemen de pagina niet op (`noindex`, geen sitemap). In de repository staan alleen de pagina en de 12 gepubliceerde stills als webp. Het transcript en de originele PNG's in `raw/` blijven lokaal (`.gitignore`). Het GitHub-account of de organisatie wordt bij de bouw bevestigd, vóórdat er iets wordt aangemaakt.
+- **Publicatie** (besluit opdrachtgever). De pagina staat openbaar op GitHub Pages, in een eigen openbare repository. Zoekmachines nemen de pagina niet op (`noindex`, geen sitemap). Op de website komt alleen de map `site/`: de pagina en de 12 gepubliceerde stills als webp. In de repository staan daarnaast de tests, het script, het ontwerp en het bouwplan (besluit opdrachtgever, 2026-11-24). Het transcript en de originele PNG's in `raw/` blijven lokaal (`.gitignore`). De repository is `hanbedrijfskunde/kijken-als-onderzoeker`, bij het andere HAN-lesmateriaal (bevestigd 2026-11-24).
 - **Bronvermelding.** Elke still krijgt een regel met spreker, kanaal en titel van de video, plus een link naar het moment. In de voettekst staat de video als bron.
 - **Huisstijl HAN** (besluit opdrachtgever). Het voorbeeld is de huisstijl van het project `rl-bedrijfskunde` (`~/Projects/rl-bedrijfskunde/assets/docs.css`, kleuren volgens dat bestand opgehaald van han.nl):
   - **Kleuren:** magenta `#e50056` primair, `#b70045` donker (links, tekst op wit), `#f7b2cc` licht, `#d91e57` in het logo. Grijzen en de groene en oranje statuskleuren komen uit hetzelfde bestand.
@@ -203,7 +203,7 @@ Te controleren door de opdrachtgever:
 - De drempel voor een studentproject is vanaf .60 bruikbaar en vanaf .80 goed; de .85 uit de video heet de strenge norm.
 - Still 09 valt af (kind in beeld); de software staat als tekst in station 4.
 - De pagina opent altijd in een eigen tabblad via https.
-- In de openbare repository staan alleen de pagina en de 12 webp-stills; `raw/` blijft lokaal. De pagina krijgt `noindex`.
+- Op de website staan alleen de pagina en de 12 webp-stills; de repository bevat ook tests en ontwerp. `raw/` blijft lokaal. De pagina krijgt `noindex`.
 - De HAN-huisstijl volgt `rl-bedrijfskunde` (magenta `#e50056`), niet de oudere `#e5007d`.
 - De bouw begint met stations 3 en 4 als proefstuk.
 
