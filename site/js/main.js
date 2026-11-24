@@ -1,4 +1,4 @@
-import { createStore, safeLocalStorage } from './store.js';
+import { createStore, safeLocalStorage, STORE_KEY } from './store.js';
 import { parseHash } from './router.js';
 import { nextStatus } from './status.js';
 import { STATIONS } from './content/stations.js';
@@ -59,7 +59,8 @@ function renderPlanView() {
   return el('article', { class: 'plan' }, terugNaarKaart(), el('h1', {}, 'Mijn observatieplan'), renderPlan(store));
 }
 
-function render() {
+// behoud: true bij een wijziging uit een ander tabblad; dan blijven scrollpositie en focus staan.
+function render({ behoud = false } = {}) {
   const route = parseHash(location.hash);
   let view;
   try {
@@ -72,10 +73,21 @@ function render() {
       el('h1', {}, 'Er ging iets mis'),
       el('p', {}, 'Dit onderdeel kon niet worden getoond. Ga terug naar de kaart. Blijft het gebeuren, kies dan op de kaart Opnieuw beginnen.'));
   }
+  const y = window.scrollY;
   app.replaceChildren(view);
+  if (behoud) {
+    window.scrollTo(0, y);
+    return;
+  }
   window.scrollTo(0, 0);
   if (route.view !== 'kaart') app.focus({ preventScroll: true });
 }
 
-window.addEventListener('hashchange', render);
+window.addEventListener('hashchange', () => render());
+// Een ander tabblad bewaarde iets (key null: de opslag is gewist). Toon de nieuwe stand.
+window.addEventListener('storage', (e) => {
+  if (e.key !== STORE_KEY && e.key !== null) return;
+  store.reload();
+  render({ behoud: true });
+});
 render();
