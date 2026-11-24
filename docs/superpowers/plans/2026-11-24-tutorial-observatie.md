@@ -342,3 +342,79 @@ tests/e2e/test_*.py
 - [ ] **Step 4:** `gh repo create <owner>/<name> --public --source . --push`; enable Pages for workflow builds (`gh api -X POST repos/<owner>/<name>/pages -f build_type=workflow`); wait for the run (`gh run watch`).
 - [ ] **Step 5:** Verify live: `curl -sI https://<owner>.github.io/<name>/` shows `200`; run `tests/e2e/test_shell.py` and `test_station_frame.py` with `site_url` pointing at the live URL (env `SITE_URL`); open station 2 in a real browser and play the clip.
 - [ ] **Step 6:** Report the URL to the user.
+
+## Phase 4 — Afronding vóór de eerste uitvoering
+
+The plan's phases 1–3 are built and live. The student trial happens during the first real run (decision of the client, 2026-11-24), so this phase closes the deferred review findings that a student in that run would notice, weighted by effect. No new content, no new stations.
+
+**Review Focus (phase 4):**
+1. **Two tabs** on different views (plan in one, a station in the other): work done in one tab survives a write from the other, and each tab shows the other's work after it changes. → Task 19.
+2. **Malformed saved state** (a hand-edited or older `localStorage`: numbers, objects or strings where lists are expected): every view renders, no *Er ging iets mis*, no page error. → Task 20.
+3. **Saved multiple-choice answers from the phase-2 site** (arrays by position) still show after this change, and a later reorder of items cannot attach a choice to the wrong item. → Task 21.
+4. **Memory-only mode** (storage blocked): the cross-tab code and the code-book dialog do not break anything. → Tasks 19, 22 run their tests once with storage blocked.
+5. **Phone, 360 × 740:** the code book is one tap away from every turn in station 3. → Task 22.
+
+### Task 19: Work from another tab is never overwritten
+
+**Files:** Modify `site/js/store.js`, `site/js/main.js`; Test `tests/unit/store.test.mjs`, `tests/e2e/test_tabs.py`
+
+**Interfaces:**
+- Produces: `store.set(path, value)` reads the stored state before it writes, so a write changes only `path`. `store.reload()` re-reads the stored state into memory. `main.js` listens for the `storage` event on `STORE_KEY`, calls `store.reload()` and re-renders the current view, keeping the scroll position and focus untouched.
+
+- [ ] **Step 1:** Failing tests: unit `a stale store does not overwrite another store's path` (two stores on one fake storage; A sets `answers.a`, B sets `answers.b`; the storage holds both), `reload picks up another store's write`, `reset in one store is not undone by a stale store` (A resets, B sets `answers.b`: storage holds only `answers.b`). E2e `test_answer_survives_other_tab` (page 1 types an answer in station 0; page 2, opened before, ticks a plan checkbox; reload page 1: the answer is still there) and `test_other_tab_shows_new_answer` (page 2 on the plan shows the answer typed in page 1 without a reload).
+- [ ] **Step 2:** Run → FAIL. Implement.
+- [ ] **Step 3:** Run → PASS, whole suite. Commit `fix: keep work from other tabs`.
+
+### Task 20: Malformed saved state never breaks a view
+
+**Files:** Create `site/js/lijst.js`; Modify `site/js/ui/open.js`, `site/js/ui/plan.js`, any other reader the test exposes; Test `tests/unit/lijst.test.mjs`, `tests/e2e/test_robust.py`
+
+**Interfaces:**
+- Produces: `indexLijst(raw: unknown) -> number[]` = the non-negative integers in `raw` if it is an array, else `[]`. Every read of `checks.*` goes through it.
+
+- [ ] **Step 1:** Failing tests: unit `indexLijst(5)`, `indexLijst({})`, `indexLijst('12')` → `[]`; `indexLijst([2, 'x', -1, 1.5, 0])` → `[2, 0]`. E2e `test_malformed_state_renders_every_view`: preset `{checks: {plan: 5, begrip: {}, nulmeting-nieuw: 'x'}, keuze: {s0: 'x', s1: {}, s5: 7}, tally: {s2: 5}, answers: {begrip: 5}, codes: {s3: 'x', partner: 3}, stations: {s0: 7}}`; open the map, every station and the plan; none shows *Er ging iets mis* and no `pageerror` fires.
+- [ ] **Step 2:** Run → FAIL. Implement.
+- [ ] **Step 3:** Run → PASS, whole suite. Commit `fix: survive malformed saved state`.
+
+### Task 21: Multiple choice with buttons, stored per item
+
+**Files:** Modify `site/js/ui/keuze.js`, `site/assets/css/tutorial.css`; Test `tests/e2e/test_keuze.py`, and the existing s0/s1/s5/kaart tests that pick an option
+
+**Interfaces:**
+- Produces: each item is a `fieldset` (legend = item text) with one `button[aria-pressed]` per option; pressing one chooses it and shows feedback. Arrow keys do nothing, so moving through the options never chooses one. Choices are stored as `keuze.<station> = {[itemTekst]: optieTekst}`; an array (phase-2 format) is read by position once and written back as an object. The feedback element is always rendered (never `display: none`), so a screen reader announces the first feedback too.
+- Consumes: the `zinnen` and `slot` options of `renderKeuze` unchanged.
+
+- [ ] **Step 1:** Failing tests: e2e `test_keuze_buttons_pressed_state` (pressing *Interview* sets `aria-pressed="true"` on it and `false` on the others), `test_keuze_arrow_keys_choose_nothing` (focus the first option, press ArrowRight twice: no feedback, nothing stored), `test_keuze_stored_by_item_text` (after a choice, `keuze.s0` is an object keyed by the item text), `test_keuze_reads_old_array` (preset `keuze.s1 = [0, 1, …]`: the choices show), `test_keuze_feedback_region_rendered` (before any choice the feedback element has a computed `display` other than `none`). Update the existing tests to press buttons.
+- [ ] **Step 2:** Run → FAIL. Implement.
+- [ ] **Step 3:** Run → PASS, whole suite. Commit `fix: multiple choice with buttons, stored per item`.
+
+### Task 22: The code book within reach on small screens
+
+**Files:** Modify `site/js/ui/codeer.js`, `site/assets/css/tutorial.css`; Test `tests/e2e/test_codeboek.py`
+
+**Interfaces:**
+- Produces: below the wide layout (`< 72rem`, where the code book is not beside the turns), a button *Codeboek* stays in view at the bottom of the conversation while the student codes. It opens a modal `<dialog>` with the full code book and the decision rule, and a *Sluiten* button. Escape closes it; focus returns to the button. On wide screens the button is hidden.
+
+- [ ] **Step 1:** Failing tests: e2e at 360 × 740 `test_codeboek_button_in_view_at_turn_10` (scroll turn 10 into view; the button is in the viewport), `test_codeboek_dialog_opens_and_closes` (opens, shows *Beslisregel*, Escape closes, focus back on the button), `test_codeboek_button_works_after_locking` (after *Controleer*); at 1366 × 768 `test_codeboek_button_hidden_wide`.
+- [ ] **Step 2:** Run → FAIL. Implement.
+- [ ] **Step 3:** Run → PASS, whole suite. Commit `feat: code book button on small screens`.
+
+### Task 23: Title and focus follow the view
+
+**Files:** Modify `site/js/main.js`; Test `tests/e2e/test_shell.py`
+
+**Interfaces:**
+- Produces: on every route the document title is `<view title> · Kijken als onderzoeker` (map: the page's default title) and focus moves to the view's `h1` (`tabindex="-1"`), so a screen reader announces where the student is.
+
+- [ ] **Step 1:** Failing tests: e2e `test_title_per_view` (station 3: title starts with `Gesprekken als data`; plan: `Mijn observatieplan`; map: the default), `test_focus_on_heading_after_navigation` (open a station from the map: `document.activeElement` is its `h1`).
+- [ ] **Step 2:** Run → FAIL. Implement.
+- [ ] **Step 3:** Run → PASS, whole suite. Commit `fix: title and focus per view`.
+
+### Task 24: Small fixes and checks
+
+**Files:** Modify `site/assets/css/tutorial.css`, `site/js/content/s5.js`, `site/js/content/index.js`, `tests/e2e/conftest.py`, `README.md`; Create `tests/e2e/test_video_live.py`; Test `tests/e2e/test_plan.py`, `tests/e2e/test_taal.py`
+
+- [ ] **Step 1:** Failing tests: e2e `test_plan_long_url_no_sideways_scroll` (360 px, an answer with a 120-character URL: `scrollWidth <= innerWidth`), `test_plan_print_hides_intro` (print media: `.plan__intro` not visible), `test_no_design_language_after_doing` (do the exercises of stations 0, 1, 2 and 5, then check the visible text as in `test_taal`); unit: every station's `nodig` items start with a capital.
+- [ ] **Step 2:** Run → FAIL. Fix: `overflow-wrap: anywhere` on plan answers; hide the intro in print; `Koptelefoon` in s5; drop the stale *Dit station volgt nog* comment.
+- [ ] **Step 3:** Opt-in live video check: with `ECHTE_VIDEO=1` the YouTube stub is off, and `test_video_live.py` opens every station and checks that each embedded player loads without a YouTube error (`.ytp-error` absent in the frame). Skipped otherwise. README: how to run it before a run with students.
+- [ ] **Step 4:** Run → PASS, whole suite; run `ECHTE_VIDEO=1 pytest tests/e2e/test_video_live.py` once against the live site. Commit `fix: small fixes and a live video check`.
