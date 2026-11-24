@@ -114,6 +114,8 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .keuze { display: inline-flex; align-items: center; gap: var(--s1); padding: 2px var(--s2); border-radius: var(--radius-full); border: 1px solid var(--border); cursor: pointer; font-size: .9rem; }
 .keuze:has(input:checked) { border-color: var(--magenta); background: var(--tint-faint); }
 .keuze input { accent-color: var(--magenta); }
+.beurt:disabled .keuze { cursor: default; }
+.beurt:disabled .keuze:not(:has(input:checked)) { opacity: .55; }
 .beurt__feedback:empty { display: none; }
 .beurt__feedback { margin: var(--s2) 0 0; padding: var(--s2) var(--s3); border-radius: var(--radius); font-size: .9rem; }
 .is-goed { background: var(--green-soft); border-left: 4px solid var(--green); }
@@ -178,4 +180,5 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .kjda__fb { margin: var(--s2) 0 0; padding: var(--s2) var(--s3); border-radius: var(--radius); font-size: .9rem; }
 .melding-opslag { width: calc(min(var(--breedte), 100%) - 2rem); margin: var(--s4) auto 0; }
 .codeer__nog { font-size: .9rem; color: var(--amber); font-weight: 600; }
+.codeer__nog--vast { color: var(--muted); }
 .banden { width: auto; }

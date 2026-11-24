@@ -45,3 +45,8 @@ test('the instructions have the student read the codebook before coding', () => 
   assert.ok(gesprek > codeboek, 'het gesprek komt pas na het codeboek');
   assert.match(tekst, /beslisregel/i, 'de instructie noemt de beslisregel');
 });
+
+test('the instructions say the codes are fixed after Controleer', () => {
+  const tekst = s3.doe.filter((b) => b.type === 'tekst').map((b) => b.html).join(' ').replace(/<[^>]+>/g, '');
+  assert.match(tekst, /Na Controleer staan je codes vast/);
+});

@@ -4,6 +4,8 @@ import { cleanCodes } from '../codes.js';
 
 const NAAM = Object.fromEntries(CODES.map((c) => [c.id, c.naam]));
 const AANTAL = GESPREK.filter((b) => b.spreker === 'verkoper').length;
+// Na Controleer staan de codes vast: de eerste codering is de meting, en de verschillen met de sleutel komen terug in station 4.
+const VAST = 'Je codes staan vast; in station 4 reken je ermee.';
 
 export function renderCodeboek() {
   return el('aside', { class: 'codeboek', 'aria-labelledby': 'codeboek-titel' },
@@ -21,7 +23,10 @@ export function renderCodeboek() {
 export function renderCodeer(block, ctx) {
   const { store } = ctx;
   const codes = cleanCodes(store.get('codes.s3'), CODES.map((c) => c.id), AANTAL);
+  // Een onbekende opgeslagen code (oudere versie) maakt de set onvolledig; dan mag de student hem eerst afmaken.
+  const vast = store.get('codes.s3vast') === true && codes.every((c) => c != null);
   const feedback = [];
+  const sets = [];
   const knop = el('button', { type: 'button', class: 'knop' }, 'Controleer');
   const nog = el('span', { class: 'codeer__nog' });
   const uitslag = el('div', { class: 'uitslag', 'aria-live': 'polite' });
@@ -30,7 +35,7 @@ export function renderCodeer(block, ctx) {
   function bijwerken() {
     const open = codes.map((c, i) => (c == null ? i + 1 : null)).filter((x) => x);
     knop.disabled = open.length > 0;
-    if (open.length === 0) nog.textContent = '';
+    if (open.length === 0) nog.textContent = 'Na Controleer staan je codes vast.';
     else if (open.length <= 5) {
       const lijst = open.length === 1 ? String(open[0]) : `${open.slice(0, -1).join(', ')} en ${open.at(-1)}`;
       nog.textContent = `Nog niet gecodeerd: beurt ${lijst}.`;
@@ -47,7 +52,7 @@ export function renderCodeer(block, ctx) {
     const fb = el('p', { class: 'beurt__feedback' });
     const tekstId = `beurt-tekst-${i}`;
     feedback[i] = fb;
-    return el('fieldset', { class: 'beurt beurt--verkoper' },
+    const set = el('fieldset', { class: 'beurt beurt--verkoper' },
       el('legend', {}, `Beurt ${i + 1}`),
       el('p', { class: 'beurt__tekst' }, el('span', { class: 'spreker' }, 'Verkoper'), el('span', { id: tekstId }, b.tekst)),
       el('div', { class: 'beurt__codes' }, CODES.map((c) => el('label', { class: 'keuze' },
@@ -62,9 +67,18 @@ export function renderCodeer(block, ctx) {
           },
         }), ' ', c.naam))),
       fb);
+    sets.push(set);
+    return set;
   });
 
-  knop.addEventListener('click', () => {
+  function vastzetten() {
+    for (const set of sets) set.disabled = true;
+    knop.hidden = true;
+    nog.textContent = VAST;
+    nog.classList.add('codeer__nog--vast');
+  }
+
+  function toonUitslag() {
     const verkoper = GESPREK.filter((b) => b.spreker === 'verkoper');
     let goed = 0;
     verkoper.forEach((b, i) => {
@@ -81,10 +95,20 @@ export function renderCodeer(block, ctx) {
         : el('p', {}, 'Precies zoals de sleutel. Let op: in echte observaties lukt dat zelden, en dat is ook niet het doel.'),
       el('p', {}, 'In station 4 reken je uit hoe goed jij en de sleutel overeenkomen. ',
         el('a', { href: '#/station/4' }, 'Naar station 4')));
+  }
+
+  knop.addEventListener('click', () => {
+    store.set('codes.s3vast', true);
+    toonUitslag();
+    vastzetten();
     ctx.event('doe-af');
   });
 
   bijwerken();
+  if (vast) {
+    toonUitslag();
+    vastzetten();
+  }
   return el('div', { class: 'codeer' },
     renderCodeboek(),
     el('div', { class: 'codeer__gesprek' },

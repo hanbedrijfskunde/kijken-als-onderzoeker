@@ -129,7 +129,7 @@ Tijden verwijzen naar de video. De nummers van de stills staan in `raw/videos/�
 
 **Station 3 · Gesprekken als data** (30 min)
 - *Kijk:* 43:23–47:50. Gesprekken vastleggen en uitschrijven, de eenheid van analyse kiezen, een bestaand codeerschema aanpassen, een pilot op 15 % van de transcripten (stills 14, 15, 16).
-- *Doe:* de student codeert een verzonnen gesprek tussen een verkoper en een klant in de fietsenwinkel: 15 beurten van de verkoper, elk met precies één van vijf codes. Mini-codeboek van vijf codes, elk met definitie, wanneer wel, wanneer niet en een voorbeeld. De instructie zegt eerst het codeboek en de beslisregel door te nemen en pas daarna te coderen (zie §13).
+- *Doe:* de student codeert een verzonnen gesprek tussen een verkoper en een klant in de fietsenwinkel: 15 beurten van de verkoper, elk met precies één van vijf codes. Mini-codeboek van vijf codes, elk met definitie, wanneer wel, wanneer niet en een voorbeeld. De instructie zegt eerst het codeboek en de beslisregel door te nemen en pas daarna te coderen (zie §13). Na *Controleer* staan de codes vast: de eerste codering is de meting, en de verschillen met de sleutel komen terug in station 4 (Deel 2, *Jouw codes uit station 3*).
 - *Check:* feedback per beurt, met uitleg. De codes van de student worden bewaard voor station 4.
 - *Mijn project:* welk bestaand codeerschema kun je aanpassen, en welke eenheid kies je?
 
@@ -210,3 +210,5 @@ Te controleren door de opdrachtgever:
 ## 13. Bevindingen proefstuk
 
 - **2026-11-24, opdrachtgever.** Bij beurt 14 (“Je wilt dus een e-bike … Zal ik er een klaarzetten voor een proefrit?”) gekozen: *Samenvatten*; de sleutel zegt *Advies*. Oorzaak: het codeboek niet goed gelezen voor het coderen begon. Het codeboek zelf klopte (*Samenvatten*, wanneer niet: “een samenvatting die eindigt in een voorstel”). Aanpassing: de Doe-instructie van station 3 is nu een stappenlijst. Stap 1 is het codeboek doornemen, met de beslisregel. Stap 2 is pas coderen. Een korte uitleg zegt waarom: het codeboek is het meetinstrument.
+- **2026-11-24, opdrachtgever.** De feedback per beurt citeert níet de regel uit het codeboek die de keuze beslist. De verschillen mogen ontstaan en blijven bestaan, omdat ze terugkomen in station 4, Deel 2 (*Jouw codes uit station 3*).
+- **2026-11-24, opdrachtgever.** Daaruit volgt: na *Controleer* staan de codes vast. Voorheen kon een student de codes na de feedback naar de sleutel “verbeteren”, waarna station 4 κ = 1 gaf en de verschillen weg waren. De instructie en de regel naast de knop zeggen vooraf dat de codes vastgaan. Bij een volgend bezoek staan de vaste codes, de feedback per beurt en de uitslag er weer. Alleen *Opnieuw beginnen* maakt de codes weer vrij.
