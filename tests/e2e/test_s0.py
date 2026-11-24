@@ -49,7 +49,7 @@ def test_s0_nulmeting_saved(page, site_url):
 
 def test_s0_is_no_placeholder(page, site_url):
     page.goto(site_url + S0)
-    expect(page.locator("h1")).to_have_text("Zeggen is geen doen")
+    expect(page.get_by_role("heading", level=1)).to_have_text("Zeggen is geen doen")
     expect(page.get_by_text("Dit station volgt nog.")).to_have_count(0)
 
 

@@ -75,7 +75,7 @@ def test_plan_checklist_saved(page, site_url):
 def test_no_placeholder_left(page, site_url):
     for nr in range(6):
         page.goto(site_url + f"#/station/{nr}")
-        expect(page.locator("h1")).not_to_have_text("")
+        expect(page.get_by_role("heading", level=1)).not_to_have_text("")
         expect(page.get_by_text("Dit station volgt nog")).to_have_count(0)
     page.goto(site_url + "#/plan")
     expect(page.locator(".plan__sectie")).to_have_count(6)
