@@ -10,7 +10,7 @@ const AANTAL = VERKOPER_SLEUTEL.length;
 
 const OORDEEL = {
   goed: 'Voor een studentproject is dat goed (vanaf 0,80).',
-  bruikbaar: 'Voor een studentproject is dat bruikbaar (vanaf 0,60). Maak de regels waar jullie verschillen nog scherper.',
+  bruikbaar: 'Voor een studentproject is dat bruikbaar (vanaf 0,60).',
   onvoldoende: 'Voor een studentproject is dat nog onvoldoende (onder 0,60). Maak je codeboek scherper en oefen opnieuw.',
 };
 
@@ -36,7 +36,7 @@ export function resultaat(codesA, codesB, rijKop, kolomKop) {
       el('p', {}, OORDEEL[studentVerdict(r.kappa)]));
     const mc = mostConfused(m, IDS);
     regels.push(el('p', {}, mc
-      ? `Jullie verschillen het vaakst tussen ‘${NAAM[mc.a]}’ en ‘${NAAM[mc.b]}’ (${mc.count} keer). Maak die regels in je codeboek scherper.`
+      ? `De meeste verschillen zitten tussen ‘${NAAM[mc.a]}’ en ‘${NAAM[mc.b]}’ (${mc.count} keer). Maak die regels in je codeboek scherper.`
       : 'Jullie zijn het overal over eens.'));
   }
   return el('div', { class: 'kc-resultaat' }, matrixTabel(m, rijKop, kolomKop), regels);
@@ -57,7 +57,7 @@ function partnerDeel(store, eigen) {
   const partner = cleanCodes(store.get('codes.partner'), IDS, AANTAL);
   const uit = el('div', { 'aria-live': 'polite' });
   function toon() {
-    uit.replaceChildren(partner.every((c) => c) ? resultaat(eigen, partner, 'Jij', 'Studiegenoot')
+    uit.replaceChildren(partner.every((c) => c) ? resultaat(eigen, partner, 'Jij', 'Medestudent')
       : el('p', { class: 'kc-nog' }, `Nog ${partner.filter((c) => !c).length} beurten in te vullen.`));
   }
   const selects = partner.map((waarde, i) => el('label', { class: 'kc-select' }, `Beurt ${i + 1}`,
@@ -68,8 +68,8 @@ function partnerDeel(store, eigen) {
     IDS.map((id) => el('option', { value: id, selected: waarde === id }, NAAM[id])))));
   toon();
   return el('details', { class: 'kc-partner verdieping', open: partner.some((c) => c) },
-    el('summary', {}, 'Samen met een studiegenoot (niet verplicht)'),
-    el('p', {}, 'Laat een studiegenoot het gesprek in station 3 op een eigen apparaat coderen. Vul hieronder diens 15 codes in. De rekenhulp vergelijkt ze met jouw codes.'),
+    el('summary', {}, 'Samen met een medestudent (niet verplicht)'),
+    el('p', {}, 'Laat een medestudent het gesprek in station 3 op een eigen apparaat coderen. Vul hieronder de 15 codes van je medestudent in. De rekenhulp vergelijkt ze met jouw codes.'),
     el('div', { class: 'kc-selects' }, selects),
     uit);
 }

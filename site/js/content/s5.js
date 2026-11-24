@@ -23,7 +23,7 @@ export const BESLISSINGEN = [
   {
     tekst: 'Filiaal B heeft ook training nodig: daar is na filiaal C het minst doorgevraagd.',
     onderbouwd: false,
-    uitleg: 'In totaal telde B weinig, maar B is maar 4 uur geobserveerd, de andere filialen 5 of 6 uur. Per uur vraagt B juist het vaakst door. Vergelijk daarom per uur.',
+    uitleg: 'In B is in totaal weinig geteld. Maar B is ook korter geobserveerd: 4 uur, tegen 5 of 6 uur in de andere filialen. Per uur wordt in B juist het vaakst doorgevraagd. Vergelijk daarom per uur.',
   },
   {
     tekst: 'De verkoper van filiaal C die het minst doorvraagt, functioneert slecht en krijgt een gesprek.',
@@ -33,7 +33,7 @@ export const BESLISSINGEN = [
   {
     tekst: 'Doorvragen verhoogt de omzet, dus filiaal C verkoopt minder.',
     onderbouwd: false,
-    uitleg: 'De observatie meet gedrag, geen omzet. Of doorvragen tot meer verkoop leidt, is een vraag naar oorzaak en gevolg. Daarvoor heb je omzetcijfers nodig en een andere opzet, bijvoorbeeld meten voor en na een training.',
+    uitleg: 'De observatie meet gedrag, geen omzet. Of doorvragen tot meer verkoop leidt, is een vraag naar oorzaak en gevolg. Daarvoor heb je omzetcijfers nodig en een andere opzet, bijvoorbeeld meten vóór en na een training.',
   },
   {
     tekst: 'In filiaal C wordt het hele jaar door weinig doorgevraagd.',
@@ -54,7 +54,7 @@ export default {
     },
     {
       vraag: 'In filialen waar meer wordt doorgevraagd, is de omzet hoger. Wat kun je daaruit concluderen?',
-      opties: ['Doorvragen verhoogt de omzet', 'Doorvragen en omzet gaan samen op, maar of het een het ander veroorzaakt, weet je niet', 'Er is geen verband'],
+      opties: ['Doorvragen verhoogt de omzet', 'Doorvragen en omzet gaan samen op, maar of het ene het andere veroorzaakt, weet je niet', 'Er is geen verband'],
       juist: 1,
       uitleg: 'Samenhang is nog geen oorzaak. Misschien werken in drukke filialen meer ervaren verkopers. Voor een uitspraak over oorzaak en gevolg heb je een ander onderzoek nodig.',
     },
@@ -62,7 +62,7 @@ export default {
       vraag: 'Je observeerde op twee zaterdagen in maart. Voor welke uitspraak zijn je data genoeg?',
       opties: ['Zo gaat het het hele jaar', 'Zo ging het op die zaterdagen', 'Zo werkt elke verkoper altijd'],
       juist: 1,
-      uitleg: 'Je data gaan over wat je zag, wanneer je het zag. Voor andere periodes of voor één persoon heb je meer of andere observaties nodig.',
+      uitleg: 'Je data gaan over wat je zag, op de momenten dat je keek. Voor andere periodes of voor één persoon heb je meer of andere observaties nodig.',
     },
   ],
   waarom: [
@@ -76,16 +76,16 @@ export default {
         'Gedrag coderen zet wat mensen doen en zeggen om in getallen die je kunt analyseren.',
         'Het codeerschema beschrijft waarneembaar gedrag, met een basis in de theorie.',
         'Codeurs moeten betrouwbaar coderen voordat het echte coderen begint. Dat kost veel tijd.',
-        'Drie sleutels: een helder codeboek, samen kalibreren (eerst los coderen, dan samen, dan de verschillen oplossen) en blijven letten op drift.',
+        'Drie dingen helpen daarbij: een helder codeboek, samen kalibreren (eerst los coderen, dan samen, dan de verschillen oplossen) en blijven letten op drift.',
         'En: geduld.',
       ],
     },
-    { type: 'still', bestand: '17-48m40-takeaway.webp', sec: 2920, alt: 'Dia met de lessen: gedrag omzetten in getallen, waarneembaar gedrag met een theoretische basis, betrouwbaarheid vóór het coderen, en drie sleutels: een helder codeboek, kalibreren in de groep en drift voorkomen.', bijschrift: 'De lessen van Chen op één dia.' },
+    { type: 'still', bestand: '17-48m40-takeaway.webp', sec: 2920, alt: 'Dia met de lessen: gedrag omzetten in getallen, waarneembaar gedrag met een theoretische basis, betrouwbaarheid vóór het coderen, en drie aandachtspunten: een helder codeboek, kalibreren in de groep en drift voorkomen.', bijschrift: 'De lessen van Chen op één dia.' },
     {
       type: 'video', start: 3086, end: 3315, titel: 'Kan AI het coderen overnemen?',
       samenvatting: [
         'Iemand vraagt of AI kan helpen bij het coderen. Chen heeft dat voor deze data zelf nog niet geprobeerd.',
-        'Iemand van Class Lab beschrijft hoe het in hun onderzoek gaat: eerst een codeboek, dan twee mensen die betrouwbaar coderen, dan de AI dezelfde set laten coderen en vergelijken. Pas als de AI even betrouwbaar is, mag die verder coderen.',
+        'Iemand van Class Lab beschrijft de werkwijze daar. Eerst een codeboek, dan twee mensen die betrouwbaar coderen. Dan laat je de AI dezelfde set coderen en vergelijk je de uitkomsten. Pas als de AI even betrouwbaar is, mag die verder coderen.',
         'Video’s met kinderen gaan niet naar een AI. De laptop voor het coderen is zelfs nooit online.',
         'Taal zit vol nuances. Chen twijfelt of je een codeboek zo precies kunt schrijven dat een AI ze allemaal vangt.',
       ],
@@ -93,7 +93,7 @@ export default {
     { type: 'tekst', html: '<p><strong>Voor je eigen project:</strong> wil je een AI laten meecoderen, volg dan dezelfde stappen. Eerst je codeboek, dan twee mensen die de drempel halen, dan de AI dezelfde gesprekken laten coderen en de kappa berekenen. Opnames met herkenbare mensen gaan niet naar een online AI.</p>' },
   ],
   doe: [
-    { type: 'tekst', html: '<p>Een student observeerde adviesgesprekken in de vier filialen van de fietsenwinkel, op twee zaterdagen in maart. Live, met het codeboek uit station 3. Een tweede codeur codeerde 20 % van de gesprekken ook: κ = 0,78. Niet elk filiaal is even lang geobserveerd. Daarom staan de tellingen per uur.</p><p>Kies bij elke beslissing: onderbouwen de data die, of niet?</p><p><strong>Klaar als:</strong> je alle zes de beslissingen hebt beoordeeld.</p>' },
+    { type: 'tekst', html: '<p>Een student observeerde adviesgesprekken in de vier filialen van de fietsenwinkel, op twee zaterdagen in maart. Live, met het codeboek uit station 3. Een tweede codeur codeerde 20 % van de gesprekken ook: κ = 0,78. Niet elk filiaal is even lang geobserveerd. Daarom staan de tellingen per uur.</p><p>Kies bij elke beslissing of de data die onderbouwen.</p><p><strong>Klaar als:</strong> je alle zes de beslissingen hebt beoordeeld.</p>' },
     { type: 'besluit' },
   ],
   jeKuntNu: 'Je kunt nu tellingen eerlijk vergelijken, per uur, en aangeven welke beslissingen je observatiedata wel onderbouwen en welke niet.',

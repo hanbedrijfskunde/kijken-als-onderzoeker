@@ -52,7 +52,7 @@ export function renderKappaHand(block, ctx) {
       if (allesGoed) {
         const k = formatNl(echt.kappa);
         uitslag.replaceChildren(el('p', { class: 'uitslag__kern' }, `Kappa met de hand: alle drie goed. κ = ${k}.`),
-          el('p', {}, `Volgens Landis & Koch is dat ${landisKoch(echt.kappa)}. Voor een studentproject is het onvoldoende: de codeurs maken hun codeboek scherper en oefenen opnieuw.`));
+          el('p', {}, `Volgens Landis & Koch is dat ${landisKoch(echt.kappa)}. Voor een studentproject is dat onvoldoende: de codeurs moeten hun codeboek scherper maken en opnieuw oefenen.`));
         box.querySelector('.kh-klaar').textContent = `Alle drie goed. κ = ${k}: ${landisKoch(echt.kappa)}.`;
         ctx.event('doe-af');
       } else {

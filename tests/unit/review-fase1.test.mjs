@@ -24,8 +24,9 @@ test('Ken je dit al does not ask what comes first', () => {
 
 test('station 4 summary says ten more, not ten times as often', () => {
   const tekst = JSON.stringify(s4.kijk);
-  assert.ok(!/tien keer vaker/.test(tekst));
-  assert.match(tekst, /tien keer meer/);
+  // Chen: "I had 10 more changes strategy than her". "Tien keer meer" leest als tien keer zoveel.
+  assert.ok(!/tien keer (vaker|meer)/.test(tekst));
+  assert.match(tekst, /tien meer uit dan de eerste codeur/);
 });
 
 test('station 4 shows the Landis & Koch bands in Dutch', () => {

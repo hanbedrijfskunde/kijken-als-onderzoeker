@@ -2,16 +2,16 @@
 
 // Tien beschrijvingen van verkopers in de fietsenwinkel. Verzonnen; geen echte personen.
 export const GEDRAG = [
-  { tekst: 'De verkoper vraagt waarvoor de klant de fiets gaat gebruiken.', waarneembaar: true, uitleg: 'Een vraag hoor je. Twee observatoren zijn het snel eens of die gesteld is.' },
-  { tekst: 'De verkoper is betrokken bij de klant.', waarneembaar: false, uitleg: 'Betrokken is een oordeel. De een noemt een verkoper betrokken, de ander niet. Zeg aan welk gedrag je het ziet.' },
+  { tekst: 'De verkoper vraagt waarvoor de klant de fiets gaat gebruiken.', waarneembaar: true, uitleg: 'Een vraag hoor je. Twee observatoren zijn het er snel over eens of die gesteld is.' },
+  { tekst: 'De verkoper is betrokken bij de klant.', waarneembaar: false, uitleg: '‘Betrokken’ is een oordeel. De een noemt een verkoper betrokken, de ander niet. Zeg aan welk gedrag je het ziet.' },
   { tekst: 'De verkoper laat de klant een proefrit maken.', waarneembaar: true, uitleg: 'Een proefrit zie je gebeuren.' },
-  { tekst: 'De verkoper heeft geduld met de klant.', waarneembaar: false, uitleg: 'Geduld zit van binnen. Je ziet het pas aan gedrag, zoals de klant laten uitpraten.' },
-  { tekst: 'De verkoper vat samen wat de klant zoekt en vraagt of dat klopt.', waarneembaar: true, uitleg: 'Een samenvatting met een controlevraag hoor je, en je kunt hem tellen.' },
+  { tekst: 'De verkoper heeft geduld met de klant.', waarneembaar: false, uitleg: 'Geduld zit vanbinnen. Je ziet het pas aan gedrag, zoals de klant laten uitpraten.' },
+  { tekst: 'De verkoper vat samen wat de klant zoekt en vraagt of dat klopt.', waarneembaar: true, uitleg: 'Een samenvatting met een controlevraag hoor je, en die kun je tellen.' },
   { tekst: 'De verkoper wil de klant echt helpen.', waarneembaar: false, uitleg: 'Een bedoeling zie je niet. Wat de verkoper doet om te helpen, zie je wel.' },
   { tekst: 'De verkoper begroet de klant binnen een minuut nadat die is binnengekomen.', waarneembaar: true, uitleg: 'Begroeten zie en hoor je, en de tijd kun je meten.' },
   { tekst: 'De verkoper begrijpt wat de klant nodig heeft.', waarneembaar: false, uitleg: 'Begrijpen gebeurt in het hoofd. Je ziet het hooguit aan een goede samenvatting, en die tel je dan.' },
   { tekst: 'De verkoper onderbreekt de klant terwijl die praat.', waarneembaar: true, uitleg: 'Onderbreken hoor je. Het is waarneembaar, ook al is het gedrag dat je liever niet ziet.' },
-  { tekst: 'De verkoper is vriendelijk.', waarneembaar: false, uitleg: 'Vriendelijk is een oordeel waarover observatoren vaak verschillen. Maak het concreet: de verkoper glimlacht, noemt de klant bij naam of bedankt.' },
+  { tekst: 'De verkoper is vriendelijk.', waarneembaar: false, uitleg: '‘Vriendelijk’ is een oordeel waarover observatoren het vaak oneens zijn. Maak het concreet: de verkoper glimlacht, noemt de klant bij naam of bedankt.' },
 ];
 
 const HERSCHRIJF_CHECKLIST = [
@@ -29,7 +29,7 @@ const VERGELIJKING = '<p><strong>Van Chen naar de fietsenwinkel.</strong> Dezelf
 
 export default {
   id: 's1',
-  nodig: ['koptelefoon of oordopjes', 'pen en papier'],
+  nodig: ['Koptelefoon of oordopjes', 'pen en papier'],
   kenJeDitAl: [
     {
       vraag: 'Welke beschrijving is waarneembaar gedrag?',
@@ -41,7 +41,7 @@ export default {
       vraag: 'Wat is operationaliseren?',
       opties: ['Een begrip vertalen naar gedrag dat je kunt zien en tellen', 'Een onderzoek uitvoeren in een bedrijf', 'Je resultaten omzetten in een advies'],
       juist: 0,
-      uitleg: 'Je maakt een begrip dat je niet direct ziet, zoals klantgerichtheid, meetbaar door te zeggen aan welk gedrag je het herkent.',
+      uitleg: 'Je zegt aan welk gedrag je een begrip herkent dat je niet direct ziet, zoals klantgerichtheid. Zo maak je het meetbaar.',
     },
     {
       vraag: 'Wat hoort er in een regel van een codeboek?',
@@ -58,11 +58,11 @@ export default {
     {
       type: 'video', start: 891, end: 1301, titel: 'Van begrip naar codeerschema',
       samenvatting: [
-        'Chen wil metacognitie meten: of kinderen nadenken over hun eigen denken en doen. Dat is van buiten niet te zien. En kinderen van vier tot zes jaar kunnen er nog niet goed over vertellen. Daarom kiest Chen voor observatie.',
+        'Chen wil metacognitie meten: of kinderen nadenken over hun eigen denken en doen. Dat is vanbuiten niet te zien. En kinderen van vier tot zes jaar kunnen er nog niet goed over vertellen. Daarom kiest Chen voor observatie.',
         'Kinderen krijgen een taak: een treinbaan bouwen naar een plaatje. Die taak lokt gedrag uit waarin je metacognitie wel ziet: kinderen proberen manieren uit, controleren hun werk en sturen bij. Alles wordt gefilmd.',
         'Chen gebruikt een bestaand codeerschema, MetaSCoPE (Bryce & Whitebread, 2012). Dat is gebaseerd op een theorie over het bewaken en bijsturen van je eigen denken (Nelson & Narens, 1990).',
         'Het schema heeft 26 codes in drie groepen: bewaken (10 codes), bijsturen (6) en het ontbreken daarvan (10). De score is bewaken plus bijsturen, min het ontbreken ervan.',
-        'Elke code heeft een naam, een beschrijving en een voorbeeld. Soms staat de grens erbij, zoals bij de code voor het eigen bouwwerk bekijken: niet als het kind maar één stukje bekijkt.',
+        'Elke code heeft een naam, een beschrijving en een voorbeeld. Soms staat de grens erbij. De code ‘eigen bouwwerk bekijken’ telt bijvoorbeeld niet als het kind maar één stukje bekijkt.',
       ],
     },
     { type: 'still', bestand: '04-15m40-how-to-quantify-metacognition.webp', sec: 940, alt: 'Dia met de vraag How to quantify metacognition? en een getekend kind dat nadenkt.', bijschrift: 'Hoe meet je iets wat je niet kunt zien?' },
@@ -72,8 +72,8 @@ export default {
   ],
   doe: [
     { type: 'tekst', html: '<p>Hieronder staan tien beschrijvingen van verkopers in de fietsenwinkel. Kies bij elke beschrijving: kun je dit zien of horen (<em>waarneembaar</em>), of is het een oordeel of een bedoeling (<em>niet waarneembaar</em>)?</p><p><strong>Klaar als:</strong> je alle tien beschrijvingen hebt ingedeeld. Herschrijf daarna twee beschrijvingen die niet waarneembaar zijn.</p>' },
-    { type: 'sorteer', slot: 'Herschrijf nu twee beschrijvingen die niet waarneembaar zijn. Je vindt ze onder de tien beschrijvingen.' },
-    { type: 'tekst', html: '<p><strong>Herschrijven.</strong> Maak van een oordeel gedrag dat je kunt zien of horen. Vaak zijn er meer goede antwoorden.</p>' },
+    { type: 'sorteer', slot: 'Herschrijf nu twee beschrijvingen die niet waarneembaar zijn. De opdrachten staan bij Doe, onder de tien beschrijvingen.' },
+    { type: 'tekst', html: '<p><strong>Herschrijven.</strong> Maak van een oordeel gedrag dat je kunt zien of horen. Vaak is meer dan één antwoord goed.</p>' },
     {
       type: 'open', veld: 'herschrijf-betrokken',
       vraag: 'Herschrijf ‘De verkoper is betrokken bij de klant’ tot gedrag dat je kunt zien of horen.',
@@ -87,7 +87,7 @@ export default {
       checklist: HERSCHRIJF_CHECKLIST,
     },
   ],
-  jeKuntNu: 'Je kunt nu een begrip vertalen naar gedrag dat je kunt zien en tellen, en dat vastleggen in een regel van een codeboek.',
+  jeKuntNu: 'Je kunt nu een begrip vertalen naar gedrag dat je kunt zien en tellen. En je kunt dat gedrag vastleggen in een regel van een codeboek.',
   mijnProject: [
     {
       type: 'open',
@@ -109,7 +109,7 @@ export default {
       checklist: [
         'Je regel heeft alle vijf delen: naam, definitie, wanneer wel, wanneer niet en een voorbeeld.',
         'De definitie beschrijft gedrag, geen oordeel.',
-        'Bij wanneer niet noem je het gedrag dat er het meest op lijkt, en welke code dat dan krijgt.',
+        'Bij ‘wanneer niet’ noem je het gedrag dat er het meest op lijkt, en welke code dat dan krijgt.',
         'Een medestudent die alleen deze regel leest, zou hetzelfde coderen als jij.',
       ],
     },

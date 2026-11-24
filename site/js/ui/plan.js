@@ -52,7 +52,7 @@ function groei(store, answers) {
   const oud = antwoord(answers, 'nulmeting');
   return el('section', { class: 'plan__groei' },
     el('h2', {}, 'Wat heb je geleerd?'),
-    el('p', {}, 'In station 0 beantwoordde je deze vraag voor het eerst. Beantwoord hem nu opnieuw en vergelijk.'),
+    el('p', {}, 'In station 0 beantwoordde je de vraag hieronder voor het eerst. Vergelijk je antwoord van toen met dat van nu.'),
     el('div', { class: 'plan__groei-kolommen' },
       el('div', {}, el('h3', {}, 'Je nulmeting'),
         oud ? el('p', { class: 'plan__antwoord' }, oud)

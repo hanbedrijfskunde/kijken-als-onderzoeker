@@ -8,13 +8,13 @@ export const ZELFDE_TOTALEN = { categorieen: ['ja', 'nee'], matrix: [[3, 2], [2,
 
 export default {
   id: 's4',
-  nodig: ['pen en papier, of een rekenmachine', 'koptelefoon of oordopjes'],
+  nodig: ['Koptelefoon of oordopjes', 'pen en papier of een rekenmachine'],
   kenJeDitAl: [
     {
       vraag: 'Twee codeurs zijn het in 90 % van de beurten eens. Is hun codering dan betrouwbaar?',
       opties: ['Ja, 90 % is hoog', 'Dat weet je pas als je corrigeert voor overeenstemming door toeval', 'Nee, je hebt altijd 100 % nodig'],
       juist: 1,
-      uitleg: 'Valt bijna alles in één code, dan zijn codeurs het ook bij gokken vaak eens. Cohen’s kappa corrigeert daarvoor.',
+      uitleg: 'Valt bijna alles in één code, dan zijn codeurs het ook bij gokken vaak eens. Cohens kappa corrigeert daarvoor.',
     },
     {
       vraag: 'Wat laat een verwarringsmatrix zien?',
@@ -30,26 +30,26 @@ export default {
     },
   ],
   waarom: [
-    'Jij noemt een verkoper klantgericht, je medestudent niet. Wat is je meting dan waard? Een observatie is pas bruikbaar als een tweede codeur met hetzelfde codeboek ongeveer hetzelfde ziet.',
+    'Jij noemt een verkoper klantgericht, je medestudent niet. Wat is je meting dan waard? Een observatie is pas bruikbaar als een tweede codeur ongeveer hetzelfde ziet: iemand die met hetzelfde codeboek los van jou codeert.',
     'Een manager die op basis van jouw tellingen een training inkoopt, wil weten dat de uitkomst niet afhangt van wie er toevallig keek.',
   ],
   kijk: [
     {
-      type: 'video', start: 1749, end: 1925, titel: 'Cohen’s kappa',
+      type: 'video', start: 1749, end: 1925, titel: 'Cohens kappa',
       samenvatting: [
         'Chen codeert video’s met de software Observer XT. Het doel: een kappa boven 0,85.',
-        'Cohen’s kappa meet hoe vaak twee codeurs hetzelfde coderen, en corrigeert voor de overeenstemming die je ook door toeval zou krijgen.',
+        'Cohens kappa meet hoe vaak twee codeurs hetzelfde coderen, en corrigeert voor de overeenstemming die je ook door toeval zou krijgen.',
         'pₒ is de overeenstemming die je ziet, pₑ de overeenstemming die je bij toeval verwacht. Dan is κ = (pₒ − pₑ) / (1 − pₑ).',
       ],
     },
-    { type: 'still', bestand: '10-32m00-cohens-kappa.webp', sec: 1920, alt: 'Dia met de formule van Cohen’s kappa en de banden van Landis en Koch, van gering tot bijna perfect.', bijschrift: 'De formule, en de banden van Landis & Koch (1977).' },
+    { type: 'still', bestand: '10-32m00-cohens-kappa.webp', sec: 1920, alt: 'Dia met de formule van Cohens kappa en de indeling van Landis en Koch, van gering tot bijna perfect.', bijschrift: 'De formule, en de indeling van Landis & Koch (1977).' },
     { type: 'tekst', html: '<p><strong>Software.</strong> Chen gebruikt Observer XT (betaald). Andere programma’s zijn BORIS (gratis), MAXQDA, ELAN en Datavyu. Codeer je live op een formulier, dan is een spreadsheet genoeg.</p>' },
     {
       type: 'video', start: 1927, end: 2043, titel: 'De verwarringsmatrix',
       samenvatting: [
         'De software berekent kappa voor elk tweetal codeurs.',
         'Daarna kijkt Chen naar de verwarringsmatrix: bij welke codes zijn de codeurs het oneens?',
-        'Het grootste verschil zat bij ‘strategie wisselen’: Chen gaf die code tien keer meer dan de eerste codeur.',
+        'Het grootste verschil zat bij ‘strategie wisselen’: Chen kwam bij die code op tien meer uit dan de eerste codeur.',
         'Zo weet je welke definitie in het codeboek scherper moet.',
       ],
     },
@@ -59,13 +59,13 @@ export default {
       samenvatting: [
         'Maak een codeboek: per code een definitie, voorbeeldfragmenten en een basis in de theorie.',
         'Train de codeurs: eerst los van elkaar coderen, dan samen vergelijken en de verschillen bespreken. Houd een codeerlogboek bij.',
-        'Een codeur mag pas echt coderen als die de drempel haalt. Bij Chen duurde dat 16 à 17 video’s: maanden werk.',
+        'Een codeur mag pas echt coderen als die de drempel haalt. Bij Chen kostte dat 16 à 17 video’s: maanden werk.',
         'De eerste codeur codeert alles, een tweede codeur doet 20 % opnieuw. Over die 20 % rapporteer je kappa.',
         'Voorkom drift: wie lang alleen codeert, gaat ongemerkt anders coderen. Plan daarom regelmatig een gezamenlijke ijkronde.',
       ],
     },
     { type: 'still', bestand: '12-38m10-steps-for-establishing-reliability.webp', sec: 2290, alt: 'Schema met vijf stappen: codeboek maken, codeurs trainen, certificering bij kappa boven 0,85, video’s coderen, drift voorkomen.', bijschrift: 'De vijf stappen naar betrouwbaar coderen.' },
-    { type: 'tekst', html: '<p><strong>Hoe lees je kappa?</strong> Landis & Koch (1977) gebruiken deze banden:</p><div class="tabel-wrap"><table class="banden"><thead><tr><th scope="col">κ</th><th scope="col">Overeenstemming</th></tr></thead><tbody><tr><td>onder 0</td><td>minder dan toeval</td></tr><tr><td>0,00 – 0,20</td><td>gering</td></tr><tr><td>0,21 – 0,40</td><td>redelijk</td></tr><tr><td>0,41 – 0,60</td><td>matig</td></tr><tr><td>0,61 – 0,80</td><td>aanzienlijk</td></tr><tr><td>0,81 – 1,00</td><td>bijna perfect</td></tr></tbody></table></div><p><strong>Welke kappa is genoeg?</strong> Voor een studentproject: vanaf 0,60 is je codering bruikbaar, vanaf 0,80 goed. De 0,85 uit de video is de strenge norm voor wetenschappelijk onderzoek.</p>' },
+    { type: 'tekst', html: '<p><strong>Hoe lees je kappa?</strong> Landis & Koch (1977) delen kappa zo in:</p><div class="tabel-wrap"><table class="banden"><thead><tr><th scope="col">κ</th><th scope="col">Overeenstemming</th></tr></thead><tbody><tr><td>onder 0</td><td>minder dan toeval</td></tr><tr><td>0,00 – 0,20</td><td>gering</td></tr><tr><td>0,21 – 0,40</td><td>redelijk</td></tr><tr><td>0,41 – 0,60</td><td>matig</td></tr><tr><td>0,61 – 0,80</td><td>aanzienlijk</td></tr><tr><td>0,81 – 1,00</td><td>bijna perfect</td></tr></tbody></table></div><p><strong>Welke kappa is genoeg?</strong> Voor een studentproject: vanaf 0,60 is je codering bruikbaar, vanaf 0,80 goed. De 0,85 uit de video is de strenge norm voor wetenschappelijk onderzoek.</p>' },
     {
       type: 'details', titel: 'Verdieping: andere maten voor overeenstemming',
       blokken: [
@@ -73,7 +73,7 @@ export default {
           type: 'video', start: 2298, end: 2426, titel: 'Soorten betrouwbaarheidsmaten',
           samenvatting: [
             'Percentage overeenstemming: snel, maar zonder correctie voor toeval.',
-            'Cohen’s kappa: twee codeurs, codes zonder volgorde. Fleiss’ kappa: drie of meer codeurs.',
+            'Cohens kappa: twee codeurs, codes zonder volgorde. Fleiss’ kappa: drie of meer codeurs.',
             'Gewogen kappa: codes met een volgorde, zoals een schaal van 1 tot 5.',
             'ICC: voor scores op een doorlopende schaal. Krippendorffs alfa: voor elk soort data, maar lastig met de hand.',
           ],
@@ -88,7 +88,7 @@ export default {
     { type: 'tekst', html: '<h3>Deel 2 · Jouw codes uit station 3</h3><p>Hoe goed kwam jouw codering van het gesprek in de fietsenwinkel overeen met de sleutel? De rekenhulp zet jouw codes naast die van de sleutel.</p><p><strong>Klaar als:</strong> je kappa met de hand goed hebt uitgerekend en je eigen uitkomst hieronder hebt bekeken.</p>' },
     { type: 'kappa-calc' },
   ],
-  jeKuntNu: 'Je kunt nu Cohen’s kappa uitrekenen en uitleggen. Je ziet ook met een verwarringsmatrix welke regel in je codeboek scherper moet.',
+  jeKuntNu: 'Je kunt nu Cohens kappa uitrekenen en uitleggen. Met een verwarringsmatrix zie je ook welke regel in je codeboek scherper moet.',
   mijnProject: [
     {
       type: 'open',

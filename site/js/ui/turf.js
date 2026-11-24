@@ -77,7 +77,7 @@ export function renderTurf(block, ctx) {
           el('td', {}, String(r.key)), el('td', {}, verschil(r))))))),
       el('ul', { class: 'turf-uitleg' }, rijen.map((r) => el('li', { class: r.richting === 'gelijk' ? 'is-goed' : 'is-anders' },
         el('strong', {}, `${NAAM[r.code]}: `), FEEDBACK[r.code][r.richting]))),
-      el('p', {}, 'Turven is lastig, ook voor Chens publiek. Kijk hieronder de bespreking.')));
+      el('p', {}, 'Turven is lastig, ook voor Chens publiek. Bekijk hieronder de bespreking.')));
   }
 
   function bijwerken(laatste) {

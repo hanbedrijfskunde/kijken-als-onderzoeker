@@ -26,3 +26,9 @@ test('station 0 uses the planned video, still, nulmeting and project field', () 
   assert.match(s0.doe[nulmeting].vraag, /klantgericht/);
   assert.deepEqual(s0.mijnProject.map((o) => o.veld), ['begrip']);
 });
+
+test('the summary reports an association, not a cause', () => {
+  const tekst = s0.kijk.filter((b) => b.type === 'video').flatMap((b) => b.samenvatting).join(' ');
+  assert.ok(!/bijdr(oeg|aagt|oegen)/.test(tekst), 'geen oorzaak-taal: Chen vond een samenhang');
+  assert.match(tekst, /samenhing/);
+});

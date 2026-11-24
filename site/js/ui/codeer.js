@@ -91,9 +91,9 @@ export function renderCodeer(block, ctx) {
     uitslag.replaceChildren(
       el('p', { class: 'uitslag__kern' }, `Je codeerde ${goed} van de ${AANTAL} beurten zoals de sleutel.`),
       goed < AANTAL
-        ? el('p', {}, 'Bij de beurten met een oranje streep staat waarom de sleutel anders codeert. Lees vooral die uitleg: daar zit de les.')
+        ? el('p', {}, 'Bij de beurten met een oranje streep staat waarom de sleutel anders codeert. Lees vooral die uitleg: daar leer je het meest van.')
         : el('p', {}, 'Precies zoals de sleutel. Let op: in echte observaties lukt dat zelden, en dat is ook niet het doel.'),
-      el('p', {}, 'In station 4 reken je uit hoe goed jij en de sleutel overeenkomen. ',
+      el('p', {}, 'In station 4 reken je uit hoe goed jouw codes overeenkomen met de sleutel. ',
         el('a', { href: '#/station/4' }, 'Naar station 4')));
   }
 

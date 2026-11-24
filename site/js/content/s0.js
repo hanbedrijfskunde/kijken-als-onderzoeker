@@ -7,11 +7,11 @@ const VORMEN = '<p><strong>Vier vormen van observatie.</strong> Je kunt observer
   + '<tr><th scope="row">Gestructureerd: je telt vooraf vastgelegd gedrag met een codeboek</th><td class="is-hier"><strong>Deze tutorial.</strong> Je telt vanaf een vaste plek in de winkel hoe vaak verkopers doorvragen.</td><td>Je werkt een dag mee als verkoper en turft na elk gesprek wat je collega deed.</td></tr>'
   + '<tr><th scope="row">Open: je schrijft op wat opvalt</th><td>Je kijkt een middag rond en maakt aantekeningen over wat er in de winkel gebeurt.</td><td>Je werkt een maand mee en houdt een dagboek bij.</td></tr>'
   + '</tbody></table></div>'
-  + '<p>Deze tutorial gaat over gestructureerde observatie van buitenaf: je telt gedrag, en dan kun je vergelijken. Open observatie helpt om eerst te verkennen welk gedrag ertoe doet.</p>';
+  + '<p>Deze tutorial gaat over gestructureerde observatie van buitenaf: je telt gedrag, zodat je kunt vergelijken. Open observatie helpt om eerst te verkennen welk gedrag ertoe doet.</p>';
 
 export default {
   id: 's0',
-  nodig: ['koptelefoon of oordopjes'],
+  nodig: ['Koptelefoon of oordopjes'],
   kenJeDitAl: [
     {
       vraag: 'Een manager vraagt verkopers in een enquête hoe vaak ze doorvragen. Wat is het risico?',
@@ -33,7 +33,7 @@ export default {
     },
   ],
   waarom: [
-    'Vraag verkopers of ze klantgericht werken, en bijna iedereen zegt ja. Kijk je mee in de winkel, dan zie je wat ze echt doen. Wat mensen zeggen en wat ze doen, verschilt vaak.',
+    'Vraag verkopers of ze klantgericht werken, en bijna iedereen zegt ja. Kijk je mee in de winkel, dan zie je wat ze echt doen. Mensen doen vaak iets anders dan ze zeggen.',
     'Neemt een manager een besluit op basis van wat er gezegd wordt, dan kan het misgaan. Er komt een training voor een probleem dat er niet is, of juist geen training voor een probleem dat er wel is.',
   ],
   kijk: [
@@ -41,13 +41,13 @@ export default {
       type: 'video', start: 579, end: 749, titel: 'Wat de observaties lieten zien',
       samenvatting: [
         'Chen wilde weten welke manier van lesgeven in natuurwetenschappen samenhangt met wat jonge kinderen leren.',
-        'Getrainde onderzoekers observeerden leraren in de klas. Ze scoorden het lesgeven op acht onderdelen, met een bestaande beoordelingsschaal.',
+        'Getrainde onderzoekers observeerden leerkrachten in de klas. Ze scoorden het lesgeven op acht onderdelen, met een bestaande beoordelingsschaal.',
         'Twee onderdelen hingen samen met wat kinderen leerden: het doorlopende gesprek met kinderen (extended conversation) en nagaan wat kinderen geleerd hebben. Dat patroon kwam drie jaar op rij terug.',
-        'Juist het doorlopende gesprek kwam het minst voor. Wat het meest bijdroeg, gebeurde het minst.',
+        'Juist het doorlopende gesprek kwam het minst voor. Wat het sterkst samenhing met wat kinderen leerden, gebeurde het minst.',
       ],
     },
-    { type: 'still', bestand: '02-11m40-rq2-average-scores-eight-domains.webp', sec: 700, alt: 'Staafdiagram met de gemiddelde scores van leraren op acht onderdelen van lesgeven. Extended Conversation scoort het laagst, rond 2,6, en heeft een sterretje: het hangt samen met wat kinderen leren.', bijschrift: 'Het doorlopende gesprek (Extended Conversation) scoort het laagst, terwijl het samenhangt met wat kinderen leren (sterretje).' },
-    { type: 'tekst', html: '<p><strong>Wat heb je hieraan?</strong> Dat het doorlopende gesprek zo weinig voorkwam, zag Chen doordat er gekeken en geteld werd. In een bedrijf werkt het net zo: wie telt wat er gebeurt, ziet welk gedrag weinig voorkomt terwijl het wel het verschil maakt.</p>' },
+    { type: 'still', bestand: '02-11m40-rq2-average-scores-eight-domains.webp', sec: 700, alt: 'Staafdiagram met de gemiddelde scores van leerkrachten op acht onderdelen van lesgeven. Extended Conversation scoort het laagst, rond 2,6, en heeft een sterretje: het hangt samen met wat kinderen leren.', bijschrift: 'Het doorlopende gesprek (Extended Conversation) scoort het laagst, terwijl het samenhangt met wat kinderen leren (sterretje).' },
+    { type: 'tekst', html: '<p><strong>Wat heb je hieraan?</strong> Dat het doorlopende gesprek zo weinig voorkwam, zag Chen doordat onderzoekers keken en telden. In een bedrijf werkt dat net zo. Wie telt wat er gebeurt, ziet welk gedrag weinig voorkomt, terwijl het er wel toe doet.</p>' },
     { type: 'tekst', html: VORMEN },
   ],
   doe: [
@@ -56,7 +56,7 @@ export default {
     { type: 'tekst', html: '<p><strong>Welke methode past?</strong> Lees de drie situaties uit de fietsenwinkel. Kies bij elke situatie de methode die het best past.</p><p><strong>Klaar als:</strong> je bij alle drie de situaties een methode hebt gekozen.</p>' },
     {
       type: 'keuze',
-      slot: 'Je nulmeting is bewaard. Je ziet hem terug in je observatieplan.',
+      slot: 'Je nulmeting is bewaard. Je vindt die terug in je observatieplan.',
       items: [
         {
           tekst: 'Een filiaalmanager wil weten hoe vaak verkopers doorvragen als een klant iets vraagt.',
@@ -76,7 +76,7 @@ export default {
       ],
     },
   ],
-  jeKuntNu: 'Je kunt nu uitleggen waarom wat mensen zeggen kan verschillen van wat ze doen. En je kunt kiezen wanneer observatie beter past dan een interview of een enquête.',
+  jeKuntNu: 'Je kunt nu uitleggen waarom mensen iets anders kunnen doen dan ze zeggen. En je kunt kiezen wanneer observatie beter past dan een interview of een enquête.',
   mijnProject: [
     {
       type: 'open',

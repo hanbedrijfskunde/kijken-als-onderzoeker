@@ -3,7 +3,7 @@
 
 // De vier codes uit de oefening (MetaSCoPE, still 06, en de uitleg op 22:07–22:47).
 export const VIDEO_CODES = [
-  { id: 'eigen-bouwwerk', naam: 'Eigen bouwwerk bekijken', definitie: 'Het kind pauzeert en kijkt naar de hele eigen treinbaan. Niet als het maar naar één stukje kijkt.' },
+  { id: 'eigen-bouwwerk', naam: 'Eigen bouwwerk bekijken', definitie: 'Het kind pauzeert en kijkt naar de hele eigen treinbaan. Telt niet als het maar naar één stukje kijkt.' },
   { id: 'strategie-wisselen', naam: 'Strategie wisselen', definitie: 'Het kind gebruikt een andere aanpak of een ander stuk dan ervoor. Het eerste stuk dat het pakt, telt niet.' },
   { id: 'plan-bekijken', naam: 'Plan bekijken', definitie: 'Het kind kijkt naar het plaatje van de treinbaan en vergelijkt het met het eigen bouwwerk. Ook een korte blik telt.' },
   { id: 'afgeleid', naam: 'Afgeleid', definitie: 'Het kind is afgeleid door wat anderen doen of door eigen gedachten, maar werkt tussendoor door aan de taak.' },
@@ -48,13 +48,13 @@ export const BESPREKING = {
 };
 
 const ROUTES = '<p><strong>Voor je eigen project: hoe leg je vast wat je ziet?</strong></p><ul>'
-  + '<li><strong>Live coderen op een codeerformulier.</strong> Je turft ter plekke en neemt niets op. Er worden geen beelden of geluid van klanten of medewerkers bewaard. Dit is de gewone route.</li>'
+  + '<li><strong>Live coderen op een codeerformulier.</strong> Je turft ter plekke en neemt niets op. Je bewaart dus geen beelden of geluid van klanten of medewerkers. Dit is de gewone route.</li>'
   + '<li><strong>Opnemen en achteraf coderen.</strong> Alleen met toestemming van iedereen die herkenbaar op de opname staat, en van de organisatie.</li>'
   + '</ul><p>Bij beide routes regel je vooraf toestemming van de organisatie en informeer je wie je observeert. Volg daarbij de privacyregels van je opleiding en van de organisatie. Deze tutorial geeft geen juridisch advies.</p>';
 
 export default {
   id: 's2',
-  nodig: ['koptelefoon of oordopjes', 'een rustige plek: de clip duurt anderhalve minuut en je moet blijven kijken'],
+  nodig: ['Koptelefoon of oordopjes', 'een rustige plek: de clip duurt anderhalve minuut en je moet blijven kijken'],
   kenJeDitAl: [
     {
       vraag: 'Een codeur telt ‘afgeleid’ elke keer dat een kind naar de moeder kijkt, terwijl het kind dat steeds doet. Wat ontbreekt er in het codeboek?',
@@ -66,7 +66,7 @@ export default {
       vraag: 'Wat is het verschil tussen tellen per gebeurtenis en tellen per tijdvak?',
       opties: ['Er is geen verschil', 'Per gebeurtenis tel je elke keer dat het gedrag gebeurt; per tijdvak noteer je per vaste periode of het gebeurde', 'Per tijdvak tel je alleen het eerste gedrag van de dag'],
       juist: 1,
-      uitleg: 'Per gebeurtenis weet je hoe vaak iets gebeurt. Per tijdvak (bijvoorbeeld elke minuut: ja of nee) is makkelijker bij gedrag dat snel en vaak voorkomt.',
+      uitleg: 'Per gebeurtenis weet je hoe vaak iets gebeurt. Tellen per tijdvak (bijvoorbeeld elke minuut: ja of nee) is makkelijker bij gedrag dat snel en vaak voorkomt.',
     },
     {
       vraag: 'Waarom codeer je in een eigen project vaak live, in plaats van met een opname?',
@@ -76,14 +76,14 @@ export default {
     },
   ],
   waarom: [
-    'Lezen hoe je codeert is iets anders dan het doen. Pas als je zelf turft, merk je hoe snel gedrag gaat en hoe vaak je twijfelt.',
+    'Lezen hoe je codeert, is iets anders dan het zelf doen. Pas als je zelf turft, merk je hoe snel gedrag gaat en hoe vaak je twijfelt.',
     'In een winkel gaat het net zo snel. Mis je een beslisregel, dan telt elke observator iets anders. De cijfers zeggen dan meer over wie er keek dan over de verkopers.',
   ],
   kijk: [
     {
       type: 'video', start: 1301, end: 1408, titel: 'De vier codes',
       samenvatting: [
-        'Chen laat zo een clip van anderhalve minuut zien. Daarin komen vier codes voor.',
+        'Chen laat straks een clip van anderhalve minuut zien. Daarin komen vier codes voor.',
         'Eigen bouwwerk bekijken: het kind pauzeert en kijkt naar de hele baan.',
         'Strategie wisselen: het kind gebruikt een andere aanpak of een ander stuk dan ervoor.',
         'Plan bekijken: het kind vergelijkt het plaatje met het eigen bouwwerk.',
@@ -106,7 +106,7 @@ export default {
       type: 'open',
       veld: 'eenheid',
       vraag: 'Tel je elke keer dat het gedrag gebeurt, of noteer je per vast tijdvak (bijvoorbeeld per minuut) of het gebeurde? Waar en hoe lang observeer je? En welke beslisregel heb je nodig?',
-      voorbeeld: 'Ik tel elke keer dat een verkoper doorvraagt of samenvat. Ik observeer in twee filialen, op een zaterdag en op een doordeweekse middag, steeds twee uur, vanaf een plek bij de kassa. Beslisregel: een vraag die de verkoper herhaalt omdat de klant hem niet verstond, tel ik niet nog een keer.',
+      voorbeeld: 'Ik tel elke keer dat een verkoper doorvraagt of samenvat. Ik observeer in twee filialen, op een zaterdag en op een doordeweekse middag, steeds twee uur, vanaf een plek bij de kassa. Beslisregel: herhaalt de verkoper een vraag omdat de klant die niet verstond, dan tel ik die vraag niet nog een keer.',
       checklist: [
         'Je kiest: elke gebeurtenis of vaste tijdvakken, en je zegt waarom.',
         'Je noemt plek en duur, zo concreet dat een ander het kan herhalen.',
@@ -118,7 +118,7 @@ export default {
       type: 'open',
       veld: 'vastlegging',
       vraag: 'Hoe leg je vast wat je ziet: live op een codeerformulier, of met een opname die je achteraf codeert? En hoe regel je toestemming van wie je observeert?',
-      voorbeeld: 'Ik codeer live op een codeerformulier: per gesprek een regel, met een streepje per code. Ik neem niets op, dus er worden geen beelden of geluid bewaard. De filiaalmanager geeft toestemming, en de verkopers weten vooraf dat ik observeer en waarom. Ik schrijf geen namen van klanten op. Mijn aanpak leg ik voor aan mijn projectbegeleider, en ik check de privacyregels van de opleiding en van de organisatie.',
+      voorbeeld: 'Ik codeer live op een codeerformulier: per gesprek een regel, met een streepje per code. Ik neem niets op, dus ik bewaar geen beelden of geluid. De filiaalmanager geeft toestemming, en de verkopers weten vooraf dat ik observeer en waarom. Ik schrijf geen namen van klanten op. Mijn aanpak leg ik voor aan mijn projectbegeleider, en ik check de privacyregels van de opleiding en van de organisatie.',
       checklist: [
         'Je kiest live coderen of opnemen, en je zegt waarom.',
         'Neem je op, dan geeft iedereen die herkenbaar op de opname staat vooraf toestemming, en de organisatie ook.',

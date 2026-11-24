@@ -50,7 +50,7 @@ const k = (tekst) => ({ spreker: 'klant', tekst });
 const v = (tekst, sleutel, uitleg) => ({ spreker: 'verkoper', tekst, sleutel, uitleg });
 
 export const GESPREK = [
-  v('Goedemorgen! Kijk gerust rond, hoor.', 'overig', 'Een begroeting. Er wordt niets gevraagd en niets voorgesteld.'),
+  v('Goedemorgen! Kijk gerust rond, hoor.', 'overig', 'Een begroeting. De verkoper vraagt niets en stelt niets voor.'),
   k('Dank je. Ik zoek eigenlijk een nieuwe fiets.'),
   v('Leuk. Waarvoor ga je de nieuwe fiets vooral gebruiken?', 'open-vraag', 'Een nieuwe vraag: de klant heeft nog niet gezegd waar de fiets voor is. Ze kan er veel op vertellen.'),
   k('Om naar mijn werk te fietsen. Dat is zo’n twaalf kilometer, deels over een dijk. Daar staat vaak veel wind.'),
@@ -91,7 +91,7 @@ export const VOORBEELD_CODES = [
 
 export default {
   id: 's3',
-  nodig: ['koptelefoon of oordopjes', 'een rustige plek om te lezen'],
+  nodig: ['Koptelefoon of oordopjes', 'een rustige plek om te lezen'],
   kenJeDitAl: [
     {
       vraag: 'Wat is de eenheid van analyse als je een gesprek codeert?',
@@ -121,19 +121,19 @@ export default {
       type: 'video', start: 2603, end: 2870, titel: 'Gesprekken vastleggen en coderen',
       samenvatting: [
         'Chen neemt de gesprekken van leerkrachten op met een klein opnameapparaat en schrijft ze uit.',
-        'Er was geen codeerschema dat precies paste. Daarom past het team bestaande schema’s aan; van nul beginnen kost te veel tijd.',
+        'Er is geen codeerschema dat precies aansluit. Daarom past het team bestaande schema’s aan; van nul beginnen kost te veel tijd.',
         'Eerst kiest het team de eenheid van analyse (een uiting of een beurt) en het doel van het coderen.',
-        'Daarna wordt het schema getest op 15 % van de gesprekken, met twee codeurs, en aangepast.',
+        'Daarna testen twee codeurs het schema op 15 % van de gesprekken. Het team past het schema daarop aan.',
         'Het resultaat is een codeboek: per code een naam, een definitie, wanneer wel en wanneer niet, en een voorbeeld.',
       ],
     },
     { type: 'still', bestand: '14-43m18-language-transcripts.webp', sec: 2598, alt: 'Dia met een uitgeschreven gesprek tussen een leerkracht en kinderen over drijven en zinken.', bijschrift: 'Een uitgeschreven gesprek: elke regel is een beurt.' },
     { type: 'still', bestand: '15-45m00-steps-adapting-language-coding-schemes.webp', sec: 2700, alt: 'Schema met vijf stappen: eenheid van analyse bepalen, doel bepalen, bestaand codeerschema kiezen, testen op 15 procent van de transcripten en aanpassen, codeboek maken.', bijschrift: 'De vijf stappen om een bestaand codeerschema aan te passen.' },
     { type: 'still', bestand: '16-45m30-baseline-language-coding-framework.webp', sec: 2730, alt: 'Tabel uit een bestaand codeerschema met per code een definitie en voorbeelden.', bijschrift: 'Een bestaand codeerschema (Deshmukh e.a., 2022): per code een definitie en voorbeelden.' },
-    { type: 'tekst', html: '<p><strong>Voor je eigen project:</strong> je hoeft niets op te nemen. Vaak codeer je live, op een codeerformulier, terwijl het gesprek gebeurt. Je eenheid is dan een beurt of een vast tijdvak. Opnemen mag alleen met toestemming van iedereen die je opneemt.</p>' },
+    { type: 'tekst', html: '<p><strong>Voor je eigen project:</strong> je hoeft niets op te nemen. Vaak codeer je live, op een codeerformulier, terwijl het gesprek loopt. Je eenheid is dan een beurt of een vast tijdvak. Opnemen mag alleen met toestemming van iedereen die je opneemt.</p>' },
   ],
   doe: [
-    { type: 'tekst', html: '<ol><li><strong>Neem eerst het codeboek door, voordat je één beurt codeert.</strong> Lees per code de definitie, wanneer de code wel en niet geldt, en het voorbeeld. Lees ook de beslisregel onderaan. Het codeboek staat rechts naast het gesprek; op een smal scherm staat het erboven.</li><li>Lees dan het gesprek in een fietsenwinkel. Geef elke beurt van de verkoper precies één code. Twijfel je tussen twee codes? Lees die twee definities dan nog een keer. De beurten van de klant codeer je niet; die staan er om het gesprek te kunnen volgen.</li></ol><p>Waarom eerst het codeboek? Het codeboek is je meetinstrument. Lees je een definitie anders dan bedoeld, dan codeer je anders, hoe goed je het gesprek ook begrijpt. In station 4 zie je dat terug in de kappa.</p><p><strong>Klaar als:</strong> je alle 15 beurten van de verkoper een code hebt gegeven en op <em>Controleer</em> hebt geklikt. Na Controleer staan je codes vast. Wat je anders codeerde dan de sleutel, blijft dus staan. In station 4 reken je daarmee verder.</p>' },
+    { type: 'tekst', html: '<ol><li><strong>Neem eerst het codeboek door, voordat je één beurt codeert.</strong> Lees per code de definitie, wanneer de code wel en niet geldt, en het voorbeeld. Lees ook de beslisregel onderaan. Het codeboek staat rechts naast het gesprek; op een smal scherm staat het erboven.</li><li>Lees dan het gesprek in een fietsenwinkel. Geef elke beurt van de verkoper precies één code. Twijfel je tussen twee codes? Lees die twee definities dan nog een keer. De beurten van de klant codeer je niet; die staan er zodat je het gesprek kunt volgen.</li></ol><p>Waarom eerst het codeboek? Het codeboek is je meetinstrument. Lees je een definitie anders dan bedoeld, dan codeer je anders, hoe goed je het gesprek ook begrijpt. In station 4 zie je dat terug in de kappa: een getal dat laat zien hoe goed twee codeurs overeenkomen.</p><p><strong>Klaar als:</strong> je alle 15 beurten van de verkoper een code hebt gegeven en op <em>Controleer</em> hebt geklikt. Na Controleer staan je codes vast. Wat je anders codeerde dan de sleutel, blijft dus staan. In station 4 reken je daarmee verder.</p>' },
     { type: 'codeer' },
   ],
   jeKuntNu: 'Je kunt nu een gesprek beurt voor beurt coderen met een codeboek. Je ziet ook waarom elke code een definitie, een grens en een voorbeeld nodig heeft.',
@@ -142,7 +142,7 @@ export default {
       type: 'open',
       veld: 'codeerschema',
       vraag: 'Welk bestaand codeerschema kun je voor je eigen project gebruiken of aanpassen? En welke eenheid kies je: een beurt, een uiting of een vast tijdvak?',
-      voorbeeld: 'Ik observeer adviesgesprekken aan de balie van een fietsenwinkel. Ik gebruik de vijf codes uit deze oefening als basis en voeg een code toe voor “product laten zien”. Mijn eenheid is een beurt van de verkoper. Ik test het schema eerst op drie gesprekken en pas het dan aan.',
+      voorbeeld: 'Ik observeer adviesgesprekken aan de balie van een fietsenwinkel. Ik gebruik de vijf codes uit deze oefening als basis en voeg een code toe voor ‘product laten zien’. Mijn eenheid is een beurt van de verkoper. Ik test het schema eerst op drie gesprekken en pas het dan aan.',
       checklist: [
         'Je noemt waar je schema vandaan komt: een bestaand schema, of de codes uit deze tutorial.',
         'Je kiest één eenheid en zegt waarom die past.',
