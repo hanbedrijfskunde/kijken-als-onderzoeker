@@ -36,3 +36,12 @@ test('station 3 uses the planned video, stills and exercise', () => {
   assert.ok(s3.doe.some((b) => b.type === 'codeer'));
   assert.deepEqual(s3.mijnProject.map((o) => o.veld), ['codeerschema']);
 });
+
+test('the instructions have the student read the codebook before coding', () => {
+  const tekst = s3.doe.filter((b) => b.type === 'tekst').map((b) => b.html).join(' ').replace(/<[^>]+>/g, '');
+  const codeboek = tekst.search(/eerst[^.]*codeboek/i);
+  const gesprek = tekst.search(/Lees (dan|daarna) het gesprek/i);
+  assert.ok(codeboek >= 0, 'de instructie zegt dat je eerst het codeboek doorneemt');
+  assert.ok(gesprek > codeboek, 'het gesprek komt pas na het codeboek');
+  assert.match(tekst, /beslisregel/i, 'de instructie noemt de beslisregel');
+});
