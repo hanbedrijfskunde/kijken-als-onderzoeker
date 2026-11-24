@@ -120,3 +120,21 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .is-anders { background: var(--amber-soft); border-left: 4px solid var(--amber-line); }
 .codeer__actie { margin-top: var(--s4); }
 .uitslag__kern { font-weight: 700; color: var(--ink); font-size: 1.1rem; }
+
+/* Kappa met de hand */
+.blok--doe h3 { font-size: 1.2rem; margin: var(--s6) 0 var(--s2); }
+.kruistabel { width: auto; min-width: 20rem; font-size: 1rem; }
+.kruistabel caption { text-align: left; font-weight: 700; color: var(--ink); padding-bottom: var(--s2); }
+.kruistabel td, .kruistabel th { text-align: center; }
+.kruistabel td.diag { background: var(--tint-soft); font-weight: 700; color: var(--ink); }
+.kruistabel td.tot { color: var(--muted); }
+.formule { font-family: var(--font-mono); font-size: 1.05rem; background: var(--bg-soft); display: inline-block; padding: var(--s2) var(--s3); border-radius: var(--radius); }
+.kh-velden { display: grid; gap: var(--s3); grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); margin: var(--s3) 0; }
+.kh-veld { display: flex; flex-direction: column; gap: var(--s1); padding: var(--s2) var(--s3); border: 1px solid var(--border); border-radius: var(--radius); }
+.kh-veld label { font-weight: 600; color: var(--ink); font-size: .92rem; }
+.kh-veld input { font: inherit; font-size: 1.1rem; padding: var(--s1) var(--s2); border: 1px solid var(--border-strong); border-radius: 6px; width: 8rem; }
+.kh-veld.is-goed { border-color: var(--green-line); background: var(--green-soft); }
+.kh-veld.is-anders { border-color: var(--amber-line); background: var(--amber-soft); }
+.kh-fb { font-size: .88rem; }
+.hint { margin: var(--s2) 0; }
+.hint > summary { cursor: pointer; color: var(--magenta-dark); font-weight: 600; }
