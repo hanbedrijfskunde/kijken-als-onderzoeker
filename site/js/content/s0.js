@@ -42,7 +42,7 @@ export default {
       samenvatting: [
         'Chen wilde weten welke manier van lesgeven in natuurwetenschappen samenhangt met wat jonge kinderen leren.',
         'Getrainde onderzoekers observeerden leraren in de klas. Ze scoorden het lesgeven op acht onderdelen, met een bestaande beoordelingsschaal.',
-        'Twee onderdelen hingen samen met wat kinderen leerden: het doorlopende gesprek met kinderen (extended conversation) en nagaan wat kinderen geleerd hebben. Dat patroon zag ze drie jaar op rij.',
+        'Twee onderdelen hingen samen met wat kinderen leerden: het doorlopende gesprek met kinderen (extended conversation) en nagaan wat kinderen geleerd hebben. Dat patroon kwam drie jaar op rij terug.',
         'Juist het doorlopende gesprek kwam het minst voor. Wat het meest bijdroeg, gebeurde het minst.',
       ],
     },

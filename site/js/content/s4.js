@@ -37,7 +37,7 @@ export default {
     {
       type: 'video', start: 1749, end: 1925, titel: 'Cohen’s kappa',
       samenvatting: [
-        'Chen codeert video’s met de software Observer XT. Haar doel: een kappa boven 0,85.',
+        'Chen codeert video’s met de software Observer XT. Het doel: een kappa boven 0,85.',
         'Cohen’s kappa meet hoe vaak twee codeurs hetzelfde coderen, en corrigeert voor de overeenstemming die je ook door toeval zou krijgen.',
         'pₒ is de overeenstemming die je ziet, pₑ de overeenstemming die je bij toeval verwacht. Dan is κ = (pₒ − pₑ) / (1 − pₑ).',
       ],
@@ -49,7 +49,7 @@ export default {
       samenvatting: [
         'De software berekent kappa voor elk tweetal codeurs.',
         'Daarna kijkt Chen naar de verwarringsmatrix: bij welke codes zijn de codeurs het oneens?',
-        'Bij haar zat het grootste verschil bij ‘strategie wisselen’: zij gaf die code tien keer meer dan haar eerste codeur.',
+        'Het grootste verschil zat bij ‘strategie wisselen’: Chen gaf die code tien keer meer dan de eerste codeur.',
         'Zo weet je welke definitie in het codeboek scherper moet.',
       ],
     },

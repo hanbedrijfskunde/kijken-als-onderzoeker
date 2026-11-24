@@ -58,9 +58,9 @@ export default {
     {
       type: 'video', start: 891, end: 1301, titel: 'Van begrip naar codeerschema',
       samenvatting: [
-        'Chen wil metacognitie meten: of kinderen nadenken over hun eigen denken en doen. Dat is van buiten niet te zien. En kinderen van vier tot zes jaar kunnen er nog niet goed over vertellen. Daarom kiest ze voor observatie.',
-        'Ze geeft kinderen een taak: een treinbaan bouwen naar een plaatje. Die taak lokt gedrag uit waarin je metacognitie wel ziet: kinderen proberen manieren uit, controleren hun werk en sturen bij. Alles wordt gefilmd.',
-        'Ze gebruikt een bestaand codeerschema, MetaSCoPE (Bryce & Whitebread, 2012). Dat is gebaseerd op een theorie over het bewaken en bijsturen van je eigen denken (Nelson & Narens, 1990).',
+        'Chen wil metacognitie meten: of kinderen nadenken over hun eigen denken en doen. Dat is van buiten niet te zien. En kinderen van vier tot zes jaar kunnen er nog niet goed over vertellen. Daarom kiest Chen voor observatie.',
+        'Kinderen krijgen een taak: een treinbaan bouwen naar een plaatje. Die taak lokt gedrag uit waarin je metacognitie wel ziet: kinderen proberen manieren uit, controleren hun werk en sturen bij. Alles wordt gefilmd.',
+        'Chen gebruikt een bestaand codeerschema, MetaSCoPE (Bryce & Whitebread, 2012). Dat is gebaseerd op een theorie over het bewaken en bijsturen van je eigen denken (Nelson & Narens, 1990).',
         'Het schema heeft 26 codes in drie groepen: bewaken (10 codes), bijsturen (6) en het ontbreken daarvan (10). De score is bewaken plus bijsturen, min het ontbreken ervan.',
         'Elke code heeft een naam, een beschrijving en een voorbeeld. Soms staat de grens erbij, zoals bij de code voor het eigen bouwwerk bekijken: niet als het kind maar één stukje bekijkt.',
       ],

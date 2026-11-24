@@ -121,9 +121,9 @@ export default {
       type: 'video', start: 2603, end: 2870, titel: 'Gesprekken vastleggen en coderen',
       samenvatting: [
         'Chen neemt de gesprekken van leerkrachten op met een klein opnameapparaat en schrijft ze uit.',
-        'Ze vond geen codeerschema dat precies paste. Daarom past ze bestaande schema’s aan; van nul beginnen kost te veel tijd.',
-        'Eerst kiest ze de eenheid van analyse (een uiting of een beurt) en het doel van het coderen.',
-        'Ze test het schema op 15 % van de gesprekken, met twee codeurs, en past het daarna aan.',
+        'Er was geen codeerschema dat precies paste. Daarom past het team bestaande schema’s aan; van nul beginnen kost te veel tijd.',
+        'Eerst kiest het team de eenheid van analyse (een uiting of een beurt) en het doel van het coderen.',
+        'Daarna wordt het schema getest op 15 % van de gesprekken, met twee codeurs, en aangepast.',
         'Het resultaat is een codeboek: per code een naam, een definitie, wanneer wel en wanneer niet, en een voorbeeld.',
       ],
     },
