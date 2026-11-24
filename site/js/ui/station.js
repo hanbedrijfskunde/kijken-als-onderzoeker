@@ -1,6 +1,7 @@
 import { STATIONS } from '../content/stations.js';
 import { el } from './dom.js';
 import { renderVideo, renderStill } from './media.js';
+import { renderKenJeDitAl } from './kenjedital.js';
 
 // Renderers per bloktype. Oefeningen melden zich hier aan (registerBlock).
 const RENDERERS = {
@@ -28,7 +29,8 @@ export function renderStation(content, ctx) {
   const station = STATIONS.find((s) => s.id === content.id);
   const volgende = STATIONS.find((s) => s.nr === station.nr + 1);
   const jeKuntNu = el('p', { class: 'jekuntnu', hidden: true }, content.jeKuntNu);
-  const kenSlot = el('div', { class: 'kenjedital-slot' });
+  const kenSlot = el('div', { class: 'kenjedital-slot' },
+    content.kenJeDitAl.length ? renderKenJeDitAl(content.kenJeDitAl, ctx) : null);
 
   const article = el('article', { class: 'station' },
     el('p', { class: 'terug' }, el('a', { href: '#/' }, 'Naar de kaart')),
