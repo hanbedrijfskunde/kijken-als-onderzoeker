@@ -1,6 +1,7 @@
 import { el } from './dom.js';
 
 // Een open vraag met een voorbeeldantwoord en een checklist om je eigen antwoord langs te leggen.
+// Zonder voorbeeld (de nulmeting) is er niets om mee te vergelijken: dan alleen het antwoordvak.
 export function renderOpen(block, ctx) {
   const { store } = ctx;
   const id = `open-${block.veld}`;
@@ -11,7 +12,8 @@ export function renderOpen(block, ctx) {
   });
   textarea.value = store.get(`answers.${block.veld}`, '');
 
-  const vergelijk = el('div', { class: 'open__vergelijk', hidden: vinkjes.size === 0 },
+  const metVoorbeeld = Boolean(block.voorbeeld && block.checklist?.length);
+  const vergelijk = metVoorbeeld && el('div', { class: 'open__vergelijk', hidden: vinkjes.size === 0 },
     el('p', { class: 'open__voorbeeld' }, el('strong', {}, 'Voorbeeld: '), block.voorbeeld),
     el('fieldset', { class: 'open__checklist' },
       el('legend', {}, 'Staat dit in jouw antwoord? Vink aan wat erin staat.'),
@@ -28,11 +30,11 @@ export function renderOpen(block, ctx) {
     el('label', { for: id, class: 'open__vraag' }, block.vraag),
     textarea,
     el('p', { class: 'open__acties' },
-      el('button', {
+      metVoorbeeld ? el('button', {
         type: 'button', class: 'knop knop--stil',
         onclick: () => { vergelijk.hidden = false; },
-      }, 'Vergelijk met het voorbeeld'),
+      }, 'Vergelijk met het voorbeeld') : null,
       el('span', { class: 'open__bewaard' }, store.persistent ? 'Je antwoord wordt bewaard in deze browser.'
         : 'Kopieer je antwoord voordat je de pagina sluit: deze browser bewaart het niet.')),
-    vergelijk);
+    metVoorbeeld ? vergelijk : null);
 }

@@ -182,3 +182,15 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .codeer__nog { font-size: .9rem; color: var(--amber); font-weight: 600; }
 .codeer__nog--vast { color: var(--muted); }
 .banden { width: auto; }
+
+/* Station 0: meerkeuze per situatie en de vier vormen van observatie */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.keuze-oefening { display: grid; gap: var(--s4); margin: var(--s3) 0; }
+.keuze-item { margin: 0; border: 1px solid var(--border-strong); border-radius: var(--radius); padding: var(--s2) var(--s4) var(--s3); }
+.keuze-item legend { font-weight: 600; color: var(--ink); padding: 0 var(--s1); }
+.keuze-item__opties { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); margin-top: var(--s2); }
+.keuze-item__fb:empty { display: none; }
+.keuze-item__fb { margin: var(--s2) 0 0; padding: var(--s2) var(--s3); border-radius: var(--radius); font-size: .9rem; }
+.vormen td.is-hier { background: var(--tint-faint); box-shadow: inset 0 0 0 2px var(--magenta); }
+.vormen { table-layout: fixed; }
+.vormen tbody th { white-space: normal; width: 30%; }
