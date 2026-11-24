@@ -80,7 +80,7 @@ Overwogen en verworpen:
 
 ### 7.2 Vaste opbouw van elk station
 
-Bovenaan elk station: duur, wat je nodig hebt (bijvoorbeeld *koptelefoon*, *pen en papier*), en *Ken je dit al?*: twee of drie vragen. Wie ze allemaal goed heeft, kan het station als *overgeslagen* markeren en direct naar *Mijn project*.
+Bovenaan elk station: duur en *Ken je dit al?*: twee of drie vragen. (*Wat heb je nodig?* stond hier eerst ook; op verzoek van de opdrachtgever geschrapt.) Wie ze allemaal goed heeft, kan het station als *overgeslagen* markeren en direct naar *Mijn project*.
 
 Daarna vijf blokken, altijd in deze volgorde:
 

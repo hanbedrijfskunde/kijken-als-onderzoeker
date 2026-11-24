@@ -91,7 +91,6 @@ export const VOORBEELD_CODES = [
 
 export default {
   id: 's3',
-  nodig: ['Koptelefoon of oordopjes', 'een rustige plek om te lezen'],
   kenJeDitAl: [
     {
       vraag: 'Wat is de eenheid van analyse als je een gesprek codeert?',

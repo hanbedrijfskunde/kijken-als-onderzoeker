@@ -11,7 +11,6 @@ const VORMEN = '<p><strong>Vier vormen van observatie.</strong> Je kunt observer
 
 export default {
   id: 's0',
-  nodig: ['Koptelefoon of oordopjes'],
   kenJeDitAl: [
     {
       vraag: 'Een manager vraagt verkopers in een enquête hoe vaak ze doorvragen. Wat is het risico?',

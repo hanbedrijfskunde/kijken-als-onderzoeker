@@ -44,7 +44,6 @@ export const BESLISSINGEN = [
 
 export default {
   id: 's5',
-  nodig: ['Koptelefoon of oordopjes'],
   kenJeDitAl: [
     {
       vraag: 'Filiaal A is 6 uur geobserveerd: 42 keer doorvragen. Filiaal B is 4 uur geobserveerd: 30 keer. Waar wordt per uur vaker doorgevraagd?',

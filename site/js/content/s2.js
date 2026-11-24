@@ -59,7 +59,6 @@ const ROUTES = '<p><strong>Voor je eigen project: hoe leg je vast wat je ziet?</
 
 export default {
   id: 's2',
-  nodig: ['Koptelefoon of oordopjes', 'een rustige plek: de clip duurt anderhalve minuut en je moet blijven kijken'],
   kenJeDitAl: [
     {
       vraag: 'Een codeur telt ‘afgeleid’ elke keer dat een kind naar de moeder kijkt, terwijl het kind dat steeds doet. Wat ontbreekt er in het codeboek?',

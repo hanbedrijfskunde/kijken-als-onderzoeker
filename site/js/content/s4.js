@@ -8,7 +8,6 @@ export const ZELFDE_TOTALEN = { categorieen: ['ja', 'nee'], matrix: [[3, 2], [2,
 
 export default {
   id: 's4',
-  nodig: ['Koptelefoon of oordopjes', 'pen en papier of een rekenmachine'],
   kenJeDitAl: [
     {
       vraag: 'Twee codeurs zijn het in 90 % van de beurten eens. Is hun codering dan betrouwbaar?',

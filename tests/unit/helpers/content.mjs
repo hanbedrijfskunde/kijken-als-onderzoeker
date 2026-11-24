@@ -15,7 +15,7 @@ function walk(blocks, visit) {
 }
 
 export function assertStationShape(c) {
-  for (const k of ['id', 'nodig', 'kenJeDitAl', 'waarom', 'kijk', 'doe', 'jeKuntNu', 'mijnProject']) {
+  for (const k of ['id', 'kenJeDitAl', 'waarom', 'kijk', 'doe', 'jeKuntNu', 'mijnProject']) {
     assert.ok(k in c, `veld ontbreekt: ${k}`);
   }
   assert.ok(c.kenJeDitAl.length >= 2 && c.kenJeDitAl.length <= 3, 'Ken je dit al: twee of drie vragen');
@@ -25,8 +25,8 @@ export function assertStationShape(c) {
     assert.ok(Number.isInteger(v.juist) && v.juist >= 0 && v.juist < v.opties.length, 'geldig juist-antwoord');
   }
   assert.ok(c.waarom.length >= 1 && c.jeKuntNu.startsWith('Je kunt nu'));
-  // Getoond als "Wat heb je nodig? <eerste>, <tweede>.": het eerste item begint de zin.
-  assert.match(c.nodig[0], /^\p{Lu}/u, 'Wat heb je nodig: het eerste item begint met een hoofdletter');
+  // "Wat heb je nodig?" is geschrapt: een veld dat nergens getoond wordt, hoort er niet te staan.
+  assert.ok(!('nodig' in c), 'veld nodig is geschrapt');
   walk([...c.kijk, ...c.doe], (b) => {
     if (b.type === 'video') {
       assert.ok(b.start >= 0 && b.start < b.end && b.end <= 3616, `videotijden ${b.start}-${b.end}`);

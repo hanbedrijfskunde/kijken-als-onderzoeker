@@ -1,3 +1,6 @@
+from playwright.sync_api import expect
+
+
 def test_station_blocks_in_order(page, site_url):
     page.goto(site_url + "#/station/3")
     heads = page.locator("article.station h2").all_inner_texts()
@@ -15,8 +18,14 @@ def test_station_blocks_in_order(page, site_url):
         assert "watch?v=cVtblRCvtRI&t=" in fig.locator("a").first.get_attribute("href")
 
 
-def test_station_header_shows_duration_and_needs(page, site_url):
+def test_station_header_shows_duration(page, site_url):
     page.goto(site_url + "#/station/3")
-    head = page.locator("article.station .station__start").inner_text()
-    assert "30 min" in page.locator("article.station").inner_text().lower()
-    assert "Wat heb je nodig?" in head
+    assert "30 min" in page.locator("article.station .bovenkop").inner_text().lower()
+
+
+def test_no_needs_section(page, site_url):
+    """Wat je nodig hebt (koptelefoon, pen en papier) staat niet meer bovenaan een station."""
+    for nr in range(6):
+        page.goto(site_url + f"#/station/{nr}")
+        expect(page.get_by_role("heading", level=1)).to_be_visible()
+        assert "Wat heb je nodig" not in page.locator("article.station").inner_text(), f"station {nr}"

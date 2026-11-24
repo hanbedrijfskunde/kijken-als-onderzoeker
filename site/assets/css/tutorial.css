@@ -183,7 +183,6 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .open__checklist input { margin-top: .35em; accent-color: var(--green); }
 
 /* Ken je dit al? */
-.kenjedital { margin-top: var(--s3); }
 .kenjedital > summary { cursor: pointer; font-weight: 700; color: var(--magenta-dark); }
 .kenjedital fieldset { border: 1px solid var(--border); border-radius: var(--radius); margin: var(--s3) 0; padding: var(--s2) var(--s3); }
 .kenjedital legend { font-weight: 600; color: var(--ink); padding: 0 var(--s1); }

@@ -29,7 +29,6 @@ const VERGELIJKING = '<p><strong>Van Chen naar de fietsenwinkel.</strong> Dezelf
 
 export default {
   id: 's1',
-  nodig: ['Koptelefoon of oordopjes', 'pen en papier'],
   kenJeDitAl: [
     {
       vraag: 'Welke beschrijving is waarneembaar gedrag?',
