@@ -14,3 +14,9 @@ test('a missing or broken count counts as zero', () => {
   assert.deepEqual(rows.map((r) => [r.mine, r.richting]), [[0, 'minder'], [0, 'minder']]);
   assert.deepEqual(compareTally(null, { a: 0 }).map((r) => r.richting), ['gelijk']);
 });
+
+test('perUur divides every count by the hours observed', async () => {
+  const { perUur } = await import('../../site/js/tally.js');
+  assert.deepEqual(perUur({ a: 15, b: 6 }, 6), { a: 2.5, b: 1 });
+  assert.throws(() => perUur({ a: 1 }, 0));
+});

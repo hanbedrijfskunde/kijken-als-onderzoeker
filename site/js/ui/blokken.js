@@ -7,6 +7,7 @@ import { renderOpen } from './open.js';
 import { renderKeuze } from './keuze.js';
 import { renderSorteer } from './sorteer.js';
 import { renderTurf } from './turf.js';
+import { renderBesluit } from './besluit.js';
 
 registerBlock('codeer', renderCodeer);
 registerBlock('kappa-hand', renderKappaHand);
@@ -15,3 +16,4 @@ registerBlock('open', renderOpen);
 registerBlock('keuze', renderKeuze);
 registerBlock('sorteer', renderSorteer);
 registerBlock('turf', renderTurf);
+registerBlock('besluit', renderBesluit);

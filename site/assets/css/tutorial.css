@@ -209,3 +209,8 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .turf__acties { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
 .turf-uitleg { list-style: none; padding: 0; display: grid; gap: var(--s2); }
 .turf-uitleg li { padding: var(--s2) var(--s3); border-radius: var(--radius); font-size: .9rem; }
+
+/* Station 5: tellingen per filiaal */
+.besluit table caption { text-align: left; font-weight: 600; color: var(--ink); padding-bottom: var(--s1); }
+.besluit td { text-align: right; font-variant-numeric: tabular-nums; }
+.besluit thead th:not(:first-child) { text-align: right; }
