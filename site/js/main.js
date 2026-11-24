@@ -6,6 +6,7 @@ import { renderKaart } from './ui/kaart.js';
 import { el } from './ui/dom.js';
 import { INHOUD } from './content/index.js';
 import { renderStation } from './ui/station.js';
+import './ui/blokken.js';
 
 const store = createStore(safeLocalStorage());
 const app = document.getElementById('app');
