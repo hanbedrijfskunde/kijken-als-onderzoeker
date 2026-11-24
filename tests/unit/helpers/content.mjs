@@ -25,6 +25,8 @@ export function assertStationShape(c) {
     assert.ok(Number.isInteger(v.juist) && v.juist >= 0 && v.juist < v.opties.length, 'geldig juist-antwoord');
   }
   assert.ok(c.waarom.length >= 1 && c.jeKuntNu.startsWith('Je kunt nu'));
+  // Getoond als "Wat heb je nodig? <eerste>, <tweede>.": het eerste item begint de zin.
+  assert.match(c.nodig[0], /^\p{Lu}/u, 'Wat heb je nodig: het eerste item begint met een hoofdletter');
   walk([...c.kijk, ...c.doe], (b) => {
     if (b.type === 'video') {
       assert.ok(b.start >= 0 && b.start < b.end && b.end <= 3616, `videotijden ${b.start}-${b.end}`);
