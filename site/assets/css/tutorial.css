@@ -1,3 +1,48 @@
 /* Onderdelen van de tutorial: kaart, stations, oefeningen. */
 main { display: block; max-width: var(--breedte); margin: 0 auto; padding: var(--s6) var(--s4); }
 main:focus { outline: none; }
+
+.bovenkop { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--magenta); margin: 0 0 var(--s2); }
+h1 { font-size: 2.2rem; margin: 0 0 var(--s4); }
+.terug { margin: 0 0 var(--s4); font-size: .95rem; }
+.terug a::before { content: "← "; }
+
+/* Knoppen */
+.knop { font: inherit; font-weight: 600; cursor: pointer; border-radius: var(--radius-full);
+  padding: var(--s2) var(--s4); border: 2px solid var(--magenta); background: var(--magenta); color: #fff; }
+.knop:hover { background: var(--magenta-dark); border-color: var(--magenta-dark); }
+.knop:disabled { background: var(--bg-2); border-color: var(--border-strong); color: var(--muted); cursor: not-allowed; }
+.knop--stil { background: transparent; color: var(--magenta-dark); border-color: var(--border-strong); }
+.knop--stil:hover { background: var(--tint-faint); color: var(--magenta-dark); border-color: var(--magenta-dark); }
+.knoppen { display: flex; flex-wrap: wrap; gap: var(--s2); justify-content: flex-end; }
+
+/* Kaart */
+.kaart__intro { font-size: 1.1rem; color: var(--ink); }
+.kaart__doelen { padding-left: 1.2rem; margin: 0 0 var(--s4); }
+.kaart__doelen li { margin-bottom: var(--s1); }
+.kaart__route { color: var(--muted); font-size: .95rem; }
+.kaart__lijst { list-style: none; padding: 0; margin: var(--s6) 0; display: grid; gap: var(--s2); }
+.kaart__station { display: grid; grid-template-columns: 2.5rem 1fr auto; align-items: center; gap: var(--s3);
+  padding: var(--s3) var(--s4); border: 1px solid var(--border); border-radius: var(--radius);
+  text-decoration: none; color: var(--text); background: var(--bg); box-shadow: var(--shadow-sm); }
+.kaart__station:hover { border-color: var(--magenta); color: var(--text); background: var(--tint-faint); }
+.kaart__nr { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%;
+  background: var(--tint-soft); color: var(--magenta-dark); font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; }
+.kaart__tekst { display: flex; flex-direction: column; }
+.kaart__titel { font-family: var(--font-head); font-weight: 700; color: var(--ink); font-size: 1.1rem; }
+.kaart__meta { font-size: .85rem; color: var(--muted); }
+.kaart__status { font-size: .8rem; font-weight: 600; padding: 2px var(--s2); border-radius: var(--radius-full);
+  border: 1px solid var(--border-strong); color: var(--muted); white-space: nowrap; }
+[data-status="bezig"] .kaart__status { border-color: var(--amber-line); background: var(--amber-soft); color: var(--amber); }
+[data-status="klaar"] .kaart__status { border-color: var(--green-line); background: var(--green-soft); color: var(--green); }
+[data-status="klaar"] .kaart__nr { background: var(--green-soft); color: var(--green); }
+[data-status="overgeslagen"] .kaart__status { background: var(--bg-2); }
+.kaart__plan { display: block; text-align: center; font-family: var(--font-head); font-weight: 700; font-size: 1.1rem;
+  padding: var(--s4); border-radius: var(--radius); border: 2px dashed var(--magenta); text-decoration: none; }
+.kaart__plan:hover { background: var(--tint-faint); }
+.kaart__reset { text-align: right; margin-top: var(--s6); }
+
+/* Dialoog */
+.dialoog { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--s6); max-width: 28rem; }
+.dialoog::backdrop { background: rgba(0,0,0,.35); }
+.dialoog h2 { margin-top: 0; }

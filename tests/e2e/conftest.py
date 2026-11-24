@@ -62,4 +62,5 @@ def context(browser):
 def page(context):
     pg = context.new_page()
     pg.set_default_timeout(5000)
+    pg.set_default_navigation_timeout(10000)
     yield pg
