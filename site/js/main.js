@@ -4,6 +4,8 @@ import { nextStatus } from './status.js';
 import { STATIONS } from './content/stations.js';
 import { renderKaart } from './ui/kaart.js';
 import { el } from './ui/dom.js';
+import { INHOUD } from './content/index.js';
+import { renderStation } from './ui/station.js';
 
 const store = createStore(safeLocalStorage());
 const app = document.getElementById('app');
@@ -26,10 +28,26 @@ function terugNaarKaart() {
 function renderStationView(id) {
   const station = STATIONS.find((s) => s.id === id);
   setStatus(id, 'geopend');
-  return el('article', { class: 'station' },
-    terugNaarKaart(),
-    el('h1', {}, station.titel),
-    el('p', {}, 'Dit station volgt nog.'));
+  const content = INHOUD[id];
+  if (!content) {
+    return el('article', { class: 'station' },
+      terugNaarKaart(), el('h1', {}, station.titel), el('p', {}, 'Dit station volgt nog.'));
+  }
+  const doeAf = [];
+  const ctx = {
+    store,
+    station,
+    checkEl: el('div', { class: 'check' }),
+    go,
+    onDoeAf: (fn) => doeAf.push(fn),
+    event(name) {
+      setStatus(id, name);
+      if (name === 'doe-af') doeAf.forEach((fn) => fn());
+    },
+  };
+  const { article } = renderStation(content, ctx);
+  if (store.get(`stations.${id}.status`) === 'klaar') doeAf.forEach((fn) => fn());
+  return article;
 }
 
 function renderPlanView() {

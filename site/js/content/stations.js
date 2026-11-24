@@ -14,3 +14,9 @@ export const STATUS_LABEL = {
   klaar: 'Klaar',
   overgeslagen: 'Overgeslagen',
 };
+
+// Antwoordvelden van Mijn project en de nulmeting. Het observatieplan leest deze.
+export const ANTWOORDVELDEN = [
+  'nulmeting', 'begrip', 'indicatoren', 'codeboekregel', 'eenheid', 'vastlegging',
+  'codeerschema', 'betrouwbaarheid', 'beslissing', 'nulmeting-nieuw',
+];

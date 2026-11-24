@@ -46,3 +46,35 @@ h1 { font-size: 2.2rem; margin: 0 0 var(--s4); }
 .dialoog { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--s6); max-width: 28rem; }
 .dialoog::backdrop { background: rgba(0,0,0,.35); }
 .dialoog h2 { margin-top: 0; }
+
+/* Station */
+.station__start { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: var(--s3) var(--s4); margin-bottom: var(--s6); }
+.station__start p { margin: 0; }
+.blok { margin: var(--s8) 0; }
+.blok > h2 { font-size: 1.5rem; margin: 0 0 var(--s3); padding-bottom: var(--s2); border-bottom: 2px solid var(--tint); }
+.blok--check > h2, .blok--project > h2 { border-bottom-color: var(--magenta); }
+.check__leeg { color: var(--muted); font-style: italic; }
+.jekuntnu { font-weight: 600; color: var(--green); background: var(--green-soft); border-left: 4px solid var(--green);
+  padding: var(--s3) var(--s4); border-radius: 0 var(--radius) var(--radius) 0; }
+.jekuntnu::before { content: "✓ "; }
+.project__intro { color: var(--muted); }
+.station__verder { display: flex; flex-wrap: wrap; gap: var(--s4); align-items: center; justify-content: space-between;
+  margin-top: var(--s12); padding-top: var(--s4); border-top: 1px solid var(--border); }
+.station__verder .knop { text-decoration: none; }
+
+/* Video en stills */
+.video { margin: var(--s4) 0 var(--s6); }
+.video__figuur { margin: 0; }
+.video__kader { position: relative; aspect-ratio: 16 / 9; background: var(--ink); border-radius: var(--radius); overflow: hidden; }
+.video__kader iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video figcaption, .still figcaption { font-size: .85rem; color: var(--muted); margin-top: var(--s2); }
+.samenvatting { background: var(--tint-faint); border-left: 4px solid var(--tint); padding: var(--s3) var(--s4); margin-top: var(--s3);
+  border-radius: 0 var(--radius) var(--radius) 0; }
+.samenvatting__kop { margin: 0; font-weight: 700; color: var(--ink); font-size: .9rem; }
+.samenvatting ul { margin: var(--s2) 0 0; padding-left: 1.2rem; }
+.still { margin: var(--s4) 0 var(--s6); }
+.still img { display: block; border: 1px solid var(--border); border-radius: var(--radius); }
+.still__bron { color: var(--muted); }
+.verdieping { border: 1px solid var(--border); border-radius: var(--radius); padding: var(--s2) var(--s4); margin: var(--s4) 0; }
+.verdieping > summary { cursor: pointer; font-weight: 600; color: var(--magenta-dark); }
