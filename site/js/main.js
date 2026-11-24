@@ -10,6 +10,7 @@ import { renderPlan } from './ui/plan.js';
 import './ui/blokken.js';
 
 const store = createStore(safeLocalStorage());
+const STANDAARDTITEL = document.title;
 const app = document.getElementById('app');
 
 if (!store.persistent) {
@@ -80,7 +81,13 @@ function render({ behoud = false } = {}) {
     return;
   }
   window.scrollTo(0, 0);
-  if (route.view !== 'kaart') app.focus({ preventScroll: true });
+  // Titel en focus volgen de weergave: een schermlezer meldt dan waar de student nu is.
+  const kop = route.view === 'kaart' ? null : view.querySelector('h1');
+  document.title = kop ? `${kop.textContent} · Kijken als onderzoeker` : STANDAARDTITEL;
+  if (kop) {
+    kop.setAttribute('tabindex', '-1');
+    kop.focus({ preventScroll: true });
+  }
 }
 
 window.addEventListener('hashchange', () => render());

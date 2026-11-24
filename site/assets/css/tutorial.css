@@ -1,6 +1,8 @@
 /* Onderdelen van de tutorial: kaart, stations, oefeningen. */
 main { display: block; max-width: var(--breedte); margin: 0 auto; padding: var(--s6) var(--s4); }
 main:focus { outline: none; }
+/* De kop krijgt de focus na het wisselen van weergave; hij is niet te bedienen, dus geen focusring. */
+h1[tabindex="-1"]:focus { outline: none; }
 
 .bovenkop { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--magenta); margin: 0 0 var(--s2); }
 h1 { font-size: 2.2rem; margin: 0 0 var(--s4); }
