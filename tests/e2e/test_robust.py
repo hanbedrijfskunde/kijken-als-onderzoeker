@@ -1,6 +1,7 @@
 import pytest
+from playwright.sync_api import expect
 
-from helpers import NAAM, SLEUTEL, code_turn, stub_youtube
+from helpers import NAAM, SLEUTEL, code_turn, preset, stub_youtube
 
 NOTICE = "Je antwoorden worden niet bewaard als je deze pagina sluit."
 PAGES = ["#/", "#/station/0", "#/station/1", "#/station/2", "#/station/3", "#/station/4", "#/station/5", "#/plan"]
@@ -52,3 +53,29 @@ def test_focus_visible(page, site_url):
         pytest.fail("no station card reached with Tab")
     style = page.evaluate("getComputedStyle(document.activeElement).outlineStyle")
     assert style != "none"
+
+
+KAPOT = {
+    "checks": {"plan": 5, "begrip": {}, "nulmeting-nieuw": "x", "indicatoren": [1, "x", None]},
+    "keuze": {"s0": "x", "s1": {}, "s5": 7},
+    "tally": {"s2": 5},
+    "answers": {"begrip": 5, "nulmeting": {"a": 1}},
+    "codes": {"s3": "x", "partner": 3, "s3vast": "ja"},
+    "stations": {"s0": 7, "s1": {"status": 3}},
+}
+
+
+def test_malformed_state_renders_every_view(page, site_url):
+    """Een oudere of met de hand bewerkte opslag mag geen enkele weergave breken."""
+    fouten = []
+    page.on("pageerror", lambda e: fouten.append(str(e)))
+    preset(page, site_url, KAPOT)
+    for hash_ in PAGES:
+        page.goto(site_url + hash_)
+        expect(page.locator("#app h1, #app .kaart").first).to_be_visible()
+        expect(page.locator("#app")).not_to_contain_text("Er ging iets mis")
+        tekst = page.locator("#app").inner_text() + " ".join(
+            page.locator("#app textarea").evaluate_all("els => els.map(e => e.value)"))
+        for vreemd in ("undefined", "NaN", "[object"):
+            assert vreemd not in tekst, f"{hash_}: {vreemd}"
+    assert fouten == []

@@ -1,16 +1,18 @@
 import { el } from './dom.js';
+import { indexLijst } from '../lijst.js';
 
 // Een open vraag met een voorbeeldantwoord en een checklist om je eigen antwoord langs te leggen.
 // Zonder voorbeeld (de nulmeting) is er niets om mee te vergelijken: dan alleen het antwoordvak.
 export function renderOpen(block, ctx) {
   const { store } = ctx;
   const id = `open-${block.veld}`;
-  const vinkjes = new Set(store.get(`checks.${block.veld}`) ?? []);
+  const vinkjes = new Set(indexLijst(store.get(`checks.${block.veld}`)));
   const textarea = el('textarea', {
     id, rows: 5,
     oninput: (e) => store.set(`answers.${block.veld}`, e.target.value),
   });
-  textarea.value = store.get(`answers.${block.veld}`, '');
+  const opgeslagen = store.get(`answers.${block.veld}`);
+  textarea.value = typeof opgeslagen === 'string' ? opgeslagen : '';
 
   const metVoorbeeld = Boolean(block.voorbeeld && block.checklist?.length);
   const vergelijk = metVoorbeeld && el('div', { class: 'open__vergelijk', hidden: vinkjes.size === 0 },

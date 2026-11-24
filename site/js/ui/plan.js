@@ -3,6 +3,7 @@ import { INHOUD } from '../content/index.js';
 import { STATIONS } from '../content/stations.js';
 import { renderOpen } from './open.js';
 import { el } from './dom.js';
+import { indexLijst } from '../lijst.js';
 
 // Bij welk station hoort elk antwoordveld? Zo linkt een lege sectie naar de plek waar je hem invult.
 const STATION_VAN = {};
@@ -61,7 +62,7 @@ function groei(store, answers) {
 }
 
 function checklist(store) {
-  const vinkjes = new Set(store.get('checks.plan') ?? []);
+  const vinkjes = new Set(indexLijst(store.get('checks.plan')));
   return el('section', { class: 'plan__checklist' },
     el('h2', {}, 'Is je plan compleet?'),
     el('fieldset', {},
