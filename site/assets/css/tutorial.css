@@ -189,7 +189,16 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .keuze-item { margin: 0; border: 1px solid var(--border-strong); border-radius: var(--radius); padding: var(--s2) var(--s4) var(--s3); }
 .keuze-item legend { font-weight: 600; color: var(--ink); padding: 0 var(--s1); }
 .keuze-item__opties { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); margin-top: var(--s2); }
-.keuze-item__fb:empty { display: none; }
+/* Leeg blijft de feedback in de pagina staan (niet display: none): een schermlezer leest een live regio
+   alleen voor als die er al was voordat de tekst erin kwam. */
+.keuze-item__fb:empty { padding: 0; margin: 0; }
+.keuze-knop { font: inherit; font-size: .9rem; color: var(--ink); background: var(--bg); cursor: pointer; touch-action: manipulation;
+  min-height: 2.5rem; padding: var(--s1) var(--s3); border: 1px solid var(--border-strong); border-radius: var(--radius-full); }
+.keuze-knop:hover { border-color: var(--magenta-dark); background: var(--tint-faint); }
+.keuze-knop[aria-pressed="true"] { border: 2px solid var(--magenta); background: var(--tint-faint); font-weight: 600; padding: calc(var(--s1) - 1px) calc(var(--s3) - 1px); }
+/* Het vinkje is een eigen span met aria-hidden: tekst uit ::before telt mee in de naam van de knop. */
+.keuze-knop__vink { display: none; color: var(--magenta-dark); margin-right: .3em; }
+.keuze-knop[aria-pressed="true"] .keuze-knop__vink { display: inline; }
 .keuze-item__fb { margin: var(--s2) 0 0; padding: var(--s2) var(--s3); border-radius: var(--radius); font-size: .9rem; }
 .vormen td.is-hier { background: var(--tint-faint); box-shadow: inset 0 0 0 2px var(--magenta); }
 .vormen { table-layout: fixed; }

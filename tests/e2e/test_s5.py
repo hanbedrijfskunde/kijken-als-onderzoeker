@@ -18,7 +18,7 @@ def sleutel():
 
 def kies(page, i, onderbouwd):
     label = "Onderbouwd" if onderbouwd else "Niet onderbouwd"
-    page.locator(".keuze-item").nth(i).get_by_label(label, exact=True).check()
+    page.locator(".keuze-item").nth(i).get_by_role("button", name=label, exact=True).click()
 
 
 def test_s5_table_per_hour(page, site_url):
