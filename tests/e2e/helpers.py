@@ -13,3 +13,12 @@ def code_turn(page, i, code):
 def code_all(page, codes):
     for i, c in enumerate(codes):
         code_turn(page, i, c)
+
+
+LEGE_VIDEO = "<!doctype html><title>video</title>"
+
+
+def stub_youtube(ctx):
+    """Give embedded YouTube videos an empty page. Tests check that a video is there, not what it shows;
+    this keeps load times independent of YouTube (measured: 0.03-0.93 s with, 0.06 s without)."""
+    ctx.route("**/*youtube*/embed/**", lambda r: r.fulfill(status=200, content_type="text/html", body=LEGE_VIDEO))

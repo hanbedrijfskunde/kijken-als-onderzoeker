@@ -12,6 +12,9 @@ import pytest
 os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path.home() / ".cache" / "ms-playwright"))
 from playwright.sync_api import sync_playwright  # noqa: E402
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from helpers import stub_youtube  # noqa: E402
+
 SITE = Path(__file__).resolve().parents[2] / "site"
 
 
@@ -54,6 +57,7 @@ def browser():
 @pytest.fixture
 def context(browser):
     ctx = browser.new_context()
+    stub_youtube(ctx)
     yield ctx
     ctx.close()
 
