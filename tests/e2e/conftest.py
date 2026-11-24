@@ -1,4 +1,4 @@
-"""Fixtures: serve site/ over http (or use SITE_URL) and drive Chromium with Playwright."""
+"""Fixtures: serve site/ over http with serve.py (or use SITE_URL) and drive Chromium with Playwright."""
 import os
 import socket
 import subprocess
@@ -31,8 +31,8 @@ def site_url():
         return
     port = _free_port()
     proc = subprocess.Popen(
-        [sys.executable, "-m", "http.server", str(port), "--bind", "127.0.0.1"],
-        cwd=SITE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        [sys.executable, str(Path(__file__).resolve().parent / "serve.py"), str(port), str(SITE)],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
     url = f"http://127.0.0.1:{port}/"
     for _ in range(50):
