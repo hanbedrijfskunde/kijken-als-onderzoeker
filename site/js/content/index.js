@@ -1,4 +1,4 @@
-// Inhoud per station. Een station zonder inhoud toont "Dit station volgt nog."
+// Inhoud per station, één module per station.
 import s0 from './s0.js';
 import s1 from './s1.js';
 import s2 from './s2.js';

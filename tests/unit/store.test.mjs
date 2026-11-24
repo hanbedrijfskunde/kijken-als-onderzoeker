@@ -56,3 +56,48 @@ test('reset clears memory and removes the key', () => {
   assert.equal(a.get('answers.begrip'), undefined);
   assert.equal(st.getItem('kijken-als-onderzoeker/v1'), null);
 });
+
+// Twee tabbladen: elk heeft een eigen store op dezelfde opslag.
+test("a stale store does not overwrite another store's path", () => {
+  const st = fakeStorage();
+  const a = createStore(st);
+  const b = createStore(st);
+  a.set('answers.a', 'uit tab A');
+  b.set('answers.b', 'uit tab B');
+  const opgeslagen = JSON.parse(st.getItem('kijken-als-onderzoeker/v1'));
+  assert.deepEqual(opgeslagen.answers, { a: 'uit tab A', b: 'uit tab B' });
+});
+
+test("reload picks up another store's write", () => {
+  const st = fakeStorage();
+  const a = createStore(st);
+  const b = createStore(st);
+  a.set('answers.a', 'nieuw');
+  assert.equal(b.get('answers.a'), undefined);
+  b.reload();
+  assert.equal(b.get('answers.a'), 'nieuw');
+});
+
+test('reset in one store is not undone by a stale store', () => {
+  const st = fakeStorage();
+  const a = createStore(st);
+  a.set('answers.a', 'oud');
+  const b = createStore(st);
+  a.reset();
+  b.set('answers.b', 'na reset');
+  const opgeslagen = JSON.parse(st.getItem('kijken-als-onderzoeker/v1'));
+  assert.deepEqual(opgeslagen, { answers: { b: 'na reset' } });
+});
+
+test('after a failed save the memory value survives the next set', () => {
+  const st = fakeStorage();
+  const a = createStore(st);
+  const echt = st.setItem;
+  st.setItem = () => { throw new Error('vol'); };
+  a.set('answers.a', 'alleen in het geheugen');
+  a.set('answers.b', 'ook');
+  assert.equal(a.get('answers.a'), 'alleen in het geheugen');
+  st.setItem = echt;
+  a.set('answers.c', 'weer bewaard');
+  assert.deepEqual(JSON.parse(st.getItem('kijken-als-onderzoeker/v1')).answers, { a: 'alleen in het geheugen', b: 'ook', c: 'weer bewaard' });
+});

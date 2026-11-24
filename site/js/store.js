@@ -36,12 +36,16 @@ function load(storage, key) {
 export function createStore(storage, key = STORE_KEY) {
   const persistent = probe(storage);
   let data = persistent ? load(storage, key) : {};
+  // Mislukt het bewaren (opslag vol), dan geldt het geheugen: lees de opslag pas weer in als bewaren weer lukt.
+  let bijgewerkt = true;
 
   function save() {
     if (!persistent) return;
     try {
       storage.setItem(key, JSON.stringify(data));
+      bijgewerkt = true;
     } catch {
+      bijgewerkt = false;
       // Vol of geblokkeerd: het geheugen blijft gelden.
     }
   }
@@ -57,6 +61,9 @@ export function createStore(storage, key = STORE_KEY) {
       return node;
     },
     set(path, value) {
+      // Lees eerst wat er nu staat: een ander tabblad kan intussen iets bewaard hebben.
+      // Zo verandert een schrijfactie alleen dit pad, en overschrijft een oud tabblad geen nieuwer werk.
+      if (persistent && bijgewerkt) data = load(storage, key);
       const parts = path.split('.');
       let node = data;
       for (const part of parts.slice(0, -1)) {
@@ -65,6 +72,9 @@ export function createStore(storage, key = STORE_KEY) {
       }
       node[parts.at(-1)] = value;
       save();
+    },
+    reload() {
+      if (persistent && bijgewerkt) data = load(storage, key);
     },
     reset() {
       data = {};

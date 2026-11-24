@@ -1,4 +1,6 @@
 """Shared helpers for the e2e tests."""
+import os
+
 NAAM = {"open-vraag": "Open vraag", "doorvragen": "Doorvragen", "samenvatten": "Samenvatten",
         "advies": "Advies", "overig": "Overig"}
 SLEUTEL = ["overig", "open-vraag", "doorvragen", "doorvragen", "overig", "samenvatten", "overig",
@@ -20,7 +22,10 @@ LEGE_VIDEO = "<!doctype html><title>video</title>"
 
 def stub_youtube(ctx):
     """Give embedded YouTube videos an empty page. Tests check that a video is there, not what it shows;
-    this keeps load times independent of YouTube (measured: 0.03-0.93 s with, 0.06 s without)."""
+    this keeps load times independent of YouTube (measured: 0.03-0.93 s with, 0.06 s without).
+    With ECHTE_VIDEO=1 the real player loads (see test_video_live.py)."""
+    if os.environ.get("ECHTE_VIDEO"):
+        return
     ctx.route("**/*youtube*/embed/**", lambda r: r.fulfill(status=200, content_type="text/html", body=LEGE_VIDEO))
 
 

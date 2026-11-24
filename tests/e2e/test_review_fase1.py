@@ -48,7 +48,7 @@ def test_missing_turn_is_named(page, site_url):
 def test_unknown_stored_code_does_not_break_stations(page, site_url):
     preset(page, site_url, {"codes": {"s3": SLEUTEL[:14] + ["weg", "advies"]}})
     page.goto(site_url + "#/station/4")
-    assert page.locator("h1").inner_text() == "Klopt het?"
+    assert page.get_by_role("heading", level=1).inner_text() == "Klopt het?"
     assert "Je codeerde 14 van de 15 beurten." in page.locator(".kappa-calc").inner_text()
     page.goto(site_url + "#/station/3")
     assert page.locator("fieldset.beurt").count() == 15

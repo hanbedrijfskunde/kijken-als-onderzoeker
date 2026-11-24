@@ -8,6 +8,26 @@ const ZINNEN = {
 };
 const vul = (zin, w) => zin.replace(/\{(\w+)\}/g, (_, k) => String(w[k]));
 
+// Bewaard als {itemtekst: optietekst}: zo hoort een keuze ook na het herschikken van items bij het goede item.
+// De site van fase 2 bewaarde een lijst op positie; die lezen we één keer zo in.
+function lees(opgeslagen, items) {
+  if (Array.isArray(opgeslagen)) {
+    return items.map((item, i) => {
+      const k = opgeslagen[i];
+      return Number.isInteger(k) && k >= 0 && k < item.opties.length ? k : null;
+    });
+  }
+  const per = opgeslagen && typeof opgeslagen === 'object' ? opgeslagen : {};
+  return items.map((item) => {
+    const k = Object.hasOwn(per, item.tekst) ? item.opties.indexOf(per[item.tekst]) : -1;
+    return k >= 0 ? k : null;
+  });
+}
+
+function bewaarvorm(keuzes, items) {
+  return Object.fromEntries(items.flatMap((item, i) => (keuzes[i] == null ? [] : [[item.tekst, item.opties[keuzes[i]]]])));
+}
+
 export function renderKeuze(block, ctx) {
   const zinnen = { ...ZINNEN, ...block.zinnen };
   // De slotzin mag afhangen van wat de student elders deed (zie station 0).
@@ -15,10 +35,8 @@ export function renderKeuze(block, ctx) {
   const { store, station } = ctx;
   const pad = `keuze.${station.id}`;
   const opgeslagen = store.get(pad);
-  const keuzes = block.items.map((_, i) => {
-    const k = Array.isArray(opgeslagen) ? opgeslagen[i] : null;
-    return Number.isInteger(k) && k >= 0 && k < block.items[i].opties.length ? k : null;
-  });
+  const keuzes = lees(opgeslagen, block.items);
+  if (Array.isArray(opgeslagen)) store.set(pad, bewaarvorm(keuzes, block.items));
   const uitslag = el('div', { class: 'uitslag', 'aria-live': 'polite' });
   ctx.checkEl.append(uitslag);
   let klaarGemeld = false;
@@ -45,20 +63,23 @@ export function renderKeuze(block, ctx) {
     }
   }
 
+  // Knoppen en geen keuzerondjes: bij rondjes kiezen de pijltjestoetsen al terwijl je de opties langsloopt,
+  // en dan zie je de feedback voordat je zelf koos.
   const items = block.items.map((item, i) => {
     const fb = el('p', { class: 'keuze-item__fb', 'aria-live': 'polite' });
+    const knoppen = item.opties.map((o, j) => el('button', {
+      type: 'button', class: 'keuze-knop', 'aria-pressed': String(keuzes[i] === j),
+      onclick: () => {
+        keuzes[i] = j;
+        store.set(pad, bewaarvorm(keuzes, block.items));
+        knoppen.forEach((b, x) => b.setAttribute('aria-pressed', String(x === j)));
+        toon(i, fb);
+        samenvatten(true);
+      },
+    }, el('span', { class: 'keuze-knop__vink', 'aria-hidden': 'true' }, '✓'), o));
     const node = el('fieldset', { class: 'keuze-item' },
       el('legend', {}, item.tekst),
-      el('div', { class: 'keuze-item__opties' }, item.opties.map((o, j) => el('label', { class: 'keuze' },
-        el('input', {
-          type: 'radio', name: `keuze-${station.id}-${i}`, value: String(j), checked: keuzes[i] === j,
-          onchange: () => {
-            keuzes[i] = j;
-            store.set(pad, keuzes);
-            toon(i, fb);
-            samenvatten(true);
-          },
-        }), ' ', o))),
+      el('div', { class: 'keuze-item__opties' }, knoppen),
       fb);
     toon(i, fb);
     return node;

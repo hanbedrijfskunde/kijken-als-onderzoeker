@@ -18,7 +18,7 @@ def sleutel():
 
 def kies(page, i, waarneembaar):
     label = "Waarneembaar" if waarneembaar else "Niet waarneembaar"
-    page.locator(".keuze-item").nth(i).get_by_label(label, exact=True).check()
+    page.locator(".keuze-item").nth(i).get_by_role("button", name=label, exact=True).click()
 
 
 def test_s1_sort_feedback_and_done(page, site_url):
@@ -49,5 +49,5 @@ def test_s1_choices_survive_reload(page, site_url):
     page.goto(site_url + S1)
     kies(page, 3, True)
     page.reload()
-    expect(page.locator(".keuze-item").nth(3).get_by_label("Waarneembaar", exact=True)).to_be_checked()
+    expect(page.locator(".keuze-item").nth(3).get_by_role("button", name="Waarneembaar", exact=True)).to_have_attribute("aria-pressed", "true")
     expect(page.locator(".keuze-item").nth(3).locator(".keuze-item__fb")).not_to_be_empty()

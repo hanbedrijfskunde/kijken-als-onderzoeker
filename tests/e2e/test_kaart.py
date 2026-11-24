@@ -22,7 +22,7 @@ def open_station_3(page, site_url):
     page.goto(site_url)
     page.locator(".kaart__station").nth(3).click()
     expect(page).to_have_url(re.compile(r"#/station/3$"))
-    assert page.locator("h1").inner_text() == "Gesprekken als data"
+    assert page.get_by_role("heading", level=1).inner_text() == "Gesprekken als data"
 
 
 def test_open_station_and_back(page, site_url):
@@ -51,13 +51,13 @@ def test_reset_wipes_all(page, site_url):
 
 def test_reset_wipes_choices_and_tally(page, site_url):
     page.goto(site_url + "#/station/0")
-    page.locator(".keuze-item").nth(0).get_by_label("Observatie", exact=True).check()
+    page.locator(".keuze-item").nth(0).get_by_role("button", name="Observatie", exact=True).click()
     page.goto(site_url + "#/station/2")
     page.locator('.turf__knop[data-code="afgeleid"]').click()
     page.goto(site_url + "#/")
     page.get_by_role("button", name="Opnieuw beginnen").click()
     page.locator("dialog").get_by_role("button", name="Ja, wis alles").click()
     page.goto(site_url + "#/station/0")
-    expect(page.locator(".keuze-item input:checked")).to_have_count(0)
+    expect(page.locator('.keuze-item [aria-pressed="true"]')).to_have_count(0)
     page.goto(site_url + "#/station/2")
     assert page.locator('.turf__knop[data-code="afgeleid"] .turf__aantal').text_content() == "0"

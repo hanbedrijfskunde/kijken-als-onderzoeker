@@ -11,7 +11,7 @@ def situatie(page, i):
 
 
 def kies(page, i, methode):
-    situatie(page, i).get_by_label(methode, exact=True).check()
+    situatie(page, i).get_by_role("button", name=methode, exact=True).click()
 
 
 def test_s0_situations_feedback(page, site_url):
@@ -34,7 +34,7 @@ def test_s0_choices_survive_reload(page, site_url):
     page.goto(site_url + S0)
     kies(page, 1, "Enquête")
     page.reload()
-    expect(situatie(page, 1).get_by_label("Enquête", exact=True)).to_be_checked()
+    expect(situatie(page, 1).get_by_role("button", name="Enquête", exact=True)).to_have_attribute("aria-pressed", "true")
     expect(situatie(page, 1).locator(".keuze-item__fb")).to_contain_text("Je koos Enquête; hier past Interview beter.")
 
 
@@ -49,7 +49,7 @@ def test_s0_nulmeting_saved(page, site_url):
 
 def test_s0_is_no_placeholder(page, site_url):
     page.goto(site_url + S0)
-    expect(page.locator("h1")).to_have_text("Zeggen is geen doen")
+    expect(page.get_by_role("heading", level=1)).to_have_text("Zeggen is geen doen")
     expect(page.get_by_text("Dit station volgt nog.")).to_have_count(0)
 
 

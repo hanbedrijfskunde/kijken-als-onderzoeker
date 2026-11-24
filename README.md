@@ -37,3 +37,14 @@ npm run test:e2e                        # pytest en playwright (Chromium)
 ```
 
 De browsertests starten zelf een server. Met `SITE_URL=https://…` lopen ze tegen een andere locatie, zoals de live site.
+
+### Vóór een uitvoering: werken de video's nog?
+
+De gewone browsertests vervangen YouTube door een lege pagina, zodat ze snel en stabiel zijn. Of de fragmenten echt afspelen, controleer je apart, het liefst vlak voor een uitvoering en tegen de live site:
+
+```sh
+ECHTE_VIDEO=1 SITE_URL=https://hanbedrijfskunde.github.io/kijken-als-onderzoeker/ \
+  python3 -m pytest tests/e2e/test_video_live.py
+```
+
+Per station opent de test elk ingesloten fragment en wacht tot de speler de titel van de video toont. Toont YouTube in plaats van de speler een melding, zoals *Deze video is niet beschikbaar*, dan faalt de test en noemt hij die melding.

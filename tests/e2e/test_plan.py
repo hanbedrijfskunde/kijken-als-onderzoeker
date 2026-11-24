@@ -75,7 +75,27 @@ def test_plan_checklist_saved(page, site_url):
 def test_no_placeholder_left(page, site_url):
     for nr in range(6):
         page.goto(site_url + f"#/station/{nr}")
-        expect(page.locator("h1")).not_to_have_text("")
+        expect(page.get_by_role("heading", level=1)).not_to_have_text("")
         expect(page.get_by_text("Dit station volgt nog")).to_have_count(0)
     page.goto(site_url + "#/plan")
     expect(page.locator(".plan__sectie")).to_have_count(6)
+
+
+def test_plan_long_url_no_sideways_scroll(browser, site_url):
+    ctx = browser.new_context(viewport={"width": 360, "height": 740})
+    stub_youtube(ctx)
+    page = ctx.new_page()
+    # Een deellink zoals van Google Docs: een lang ID zonder koppeltekens, dus zonder plek om af te breken.
+    url = "https://docs.google.com/document/d/1Kv9xQzR7mWbT3pLsN8yHcFjA2uEoDgV5iZ6tXrB0wYk4M/edit?usp=sharing"
+    preset(page, site_url, {"answers": {"begrip": f"Mijn codeboek staat op {url} en is af."}})
+    page.goto(site_url + "#/plan")
+    expect(page.locator(".plan__sectie").nth(0)).to_contain_text("docs.google.com")
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+    ctx.close()
+
+
+def test_plan_print_hides_intro(page, site_url):
+    page.goto(site_url + "#/plan")
+    page.emulate_media(media="print")
+    expect(page.locator(".plan__sectie").first).to_be_visible()
+    expect(page.locator(".plan__intro")).to_be_hidden()

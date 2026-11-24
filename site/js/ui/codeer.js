@@ -7,9 +7,10 @@ const AANTAL = GESPREK.filter((b) => b.spreker === 'verkoper').length;
 // Na Controleer staan de codes vast: de eerste codering is de meting, en de verschillen met de sleutel komen terug in station 4.
 const VAST = 'Je codes staan vast; in station 4 reken je ermee.';
 
-export function renderCodeboek() {
-  return el('aside', { class: 'codeboek', 'aria-labelledby': 'codeboek-titel' },
-    el('h3', { id: 'codeboek-titel' }, 'Codeboek'),
+// Naast het gesprek een aside met h3; in de dialoog een div met h1 (de eerste kop in een modale dialoog).
+export function renderCodeboek({ tag = 'aside', kop = 'h3', id = 'codeboek-titel' } = {}) {
+  return el(tag, { class: 'codeboek', 'aria-labelledby': tag === 'aside' ? id : null },
+    el(kop, { id }, 'Codeboek'),
     CODES.map((c) => el('div', { class: 'code' },
       el('p', { class: 'code__naam' }, c.naam),
       el('p', { class: 'code__def' }, c.definitie),
@@ -109,9 +110,20 @@ export function renderCodeer(block, ctx) {
     toonUitslag();
     vastzetten();
   }
+  // Op een smal scherm staat het codeboek boven het gesprek. Een knop die bij elke beurt in beeld blijft,
+  // opent het in een dialoog. De browser regelt focus, Escape en het terugzetten van de focus.
+  const dialoog = el('dialog', { class: 'codeboek-dialoog', 'aria-labelledby': 'codeboek-dialoog-titel', closedby: 'any' },
+    el('form', { method: 'dialog', class: 'codeboek-dialoog__sluit' },
+      el('button', { class: 'knop knop--stil', autofocus: true }, 'Sluiten')),
+    renderCodeboek({ tag: 'div', kop: 'h1', id: 'codeboek-dialoog-titel' }));
+  const codeboekKnop = el('p', { class: 'codeer__codeboek-knop' },
+    el('button', { type: 'button', class: 'knop', onclick: () => dialoog.showModal() }, 'Codeboek'));
+
   return el('div', { class: 'codeer' },
     renderCodeboek(),
     el('div', { class: 'codeer__gesprek' },
       el('div', { class: 'gesprek' }, beurten),
-      el('p', { class: 'codeer__actie' }, knop, ' ', nog)));
+      el('p', { class: 'codeer__actie' }, knop, ' ', nog),
+      codeboekKnop),
+    dialoog);
 }

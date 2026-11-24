@@ -1,4 +1,4 @@
-import { createStore, safeLocalStorage } from './store.js';
+import { createStore, safeLocalStorage, STORE_KEY } from './store.js';
 import { parseHash } from './router.js';
 import { nextStatus } from './status.js';
 import { STATIONS } from './content/stations.js';
@@ -7,9 +7,11 @@ import { el } from './ui/dom.js';
 import { INHOUD } from './content/index.js';
 import { renderStation } from './ui/station.js';
 import { renderPlan } from './ui/plan.js';
+import { padenVoor, geraakt } from './sync.js';
 import './ui/blokken.js';
 
 const store = createStore(safeLocalStorage());
+const STANDAARDTITEL = document.title;
 const app = document.getElementById('app');
 
 if (!store.persistent) {
@@ -59,7 +61,8 @@ function renderPlanView() {
   return el('article', { class: 'plan' }, terugNaarKaart(), el('h1', {}, 'Mijn observatieplan'), renderPlan(store));
 }
 
-function render() {
+// behoud: true bij een wijziging uit een ander tabblad; dan blijft de scrollpositie staan.
+function render({ behoud = false } = {}) {
   const route = parseHash(location.hash);
   let view;
   try {
@@ -72,10 +75,28 @@ function render() {
       el('h1', {}, 'Er ging iets mis'),
       el('p', {}, 'Dit onderdeel kon niet worden getoond. Ga terug naar de kaart. Blijft het gebeuren, kies dan op de kaart Opnieuw beginnen.'));
   }
+  const y = window.scrollY;
   app.replaceChildren(view);
+  if (behoud) {
+    window.scrollTo(0, y);
+    return;
+  }
   window.scrollTo(0, 0);
-  if (route.view !== 'kaart') app.focus({ preventScroll: true });
+  // Titel en focus volgen de weergave: een schermlezer meldt dan waar de student nu is.
+  const kop = route.view === 'kaart' ? null : view.querySelector('h1');
+  document.title = kop ? `${kop.textContent} · Kijken als onderzoeker` : STANDAARDTITEL;
+  if (kop) {
+    kop.setAttribute('tabindex', '-1');
+    kop.focus({ preventScroll: true });
+  }
 }
 
-window.addEventListener('hashchange', render);
+window.addEventListener('hashchange', () => render());
+// Een ander tabblad bewaarde iets (key null: de opslag is gewist). Toon de nieuwe stand.
+window.addEventListener('storage', (e) => {
+  if (e.key !== STORE_KEY && e.key !== null) return;
+  store.reload();
+  if (e.key !== null && !geraakt(e.oldValue, e.newValue, padenVoor(parseHash(location.hash), INHOUD))) return;
+  render({ behoud: true });
+});
 render();

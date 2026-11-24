@@ -1,6 +1,8 @@
 /* Onderdelen van de tutorial: kaart, stations, oefeningen. */
 main { display: block; max-width: var(--breedte); margin: 0 auto; padding: var(--s6) var(--s4); }
 main:focus { outline: none; }
+/* De kop krijgt de focus na het wisselen van weergave; hij is niet te bedienen, dus geen focusring. */
+h1[tabindex="-1"]:focus { outline: none; }
 
 .bovenkop { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--magenta); margin: 0 0 var(--s2); }
 h1 { font-size: 2.2rem; margin: 0 0 var(--s4); }
@@ -121,6 +123,17 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .is-goed { background: var(--green-soft); border-left: 4px solid var(--green); }
 .is-anders { background: var(--amber-soft); border-left: 4px solid var(--amber-line); }
 .codeer__actie { margin-top: var(--s4); }
+/* Smal scherm: de knop Codeboek blijft onderin beeld zolang het gesprek in beeld is. */
+.codeer__codeboek-knop { position: sticky; bottom: var(--s3); display: flex; justify-content: flex-end; margin: var(--s3) 0 0; pointer-events: none; }
+.codeer__codeboek-knop .knop { pointer-events: auto; box-shadow: 0 2px 8px rgb(0 0 0 / .25); }
+@media (min-width: 72rem) { .codeer__codeboek-knop { display: none; } }
+.codeboek-dialoog { width: min(40rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); padding: 0 var(--s4) var(--s4); border: 0; border-radius: var(--radius); }
+/* Zonder deze twee regels scrolt de pagina achter de dialoog mee. */
+.codeboek-dialoog:modal { overscroll-behavior: contain; }
+.codeboek-dialoog::backdrop { background: rgb(0 0 0 / .45); overflow: hidden; overscroll-behavior: contain; }
+.codeboek-dialoog__sluit { position: sticky; top: 0; display: flex; justify-content: flex-end; padding: var(--s3) 0 var(--s2); margin: 0; background: var(--bg); }
+.codeboek-dialoog .codeboek { border: 0; padding: 0; background: none; }
+.codeboek-dialoog h1 { margin: 0 0 var(--s2); font-size: 1.25rem; }
 .uitslag__kern { font-weight: 700; color: var(--ink); font-size: 1.1rem; }
 
 /* Kappa met de hand */
@@ -189,7 +202,16 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .keuze-item { margin: 0; border: 1px solid var(--border-strong); border-radius: var(--radius); padding: var(--s2) var(--s4) var(--s3); }
 .keuze-item legend { font-weight: 600; color: var(--ink); padding: 0 var(--s1); }
 .keuze-item__opties { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); margin-top: var(--s2); }
-.keuze-item__fb:empty { display: none; }
+/* Leeg blijft de feedback in de pagina staan (niet display: none): een schermlezer leest een live regio
+   alleen voor als die er al was voordat de tekst erin kwam. */
+.keuze-item__fb:empty { padding: 0; margin: 0; }
+.keuze-knop { font: inherit; font-size: .9rem; color: var(--ink); background: var(--bg); cursor: pointer; touch-action: manipulation;
+  min-height: 2.5rem; padding: var(--s1) var(--s3); border: 1px solid var(--border-strong); border-radius: var(--radius-full); }
+.keuze-knop:hover { border-color: var(--magenta-dark); background: var(--tint-faint); }
+.keuze-knop[aria-pressed="true"] { border: 2px solid var(--magenta); background: var(--tint-faint); font-weight: 600; padding: calc(var(--s1) - 1px) calc(var(--s3) - 1px); }
+/* Het vinkje is een eigen span met aria-hidden: tekst uit ::before telt mee in de naam van de knop. */
+.keuze-knop__vink { display: none; color: var(--magenta-dark); margin-right: .3em; }
+.keuze-knop[aria-pressed="true"] .keuze-knop__vink { display: inline; }
 .keuze-item__fb { margin: var(--s2) 0 0; padding: var(--s2) var(--s3); border-radius: var(--radius); font-size: .9rem; }
 .vormen td.is-hier { background: var(--tint-faint); box-shadow: inset 0 0 0 2px var(--magenta); }
 .vormen { table-layout: fixed; }
@@ -225,7 +247,8 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .plan__sectie { padding: var(--s4) 0; border-top: 1px solid var(--border); }
 .plan__sectie h2 { margin-top: 0; }
 .plan__sectie h3, .plan__groei h3 { font-size: 1rem; margin: var(--s3) 0 var(--s1); }
-.plan__antwoord { white-space: pre-wrap; margin: 0; color: var(--ink); }
+/* anywhere: een deellink zonder koppeltekens breekt anders niet af, en de pagina schuift zijwaarts. */
+.plan__antwoord { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; color: var(--ink); }
 .plan__leeg { color: var(--muted); font-style: italic; margin: 0; }
 .plan__aanpassen { font-size: .85rem; margin: var(--s1) 0 0; }
 .plan__groei, .plan__checklist { margin-top: var(--s8); padding: var(--s4); background: var(--bg-soft); border-radius: var(--radius); }
@@ -235,7 +258,7 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .plan__checklist legend { margin-bottom: var(--s2); }
 
 @media print {
-  .kop, .voet, .terug, .melding-opslag, .plan__acties, .plan__aanpassen, .plan__leeg a, .plan__groei, .plan__checklist { display: none !important; }
+  .kop, .voet, .terug, .melding-opslag, .plan__intro, .plan__acties, .plan__aanpassen, .plan__leeg a, .plan__groei, .plan__checklist { display: none !important; }
   body { font-size: 11pt; color: #000; }
   .plan__sectie { break-inside: avoid; border-top-color: #999; }
 }
