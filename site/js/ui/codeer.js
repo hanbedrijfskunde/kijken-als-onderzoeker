@@ -1,5 +1,6 @@
 import { CODES, GESPREK, BESLISREGEL } from '../content/s3.js';
 import { el } from './dom.js';
+import { cleanCodes } from '../codes.js';
 
 const NAAM = Object.fromEntries(CODES.map((c) => [c.id, c.naam]));
 const AANTAL = GESPREK.filter((b) => b.spreker === 'verkoper').length;
@@ -19,15 +20,21 @@ export function renderCodeboek() {
 
 export function renderCodeer(block, ctx) {
   const { store } = ctx;
-  const codes = store.get('codes.s3') ?? Array(AANTAL).fill(null);
+  const codes = cleanCodes(store.get('codes.s3'), CODES.map((c) => c.id), AANTAL);
   const feedback = [];
   const knop = el('button', { type: 'button', class: 'knop' }, 'Controleer');
+  const nog = el('span', { class: 'codeer__nog' });
   const uitslag = el('div', { class: 'uitslag', 'aria-live': 'polite' });
   ctx.checkEl.append(uitslag);
 
   function bijwerken() {
-    knop.disabled = codes.some((c) => c == null);
-    knop.title = knop.disabled ? `Nog ${codes.filter((c) => c == null).length} beurten te gaan` : '';
+    const open = codes.map((c, i) => (c == null ? i + 1 : null)).filter((x) => x);
+    knop.disabled = open.length > 0;
+    if (open.length === 0) nog.textContent = '';
+    else if (open.length <= 5) {
+      const lijst = open.length === 1 ? String(open[0]) : `${open.slice(0, -1).join(', ')} en ${open.at(-1)}`;
+      nog.textContent = `Nog niet gecodeerd: beurt ${lijst}.`;
+    } else nog.textContent = `Nog ${open.length} beurten niet gecodeerd.`;
   }
 
   let n = -1;
@@ -37,14 +44,15 @@ export function renderCodeer(block, ctx) {
     }
     n += 1;
     const i = n;
-    const fb = el('p', { class: 'beurt__feedback', 'aria-live': 'polite' });
+    const fb = el('p', { class: 'beurt__feedback' });
+    const tekstId = `beurt-tekst-${i}`;
     feedback[i] = fb;
     return el('fieldset', { class: 'beurt beurt--verkoper' },
       el('legend', {}, `Beurt ${i + 1}`),
-      el('p', { class: 'beurt__tekst' }, el('span', { class: 'spreker' }, 'Verkoper'), b.tekst),
+      el('p', { class: 'beurt__tekst' }, el('span', { class: 'spreker' }, 'Verkoper'), el('span', { id: tekstId }, b.tekst)),
       el('div', { class: 'beurt__codes' }, CODES.map((c) => el('label', { class: 'keuze' },
         el('input', {
-          type: 'radio', name: `beurt-${i}`, value: c.id, checked: codes[i] === c.id,
+          type: 'radio', name: `beurt-${i}`, value: c.id, checked: codes[i] === c.id, 'aria-describedby': tekstId,
           onchange: () => {
             codes[i] = c.id;
             store.set('codes.s3', codes);
@@ -81,5 +89,5 @@ export function renderCodeer(block, ctx) {
     renderCodeboek(),
     el('div', { class: 'codeer__gesprek' },
       el('div', { class: 'gesprek' }, beurten),
-      el('p', { class: 'codeer__actie' }, knop)));
+      el('p', { class: 'codeer__actie' }, knop, ' ', nog)));
 }

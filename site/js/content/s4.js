@@ -49,7 +49,7 @@ export default {
       samenvatting: [
         'De software berekent kappa voor elk tweetal codeurs.',
         'Daarna kijkt Chen naar de verwarringsmatrix: bij welke codes zijn de codeurs het oneens?',
-        'Bij haar zat het grootste verschil bij ‘strategie wisselen’: zij codeerde die tien keer vaker dan haar eerste codeur.',
+        'Bij haar zat het grootste verschil bij ‘strategie wisselen’: zij gaf die code tien keer meer dan haar eerste codeur.',
         'Zo weet je welke definitie in het codeboek scherper moet.',
       ],
     },
@@ -65,7 +65,7 @@ export default {
       ],
     },
     { type: 'still', bestand: '12-38m10-steps-for-establishing-reliability.webp', sec: 2290, alt: 'Schema met vijf stappen: codeboek maken, codeurs trainen, certificering bij kappa boven 0,85, video’s coderen, drift voorkomen.', bijschrift: 'De vijf stappen naar betrouwbaar coderen.' },
-    { type: 'tekst', html: '<p><strong>Welke kappa is genoeg?</strong> Voor een studentproject: vanaf 0,60 is je codering bruikbaar, vanaf 0,80 goed. De 0,85 uit de video is de strenge norm voor wetenschappelijk onderzoek.</p>' },
+    { type: 'tekst', html: '<p><strong>Hoe lees je kappa?</strong> Landis & Koch (1977) gebruiken deze banden:</p><div class="tabel-wrap"><table class="banden"><thead><tr><th scope="col">κ</th><th scope="col">Overeenstemming</th></tr></thead><tbody><tr><td>onder 0</td><td>minder dan toeval</td></tr><tr><td>0,00 – 0,20</td><td>gering</td></tr><tr><td>0,21 – 0,40</td><td>redelijk</td></tr><tr><td>0,41 – 0,60</td><td>matig</td></tr><tr><td>0,61 – 0,80</td><td>aanzienlijk</td></tr><tr><td>0,81 – 1,00</td><td>bijna perfect</td></tr></tbody></table></div><p><strong>Welke kappa is genoeg?</strong> Voor een studentproject: vanaf 0,60 is je codering bruikbaar, vanaf 0,80 goed. De 0,85 uit de video is de strenge norm voor wetenschappelijk onderzoek.</p>' },
     {
       type: 'details', titel: 'Verdieping: andere maten voor overeenstemming',
       blokken: [

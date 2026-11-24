@@ -65,9 +65,16 @@ function renderPlanView() {
 function render() {
   const route = parseHash(location.hash);
   let view;
-  if (route.view === 'station') view = renderStationView(route.id);
-  else if (route.view === 'plan') view = renderPlanView();
-  else view = renderKaart(store, go);
+  try {
+    if (route.view === 'station') view = renderStationView(route.id);
+    else if (route.view === 'plan') view = renderPlanView();
+    else view = renderKaart(store, go);
+  } catch (fout) {
+    console.error(fout);
+    view = el('article', { class: 'station' }, terugNaarKaart(),
+      el('h1', {}, 'Er ging iets mis'),
+      el('p', {}, 'Dit onderdeel kon niet worden getoond. Ga terug naar de kaart. Blijft het gebeuren, kies dan op de kaart Opnieuw beginnen.'));
+  }
   app.replaceChildren(view);
   window.scrollTo(0, 0);
   if (route.view !== 'kaart') app.focus({ preventScroll: true });

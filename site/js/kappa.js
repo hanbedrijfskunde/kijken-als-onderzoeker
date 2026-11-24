@@ -26,7 +26,10 @@ export function cohensKappa(matrix) {
 }
 
 // Banden van Landis & Koch (1977).
+const afgerond = (k) => Math.round(k * 100) / 100;
+
 export function landisKoch(kappa) {
+  kappa = afgerond(kappa);
   if (kappa < 0) return 'minder dan toeval';
   if (kappa <= 0.2) return 'gering';
   if (kappa <= 0.4) return 'redelijk';
@@ -37,7 +40,7 @@ export function landisKoch(kappa) {
 
 // Vuistregel voor een studentproject (ontwerp §7.3, station 4).
 export function studentVerdict(kappa) {
-  const k = Math.round(kappa * 1e9) / 1e9;
+  const k = afgerond(kappa);
   if (k >= 0.8) return 'goed';
   if (k >= 0.6) return 'bruikbaar';
   return 'onvoldoende';

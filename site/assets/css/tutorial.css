@@ -177,3 +177,5 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .kjda__fb:empty { display: none; }
 .kjda__fb { margin: var(--s2) 0 0; padding: var(--s2) var(--s3); border-radius: var(--radius); font-size: .9rem; }
 .melding-opslag { width: calc(min(var(--breedte), 100%) - 2rem); margin: var(--s4) auto 0; }
+.codeer__nog { font-size: .9rem; color: var(--amber); font-weight: 600; }
+.banden { width: auto; }

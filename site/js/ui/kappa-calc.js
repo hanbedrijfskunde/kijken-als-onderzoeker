@@ -2,6 +2,7 @@ import { CODES, VERKOPER_SLEUTEL, VOORBEELD_CODES } from '../content/s3.js';
 import { ZELFDE_TOTALEN } from '../content/s4.js';
 import { confusionMatrix, cohensKappa, landisKoch, studentVerdict, mostConfused, formatNl } from '../kappa.js';
 import { el } from './dom.js';
+import { cleanCodes } from '../codes.js';
 
 const IDS = CODES.map((c) => c.id);
 const NAAM = Object.fromEntries(CODES.map((c) => [c.id, c.naam]));
@@ -53,7 +54,7 @@ function zelfdeTotalen() {
 }
 
 function partnerDeel(store, eigen) {
-  const partner = store.get('codes.partner') ?? Array(AANTAL).fill(null);
+  const partner = cleanCodes(store.get('codes.partner'), IDS, AANTAL);
   const uit = el('div', { 'aria-live': 'polite' });
   function toon() {
     uit.replaceChildren(partner.every((c) => c) ? resultaat(eigen, partner, 'Jij', 'Studiegenoot')
@@ -75,7 +76,7 @@ function partnerDeel(store, eigen) {
 
 export function renderKappaCalc(block, ctx) {
   const { store } = ctx;
-  const eigenCodes = store.get('codes.s3') ?? [];
+  const eigenCodes = cleanCodes(store.get('codes.s3'), IDS, AANTAL);
   const gevuld = eigenCodes.filter((c) => c).length;
   const compleet = gevuld === AANTAL;
   const codes = compleet ? eigenCodes : VOORBEELD_CODES;

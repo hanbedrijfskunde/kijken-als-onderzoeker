@@ -37,7 +37,9 @@ export function renderKaart(store, go) {
       el('li', {}, 'Je laat zien welke beslissing je data onderbouwen, en welke niet.')),
     el('p', { class: 'kaart__route' },
       'Aanbevolen: volg de stations op volgorde. Elk station werkt ook los. ',
-      'Samen kost het ongeveer 3 uur. Stoppen kan altijd: je voortgang blijft in deze browser bewaard.'),
+      'Samen kost het ongeveer 3 uur. ',
+      store.persistent ? 'Stoppen kan altijd: je voortgang blijft in deze browser bewaard.'
+        : 'Let op: deze browser bewaart je voortgang niet.'),
     lijst,
     el('a', { class: 'kaart__plan', href: '#/plan' }, 'Mijn observatieplan'),
     el('p', { class: 'kaart__reset' },

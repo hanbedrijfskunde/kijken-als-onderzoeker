@@ -32,6 +32,7 @@ export function renderOpen(block, ctx) {
         type: 'button', class: 'knop knop--stil',
         onclick: () => { vergelijk.hidden = false; },
       }, 'Vergelijk met het voorbeeld'),
-      el('span', { class: 'open__bewaard' }, 'Je antwoord wordt bewaard in deze browser.')),
+      el('span', { class: 'open__bewaard' }, store.persistent ? 'Je antwoord wordt bewaard in deze browser.'
+        : 'Kopieer je antwoord voordat je de pagina sluit: deze browser bewaart het niet.')),
     vergelijk);
 }
