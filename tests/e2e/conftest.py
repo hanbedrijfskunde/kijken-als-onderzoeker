@@ -63,4 +63,11 @@ def page(context):
     pg = context.new_page()
     pg.set_default_timeout(5000)
     pg.set_default_navigation_timeout(10000)
+    # Bewijs voor wisselvallige fouten: pytest toont deze uitvoer alleen bij een test die faalt.
+    sporen = []
+    pg.on("pageerror", lambda e: sporen.append(f"pageerror: {e}"))
+    pg.on("console", lambda m: m.type == "error" and sporen.append(f"console: {m.text}"))
+    pg.on("requestfailed", lambda r: "127.0.0.1" in r.url and sporen.append(f"requestfailed: {r.url} {r.failure}"))
     yield pg
+    for spoor in sporen:
+        print(spoor)
