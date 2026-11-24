@@ -6,6 +6,7 @@ import { renderKaart } from './ui/kaart.js';
 import { el } from './ui/dom.js';
 import { INHOUD } from './content/index.js';
 import { renderStation } from './ui/station.js';
+import { renderPlan } from './ui/plan.js';
 import './ui/blokken.js';
 
 const store = createStore(safeLocalStorage());
@@ -37,10 +38,6 @@ function renderStationView(id) {
   const station = STATIONS.find((s) => s.id === id);
   setStatus(id, 'geopend');
   const content = INHOUD[id];
-  if (!content) {
-    return el('article', { class: 'station' },
-      terugNaarKaart(), el('h1', {}, station.titel), el('p', {}, 'Dit station volgt nog.'));
-  }
   const doeAf = [];
   const ctx = {
     store,
@@ -59,7 +56,7 @@ function renderStationView(id) {
 }
 
 function renderPlanView() {
-  return el('article', { class: 'plan' }, terugNaarKaart(), el('h1', {}, 'Mijn observatieplan'));
+  return el('article', { class: 'plan' }, terugNaarKaart(), el('h1', {}, 'Mijn observatieplan'), renderPlan(store));
 }
 
 function render() {

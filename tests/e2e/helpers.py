@@ -22,3 +22,14 @@ def stub_youtube(ctx):
     """Give embedded YouTube videos an empty page. Tests check that a video is there, not what it shows;
     this keeps load times independent of YouTube (measured: 0.03-0.93 s with, 0.06 s without)."""
     ctx.route("**/*youtube*/embed/**", lambda r: r.fulfill(status=200, content_type="text/html", body=LEGE_VIDEO))
+
+
+KEY = "kijken-als-onderzoeker/v1"
+
+
+def preset(page, site_url, data):
+    """Put data in the store before the app reads it."""
+    import json
+    page.goto(site_url)
+    page.evaluate(f"localStorage.setItem({json.dumps(KEY)}, {json.dumps(json.dumps(data))})")
+    page.reload()

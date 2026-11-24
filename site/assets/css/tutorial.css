@@ -214,3 +214,28 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .besluit table caption { text-align: left; font-weight: 600; color: var(--ink); padding-bottom: var(--s1); }
 .besluit td { text-align: right; font-variant-numeric: tabular-nums; }
 .besluit thead th:not(:first-child) { text-align: right; }
+
+/* Mijn observatieplan */
+.plan__intro { color: var(--text); }
+.plan__acties { margin: var(--s4) 0 var(--s6); }
+.plan__acties > p { display: flex; flex-wrap: wrap; gap: var(--s2); margin: 0; }
+.plan__melding:empty { display: none; }
+.plan__melding { color: var(--green); font-weight: 600; }
+.plan__kopie textarea { width: 100%; font: inherit; font-size: .9rem; }
+.plan__sectie { padding: var(--s4) 0; border-top: 1px solid var(--border); }
+.plan__sectie h2 { margin-top: 0; }
+.plan__sectie h3, .plan__groei h3 { font-size: 1rem; margin: var(--s3) 0 var(--s1); }
+.plan__antwoord { white-space: pre-wrap; margin: 0; color: var(--ink); }
+.plan__leeg { color: var(--muted); font-style: italic; margin: 0; }
+.plan__aanpassen { font-size: .85rem; margin: var(--s1) 0 0; }
+.plan__groei, .plan__checklist { margin-top: var(--s8); padding: var(--s4); background: var(--bg-soft); border-radius: var(--radius); }
+.plan__groei-kolommen { display: grid; gap: var(--s4); }
+@media (min-width: 48rem) { .plan__groei-kolommen { grid-template-columns: 1fr 1fr; } }
+.plan__checklist fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: var(--s2); }
+.plan__checklist legend { margin-bottom: var(--s2); }
+
+@media print {
+  .kop, .voet, .terug, .melding-opslag, .plan__acties, .plan__aanpassen, .plan__leeg a, .plan__groei, .plan__checklist { display: none !important; }
+  body { font-size: 11pt; color: #000; }
+  .plan__sectie { break-inside: avoid; border-top-color: #999; }
+}
