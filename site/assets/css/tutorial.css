@@ -121,6 +121,17 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .is-goed { background: var(--green-soft); border-left: 4px solid var(--green); }
 .is-anders { background: var(--amber-soft); border-left: 4px solid var(--amber-line); }
 .codeer__actie { margin-top: var(--s4); }
+/* Smal scherm: de knop Codeboek blijft onderin beeld zolang het gesprek in beeld is. */
+.codeer__codeboek-knop { position: sticky; bottom: var(--s3); display: flex; justify-content: flex-end; margin: var(--s3) 0 0; pointer-events: none; }
+.codeer__codeboek-knop .knop { pointer-events: auto; box-shadow: 0 2px 8px rgb(0 0 0 / .25); }
+@media (min-width: 72rem) { .codeer__codeboek-knop { display: none; } }
+.codeboek-dialoog { width: min(40rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); padding: 0 var(--s4) var(--s4); border: 0; border-radius: var(--radius); }
+/* Zonder deze twee regels scrolt de pagina achter de dialoog mee. */
+.codeboek-dialoog:modal { overscroll-behavior: contain; }
+.codeboek-dialoog::backdrop { background: rgb(0 0 0 / .45); overflow: hidden; overscroll-behavior: contain; }
+.codeboek-dialoog__sluit { position: sticky; top: 0; display: flex; justify-content: flex-end; padding: var(--s3) 0 var(--s2); margin: 0; background: var(--bg); }
+.codeboek-dialoog .codeboek { border: 0; padding: 0; background: none; }
+.codeboek-dialoog h1 { margin: 0 0 var(--s2); font-size: 1.25rem; }
 .uitslag__kern { font-weight: 700; color: var(--ink); font-size: 1.1rem; }
 
 /* Kappa met de hand */
