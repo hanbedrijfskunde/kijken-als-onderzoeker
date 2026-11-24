@@ -1,9 +1,9 @@
 import pytest
 
-from helpers import NAAM, SLEUTEL, code_turn
+from helpers import NAAM, SLEUTEL, code_turn, stub_youtube
 
 NOTICE = "Je antwoorden worden niet bewaard als je deze pagina sluit."
-PAGES = ["#/", "#/station/0", "#/station/1", "#/station/3", "#/station/4"]
+PAGES = ["#/", "#/station/0", "#/station/1", "#/station/2", "#/station/3", "#/station/4"]
 
 
 def test_storage_blocked_notice_once(page, site_url):
@@ -20,6 +20,7 @@ def test_storage_blocked_notice_once(page, site_url):
 @pytest.mark.parametrize("hash_", PAGES)
 def test_no_horizontal_scroll_at_360(browser, site_url, hash_):
     ctx = browser.new_context(viewport={"width": 360, "height": 740})
+    stub_youtube(ctx)
     pg = ctx.new_page()
     pg.goto(site_url + hash_)
     pg.wait_for_timeout(200)

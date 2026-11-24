@@ -6,6 +6,7 @@ import { renderKappaCalc } from './kappa-calc.js';
 import { renderOpen } from './open.js';
 import { renderKeuze } from './keuze.js';
 import { renderSorteer } from './sorteer.js';
+import { renderTurf } from './turf.js';
 
 registerBlock('codeer', renderCodeer);
 registerBlock('kappa-hand', renderKappaHand);
@@ -13,3 +14,4 @@ registerBlock('kappa-calc', renderKappaCalc);
 registerBlock('open', renderOpen);
 registerBlock('keuze', renderKeuze);
 registerBlock('sorteer', renderSorteer);
+registerBlock('turf', renderTurf);

@@ -194,3 +194,18 @@ tbody th { color: var(--ink); white-space: nowrap; }
 .vormen td.is-hier { background: var(--tint-faint); box-shadow: inset 0 0 0 2px var(--magenta); }
 .vormen { table-layout: fixed; }
 .vormen tbody th { white-space: normal; width: 30%; }
+
+/* Station 2: klikteller */
+.turf { margin: var(--s4) 0; }
+.turf h3 { margin: 0 0 var(--s2); font-size: 1.05rem; }
+.turf__codes { display: grid; grid-template-columns: auto 1fr; gap: var(--s1) var(--s3); margin: 0 0 var(--s4); font-size: .9rem; }
+.turf__codes dt { font-weight: 700; color: var(--ink); }
+.turf__codes dd { margin: 0; color: var(--muted); }
+.turf__knoppen { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: var(--s3); }
+.turf__knop { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s1); min-height: 5.5rem; padding: var(--s3); border: 2px solid var(--magenta); border-radius: var(--radius); background: var(--bg); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; touch-action: manipulation; }
+.turf__knop:hover { background: var(--tint-faint); }
+.turf__knop:active { background: var(--tint-soft); }
+.turf__aantal { font-family: var(--font-head); font-size: 1.8rem; line-height: 1; color: var(--magenta-dark); }
+.turf__acties { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
+.turf-uitleg { list-style: none; padding: 0; display: grid; gap: var(--s2); }
+.turf-uitleg li { padding: var(--s2) var(--s3); border-radius: var(--radius); font-size: .9rem; }
