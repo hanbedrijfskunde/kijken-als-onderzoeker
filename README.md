@@ -47,4 +47,4 @@ ECHTE_VIDEO=1 SITE_URL=https://hanbedrijfskunde.github.io/kijken-als-onderzoeker
   python3 -m pytest tests/e2e/test_video_live.py
 ```
 
-Per station opent de test elk ingesloten fragment en wacht tot de speler de titel van de video toont. Haalt het kanaal de video offline of verbiedt het insluiten, dan faalt de test met de tekst die YouTube toont.
+Per station opent de test elk ingesloten fragment en wacht tot de speler de titel van de video toont. Toont YouTube in plaats van de speler een melding, zoals *Deze video is niet beschikbaar*, dan faalt de test en noemt hij die melding.

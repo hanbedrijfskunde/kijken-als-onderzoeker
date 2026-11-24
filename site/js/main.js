@@ -7,6 +7,7 @@ import { el } from './ui/dom.js';
 import { INHOUD } from './content/index.js';
 import { renderStation } from './ui/station.js';
 import { renderPlan } from './ui/plan.js';
+import { padenVoor, geraakt } from './sync.js';
 import './ui/blokken.js';
 
 const store = createStore(safeLocalStorage());
@@ -60,7 +61,7 @@ function renderPlanView() {
   return el('article', { class: 'plan' }, terugNaarKaart(), el('h1', {}, 'Mijn observatieplan'), renderPlan(store));
 }
 
-// behoud: true bij een wijziging uit een ander tabblad; dan blijven scrollpositie en focus staan.
+// behoud: true bij een wijziging uit een ander tabblad; dan blijft de scrollpositie staan.
 function render({ behoud = false } = {}) {
   const route = parseHash(location.hash);
   let view;
@@ -95,6 +96,7 @@ window.addEventListener('hashchange', () => render());
 window.addEventListener('storage', (e) => {
   if (e.key !== STORE_KEY && e.key !== null) return;
   store.reload();
+  if (e.key !== null && !geraakt(e.oldValue, e.newValue, padenVoor(parseHash(location.hash), INHOUD))) return;
   render({ behoud: true });
 });
 render();

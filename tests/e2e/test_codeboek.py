@@ -90,3 +90,21 @@ def test_focus_never_hidden_under_codeboek_button(telefoon):
                    and r["y"] < k["y"] + k["height"] and k["y"] < r["y"] + r["h"])
         assert not overlap, f"beurt {i + 1}: de focus valt onder de knop Codeboek"
     assert getest > 0
+
+
+def test_codeboek_dialog_with_storage_blocked(browser, site_url):
+    ctx = browser.new_context(viewport={"width": 360, "height": 740})
+    ctx.add_init_script("Storage.prototype.setItem = function () { throw new Error('blocked'); };")
+    stub_youtube(ctx)
+    page = ctx.new_page()
+    fouten = []
+    page.on("pageerror", lambda e: fouten.append(str(e)))
+    page.goto(site_url + S3)
+    code_all(page, SLEUTEL[:3])
+    knop(page).click()
+    dialoog = page.get_by_role("dialog", name="Codeboek")
+    expect(dialoog).to_be_visible()
+    page.keyboard.press("Escape")
+    expect(dialoog).to_be_hidden()
+    assert fouten == []
+    ctx.close()
