@@ -1,0 +1,9 @@
+{
+  "name": "kijken-als-onderzoeker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:unit": "node --test tests/unit/",
+    "test:e2e": "python3 -m pytest tests/e2e -q"
+  }
+}

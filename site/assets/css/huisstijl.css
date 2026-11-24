@@ -1,0 +1,49 @@
+/* HAN-huisstijl. Tokens overgenomen uit rl-bedrijfskunde/assets/docs.css
+   (kleuren opgehaald van han.nl): #e50056 primair, #b70045 donker,
+   #f7b2cc licht, #d91e57 logo. Typografie Avenir Next. */
+:root {
+  color-scheme: light;
+  --magenta: #e50056; --magenta-dark: #b70045; --logo: #d91e57;
+  --tint: #f7b2cc; --tint-soft: #fdeff4; --tint-faint: #fef7fa;
+  --ink: #262626; --text: #454545; --muted: #6b6b6b; --faint: #919191;
+  --border: #e3e3e3; --border-strong: #cfcfcf;
+  --bg: #fff; --bg-soft: #fafafa; --bg-2: #f0f0f0;
+  --green: #1f883d; --green-soft: #f0f9f2; --green-line: #b9dfc4;
+  --amber: #b26b00; --amber-soft: #fdf6e8; --amber-line: #f3d9a0;
+  --font-body: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-head: "Avenir Next Condensed", "Avenir Next", Avenir, -apple-system, "Segoe UI Semibold", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  --s1: .25rem; --s2: .5rem; --s3: .75rem; --s4: 1rem; --s6: 1.5rem; --s8: 2rem; --s12: 3rem;
+  --radius: 8px; --radius-lg: 14px; --radius-full: 999px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05), 0 2px 8px rgba(0,0,0,.04);
+  --breedte: 46rem;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.6;
+  color: var(--text); background: var(--bg);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); line-height: 1.2; }
+a { color: var(--magenta-dark); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+a:hover { color: var(--magenta); }
+:focus-visible { outline: 3px solid var(--magenta); outline-offset: 2px; border-radius: 4px; }
+img { max-width: 100%; height: auto; }
+
+/* Kopbalk */
+.kop { border-bottom: 1px solid var(--border); background: var(--bg); }
+.kop__binnen { max-width: var(--breedte); margin: 0 auto; padding: var(--s3) var(--s4);
+  display: flex; align-items: center; gap: var(--s4); }
+.kop__logo { display: block; line-height: 0; }
+.kop__logo img { height: 44px; width: auto; }
+.kop__titel { display: flex; flex-direction: column; border-left: 2px solid var(--magenta); padding-left: var(--s4); }
+.kop__label { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+.kop__naam { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: var(--ink); }
+
+/* Voettekst */
+.voet { margin-top: var(--s12); border-top: 1px solid var(--border); background: var(--bg-soft); }
+.voet__binnen { max-width: var(--breedte); margin: 0 auto; padding: var(--s6) var(--s4);
+  display: grid; grid-template-columns: 1fr auto; gap: var(--s4); align-items: start; font-size: .9rem; }
+.voet__binnen p { margin: 0 0 var(--s2); }
+.voet__logo img { height: 36px; width: auto; }
